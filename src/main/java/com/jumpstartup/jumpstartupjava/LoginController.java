@@ -1,6 +1,7 @@
 package com.jumpstartup.jumpstartupjava;
 
 import com.jumpstartup.Database.LoginDatabase;
+import com.jumpstartup.Encryption.PasswordEncryption;
 import com.jumpstartup.LoginBody.LoginRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,8 @@ public class LoginController {
 
     @PostMapping
     public ResponseEntity<String> loginSubmit(@RequestBody LoginRequest loginRequest) {
+        PasswordEncryption encryption = new PasswordEncryption();
+        loginRequest.setHashpass(encryption.encryptPassword(loginRequest.getHashpass()));
         if (authenticate(loginRequest.getUsername(), loginRequest.getHashpass())) {
             return new ResponseEntity<>("AUTHORIZED",HttpStatus.OK);
         } else {
@@ -30,6 +33,8 @@ public class LoginController {
 
     @PostMapping("/signup")
     public ResponseEntity<String> signupSubmit(@RequestBody LoginRequest loginRequest) {
+        PasswordEncryption encryption = new PasswordEncryption();
+        loginRequest.setHashpass(encryption.encryptPassword(loginRequest.getHashpass()));
         boolean success = signup(loginRequest.getUsername(),loginRequest.getHashpass(),loginRequest.getEmail(), loginRequest.getType());
         if (success) {
             return new ResponseEntity<>("SIGNUP SUCCESSFUL", HttpStatus.OK);
