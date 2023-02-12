@@ -35,7 +35,7 @@ public class LoginController {
     public ResponseEntity<String> signupSubmit(@RequestBody LoginRequest loginRequest) {
         PasswordEncryption encryption = new PasswordEncryption();
         loginRequest.setHashpass(encryption.encryptPassword(loginRequest.getHashpass()));
-        boolean success = signup(loginRequest.getUsername(),loginRequest.getHashpass(),loginRequest.getEmail(), loginRequest.getType());
+        boolean success = signup(loginRequest.getUuid(),loginRequest.getUsername(),loginRequest.getHashpass(),loginRequest.getEmail(), loginRequest.getType());
         if (success) {
             return new ResponseEntity<>("SIGNUP SUCCESSFUL", HttpStatus.OK);
         } else {
@@ -49,9 +49,9 @@ public class LoginController {
         return auth.authenticate(username,password);
     }
 
-    private boolean signup(String username,String password,String email, String type){
+    private boolean signup(String UUID, String username,String password,String email, String type){
         LoginDatabase addUser = new LoginDatabase();
-        return addUser.newUser(username,email,password,type);
+        return addUser.newUser(UUID,username,email,password,type);
     }
 
 

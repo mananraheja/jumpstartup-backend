@@ -10,7 +10,7 @@ public class LoginDatabase {
     public boolean authenticate(String username, String password) {
         Connection connection = null;
         try {
-            connection = DriverManager.getConnection("jdbc:h2:mem:testdb", "sa", "");
+            connection = DriverManager.getConnection("jdbc:h2:file:./jsudb.h2.db", "sa", "");
             String sql = "SELECT * FROM myUser WHERE username = ? AND hashpass = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, username);
@@ -36,16 +36,20 @@ public class LoginDatabase {
         }
     }
 
-    public boolean newUser(String username, String email, String hashpass, String type) {
+    public boolean newUser(String UUID,String username, String email, String hashpass, String type) {
         Connection connection = null;
+
+        System.out.println(UUID+","+username+ "," + email+","+hashpass+"," + type );
+
         try {
-            connection = DriverManager.getConnection("jdbc:h2:mem:testdb", "sa", "");
-            String sql = "INSERT INTO myUser(username, email, hashpass, type) VALUES(?, ?, ?, ?)";
+            connection = DriverManager.getConnection("jdbc:h2:file:./jsudb.h2.db", "sa", "");
+            String sql = "INSERT INTO myUser(UUID, username, email, hashpass, type) VALUES(?,?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, username);
-            statement.setString(2, email);
-            statement.setString(3, hashpass);
-            statement.setString(4, type);
+            statement.setString(1, UUID);
+            statement.setString(2, username);
+            statement.setString(3, email);
+            statement.setString(4, hashpass);
+            statement.setString(5, type);
 
             int rowsAffected = statement.executeUpdate();
             if (rowsAffected > 0) {
