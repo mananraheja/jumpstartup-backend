@@ -1,5 +1,7 @@
 package com.jumpstartup.jumpstartupjava;
 
+import com.jumpstartup.Database.LoginDatabase;
+import com.jumpstartup.Encryption.PasswordEncryption;
 import com.jumpstartup.LoginBody.LoginRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,17 +22,37 @@ public class LoginController {
 
     @PostMapping
     public ResponseEntity<String> loginSubmit(@RequestBody LoginRequest loginRequest) {
-        if (authenticate(loginRequest.getUser(), loginRequest.getPass())) {
-
+        PasswordEncryption encryption = new PasswordEncryption();
+        loginRequest.setHashpass(encryption.encryptPassword(loginRequest.getHashpass()));
+        if (authenticate(loginRequest.getUsername(), loginRequest.getHashpass())) {
             return new ResponseEntity<>("AUTHORIZED",HttpStatus.OK);
         } else {
             return new ResponseEntity<>("NOT AUTHORIZED",HttpStatus.UNAUTHORIZED);
         }
     }
 
+    @PostMapping("/signup")
+    public ResponseEntity<String> signupSubmit(@RequestBody LoginRequest loginRequest) {
+        PasswordEncryption encryption = new PasswordEncryption();
+        loginRequest.setHashpass(encryption.encryptPassword(loginRequest.getHashpass()));
+        boolean success = signup(loginRequest.getUuid(),loginRequest.getUsername(),loginRequest.getHashpass(),loginRequest.getEmail(), loginRequest.getType());
+        if (success) {
+            return new ResponseEntity<>("SIGNUP SUCCESSFUL", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("SIGNUP FAILED", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
     private boolean authenticate(String username, String password) {
-        // Database logic here
-        return true;
+        LoginDatabase auth = new LoginDatabase();
+        return auth.authenticate(username,password);
     }
+
+    private boolean signup(String UUID, String username,String password,String email, String type){
+        LoginDatabase addUser = new LoginDatabase();
+        return addUser.newUser(UUID,username,email,password,type);
+    }
+
+
 }
