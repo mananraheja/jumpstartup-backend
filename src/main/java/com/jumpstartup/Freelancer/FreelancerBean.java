@@ -3,20 +3,56 @@ package com.jumpstartup.Freelancer;
 import java.io.Serializable;
 
 public class FreelancerBean  {
+
     private int uuid;
+    private String username;
+    private String email;
+
+    // FREELANCER
+    private int uuid_f;
     private String phone_number;
     private String skills;
-//    private byte[] resume_pdf;
     private String linkedin_link;
+
+    // EDUCATION
+    private int uuid_e;
+    private String institution;
+
+    private String degree;
+    private String major;
+    private int year_of_completion;
+
+    // WORK EXPERIENCE
+    private int uuid_w;
+    private String work_experience;
+
+
 
     public FreelancerBean() {}
 
-    public FreelancerBean(int uuid, String phone_number, String skills, String linkedin_link) {
-        this.uuid = uuid;
+    public FreelancerBean(String username, String email, String phone_number, String skills, String linkedin_link, String institution, String degree, String major, int year_of_completion, String work_experience) {
+        this.username = username;
+        this.email = email;
         this.phone_number = phone_number;
         this.skills = skills;
-//        this.resume_pdf = resume_pdf;
         this.linkedin_link = linkedin_link;
+        this.institution = institution;
+        this.degree = degree;
+        this.major = major;
+        this.year_of_completion = year_of_completion;
+        this.work_experience = work_experience;
+    }
+
+    public FreelancerBean(String phone_number, String skills, String linkedin_link, String institution, String degree, String major, int year_of_completion, String work_experience) {
+
+        this.phone_number = phone_number;
+        this.skills = skills;
+        this.linkedin_link = linkedin_link;
+        this.institution = institution;
+        this.degree = degree;
+        this.major = major;
+        this.year_of_completion = year_of_completion;
+        this.work_experience = work_experience;
     }
 
     public int getUuid() {
@@ -25,6 +61,30 @@ public class FreelancerBean  {
 
     public void setUuid(int uuid) {
         this.uuid = uuid;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getUuid_f() {
+        return uuid_f;
+    }
+
+    public void setUuid_f(int uuid_f) {
+        this.uuid_f = uuid_f;
     }
 
     public String getPhone_number() {
@@ -43,19 +103,67 @@ public class FreelancerBean  {
         this.skills = skills;
     }
 
-//    public byte[] getResume_pdf() {
-//        return resume_pdf;
-//    }
-//
-//    public void setResume_pdf(byte[] resume_pdf) {
-//        this.resume_pdf = resume_pdf;
-//    }
-
     public String getLinkedin_link() {
         return linkedin_link;
     }
 
     public void setLinkedin_link(String linkedin_link) {
         this.linkedin_link = linkedin_link;
+    }
+
+    public int getUuid_e() {
+        return uuid_e;
+    }
+
+    public void setUuid_e(int uuid_e) {
+        this.uuid_e = uuid_e;
+    }
+
+    public String getInstitution() {
+        return institution;
+    }
+
+    public void setInstitution(String institution) {
+        this.institution = institution;
+    }
+
+    public String getDegree() {
+        return degree;
+    }
+
+    public void setDegree(String degree) {
+        this.degree = degree;
+    }
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    public int getYear_of_completion() {
+        return year_of_completion;
+    }
+
+    public void setYear_of_completion(int year_of_completion) {
+        this.year_of_completion = year_of_completion;
+    }
+
+    public int getUuid_w() {
+        return uuid_w;
+    }
+
+    public void setUuid_w(int uuid_w) {
+        this.uuid_w = uuid_w;
+    }
+
+    public String getWork_experience() {
+        return work_experience;
+    }
+
+    public void setWork_experience(String work_experience) {
+        this.work_experience = work_experience;
     }
 }
