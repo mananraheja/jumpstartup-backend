@@ -4,18 +4,16 @@ import java.io.Serializable;
 
 public class FreelancerBean  {
 
-    private int uuid;
+    private String uuid;
     private String username;
     private String email;
 
     // FREELANCER
-    private int uuid_f;
     private String phone_number;
     private String skills;
     private String linkedin_link;
 
     // EDUCATION
-    private int uuid_e;
     private String institution;
 
     private String degree;
@@ -23,14 +21,14 @@ public class FreelancerBean  {
     private int year_of_completion;
 
     // WORK EXPERIENCE
-    private int uuid_w;
     private String work_experience;
 
 
 
     public FreelancerBean() {}
 
-    public FreelancerBean(String username, String email, String phone_number, String skills, String linkedin_link, String institution, String degree, String major, int year_of_completion, String work_experience) {
+    public FreelancerBean(String UUID,String username, String email, String phone_number, String skills, String linkedin_link, String institution, String degree, String major, int year_of_completion, String work_experience) {
+        this.uuid = UUID;
         this.username = username;
         this.email = email;
         this.phone_number = phone_number;
@@ -43,23 +41,12 @@ public class FreelancerBean  {
         this.work_experience = work_experience;
     }
 
-    public FreelancerBean(String phone_number, String skills, String linkedin_link, String institution, String degree, String major, int year_of_completion, String work_experience) {
 
-        this.phone_number = phone_number;
-        this.skills = skills;
-        this.linkedin_link = linkedin_link;
-        this.institution = institution;
-        this.degree = degree;
-        this.major = major;
-        this.year_of_completion = year_of_completion;
-        this.work_experience = work_experience;
-    }
-
-    public int getUuid() {
+    public String getUuid() {
         return uuid;
     }
 
-    public void setUuid(int uuid) {
+    public void setUuid(String uuid) {
         this.uuid = uuid;
     }
 
@@ -77,14 +64,6 @@ public class FreelancerBean  {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public int getUuid_f() {
-        return uuid_f;
-    }
-
-    public void setUuid_f(int uuid_f) {
-        this.uuid_f = uuid_f;
     }
 
     public String getPhone_number() {
@@ -111,13 +90,6 @@ public class FreelancerBean  {
         this.linkedin_link = linkedin_link;
     }
 
-    public int getUuid_e() {
-        return uuid_e;
-    }
-
-    public void setUuid_e(int uuid_e) {
-        this.uuid_e = uuid_e;
-    }
 
     public String getInstitution() {
         return institution;
@@ -151,13 +123,6 @@ public class FreelancerBean  {
         this.year_of_completion = year_of_completion;
     }
 
-    public int getUuid_w() {
-        return uuid_w;
-    }
-
-    public void setUuid_w(int uuid_w) {
-        this.uuid_w = uuid_w;
-    }
 
     public String getWork_experience() {
         return work_experience;
