@@ -29,7 +29,7 @@ CREATE TABLE Work_Experience (
 );
 
 CREATE TABLE Company (
-    UUID INT PRIMARY KEY,
+    UUID VARCHAR(255) PRIMARY KEY,
     company_name VARCHAR(255),
     is_registered BOOLEAN,
     stakeholder VARCHAR(255),
@@ -51,6 +51,17 @@ CREATE TABLE Freelancer (
     FOREIGN KEY (UUID) REFERENCES myUser(UUID)
 );
 
+CREATE TABLE Jobs (
+    UUID VARCHAR(255) PRIMARY KEY,
+    description VARCHAR(255),
+    is_active BOOLEAN,
+    number_of_openings INT,
+    skills VARCHAR(255),
+    pay_estimate FLOAT,
+    type ENUM('full-time', 'part-time', 'contract') CHECK (type IN ('full-time', 'part-time', 'contract')),
+    posting_date DATE,
+    FOREIGN KEY (UUID) REFERENCES Company(UUID)
+);
 
 CREATE TABLE Investor (
     UUID VARCHAR(255) PRIMARY KEY,
