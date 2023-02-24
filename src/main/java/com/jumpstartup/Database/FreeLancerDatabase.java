@@ -8,13 +8,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.jumpstartup.Connection.DatabaseConnector;
+
 import com.jumpstartup.Freelancer.FreelancerBean;
+
 
 public class FreeLancerDatabase {
     public boolean addFreelancer(FreelancerBean freelancer) {
         Connection connection = null;
         try {
-            connection = DriverManager.getConnection("jdbc:h2:file:./jsudb.h2.db", "sa", "");
+            connection = DatabaseConnector.getConnection();
             String sql = "INSERT INTO Freelancer (uuid,phone_number, skills, linkedin_link) VALUES (?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, freelancer.getUuid());
@@ -32,20 +35,14 @@ public class FreeLancerDatabase {
             System.out.println("Error while trying to add freelancer: " + e.getMessage());
             return false;
         } finally {
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    System.out.println("Error while trying to close database connection: " + e.getMessage());
-                }
-            }
+            DatabaseConnector.closeConnection(connection);
         }
     }
 
     public boolean addEducation(String uuid, String institution, String degree, String major, int year_of_completion) {
         Connection connection = null;
         try {
-            connection = DriverManager.getConnection("jdbc:h2:file:./jsudb.h2.db", "sa", "");
+            connection = DatabaseConnector.getConnection();
             String sql = "INSERT INTO Education (UUID, institution, degree, major, year_of_completion) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, uuid);
@@ -64,20 +61,14 @@ public class FreeLancerDatabase {
             System.out.println("Error while trying to add education: " + e.getMessage());
             return false;
         } finally {
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    System.out.println("Error while trying to close database connection: " + e.getMessage());
-                }
-            }
+            DatabaseConnector.closeConnection(connection);
         }
     }
 
     public boolean addWorkExperience(String uuid, String work_experience) {
         Connection connection = null;
         try {
-            connection = DriverManager.getConnection("jdbc:h2:file:./jsudb.h2.db", "sa", "");
+            connection = DatabaseConnector.getConnection();
             String sql = "INSERT INTO Work_Experience (UUID, work_experience) VALUES (?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, uuid);
@@ -93,21 +84,14 @@ public class FreeLancerDatabase {
             System.out.println("Error while trying to add work experience: " + e.getMessage());
             return false;
         } finally {
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    System.out.println("Error while trying to close database connection: " + e.getMessage());
-                }
-            }
+            DatabaseConnector.closeConnection(connection);
         }
     }
 
     public boolean updateFreelancer(String uuid, FreelancerBean freelancer) {
         Connection connection = null;
         try {
-            connection = DriverManager.getConnection("jdbc:h2:file:./jsudb.h2.db", "sa", "");
-
+            connection = DatabaseConnector.getConnection();
             // update freelancer information
             String sqlFreelancer = "UPDATE Freelancer SET phone_number = ?, skills = ?, linkedin_link = ? WHERE uuid = ?";
             PreparedStatement statementFreelancer = connection.prepareStatement(sqlFreelancer);
@@ -147,21 +131,14 @@ public class FreeLancerDatabase {
             System.out.println("Error while trying to update freelancer: " + e.getMessage());
             return false;
         } finally {
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    System.out.println("Error while trying to close database connection: " + e.getMessage());
-                }
-            }
+            DatabaseConnector.closeConnection(connection);
         }
     }
 
     public boolean deleteFreelancer(String UUID) {
         Connection connection = null;
         try {
-            connection = DriverManager.getConnection("jdbc:h2:file:./jsudb.h2.db", "sa", "");
-
+            connection = DatabaseConnector.getConnection();
             // Delete education
             String educationSql = "DELETE FROM Education WHERE uuid = ?";
             PreparedStatement educationStatement = connection.prepareStatement(educationSql);
@@ -197,23 +174,17 @@ public class FreeLancerDatabase {
             System.out.println("Error while trying to delete freelancer: " + e.getMessage());
             return false;
         } finally {
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    System.out.println("Error while trying to close database connection: " + e.getMessage());
-                }
-            }
+            DatabaseConnector.closeConnection(connection);
         }
     }
 
 
     public FreelancerBean getFreelancer(String UUID) {
         FreelancerBean freelancer = null;
-        Connection conn = null;
+        Connection connection = null;
         try {
-            conn = DriverManager.getConnection("jdbc:h2:file:./jsudb.h2.db", "sa", "");
-            PreparedStatement statement = conn.prepareStatement("SELECT * FROM freelancer WHERE uuid = ?");
+            connection = DatabaseConnector.getConnection();
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM freelancer WHERE uuid = ?");
             statement.setString(1, UUID);
             ResultSet result = statement.executeQuery();
 
@@ -224,7 +195,7 @@ public class FreeLancerDatabase {
                 freelancer.setSkills(result.getString("skills"));
                 freelancer.setLinkedin_link(result.getString("linkedin_link"));
 
-                statement = conn.prepareStatement("SELECT * FROM education WHERE uuid = ?");
+                statement = connection.prepareStatement("SELECT * FROM education WHERE uuid = ?");
                 statement.setString(1, UUID);
                 result = statement.executeQuery();
                 if (result.next()) {
@@ -234,7 +205,7 @@ public class FreeLancerDatabase {
                     freelancer.setYear_of_completion(result.getInt("year_of_completion"));
                 }
 
-                statement = conn.prepareStatement("SELECT * FROM work_experience WHERE uuid = ?");
+                statement = connection.prepareStatement("SELECT * FROM work_experience WHERE uuid = ?");
                 statement.setString(1, UUID);
                 result = statement.executeQuery();
                 if (result.next()) {
@@ -247,13 +218,7 @@ public class FreeLancerDatabase {
             e.printStackTrace();
             return null;
         } finally {
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    System.out.println("Error while trying to close database connection: " + e.getMessage());
-                }
-            }
+            DatabaseConnector.closeConnection(connection);
         }
         return freelancer;
 
