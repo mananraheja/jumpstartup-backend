@@ -15,12 +15,13 @@ public class InvestorDatabase {
         Connection connection = null;
         try {
             connection = DriverManager.getConnection("jdbc:h2:file:./jsudb.h2.db", "sa", "");
-            String sql = "INSERT INTO Investor (uuid,phone_number, funding_available, brands_built) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO Investor (uuid,phone_number, domain, funding_available, brands_built) VALUES (?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, investor.getUuid());
             statement.setString(2, investor.getPhone_number());
-            statement.setFloat(3, investor.getFunding_available());
-            statement.setString(4, investor.getBrands_built());
+            statement.setString(3, investor.getDomain());
+            statement.setFloat(4, investor.getFunding_available());
+            statement.setString(5, investor.getBrands_built());
 
             int rowsAffected = statement.executeUpdate();
             if (rowsAffected > 0) {
@@ -48,12 +49,13 @@ public class InvestorDatabase {
             connection = DriverManager.getConnection("jdbc:h2:file:./jsudb.h2.db", "sa", "");
 
             // update investor information
-            String sql = "UPDATE Investor SET phone_number = ?, funding_available = ?, brands_built = ? WHERE uuid = ?";
+            String sql = "UPDATE Investor SET phone_number = ?, domain = ?, funding_available = ?, brands_built = ? WHERE uuid = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, investor.getPhone_number());
-            statement.setFloat(2, investor.getFunding_available());
-            statement.setString(3, investor.getBrands_built());
-            statement.setString(4, uuid);
+            statement.setString(2, investor.getDomain());
+            statement.setFloat(3, investor.getFunding_available());
+            statement.setString(4, investor.getBrands_built());
+            statement.setString(5, uuid);
 
             int rowsAffected = statement.executeUpdate();
 
@@ -119,6 +121,7 @@ public class InvestorDatabase {
                 investor = new InvestorBean();
                 investor.setUuid(result.getString("uuid"));
                 investor.setPhone_number(result.getString("phone_number"));
+                investor.setDomain(result.getString("domain"));
                 investor.setFunding_available(result.getFloat("funding_available"));
                 investor.setBrands_built(result.getString("brands_built"));
 

@@ -4,6 +4,7 @@ public class InvestorBean {
 
     private String uuid;
     private String phone_number;
+    private String domain;
     private float funding_available;
     private String brands_built;
 
@@ -46,6 +47,14 @@ public class InvestorBean {
 
     public void setBrands_built(String brands_built) {
         this.brands_built = brands_built;
+    }
+
+    public String getDomain() {
+        return domain;
+    }
+
+    public void setDomain(String domain) {
+        this.domain = domain;
     }
 }
 
