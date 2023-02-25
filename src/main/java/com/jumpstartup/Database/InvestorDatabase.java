@@ -14,7 +14,7 @@ public class InvestorDatabase {
     public boolean addInvestor(InvestorBean investor) {
         Connection connection = null;
         try {
-            connection = DriverManager.getConnection("jdbc:h2:file:./jsudb.h2.db", "sa", "");
+            connection = DriverManager.getConnection("jdbc:h2:mem:jsudb", "sa", "");
             String sql = "INSERT INTO Investor (uuid,phone_number, domain, funding_available, brands_built) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, investor.getUuid());
