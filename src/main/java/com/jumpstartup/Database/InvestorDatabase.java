@@ -15,7 +15,7 @@ public class InvestorDatabase {
         Connection connection = null;
         try {
             connection = DriverManager.getConnection("jdbc:h2:file:./jsudb.h2.db", "sa", "");
-            String sql = "INSERT INTO Investor (uuid,phone_number, domain, funding_available, brands_built) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO Investor (uuid,phone_number, domain, funding_available, brands_built) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, investor.getUuid());
             statement.setString(2, investor.getPhone_number());
@@ -46,7 +46,7 @@ public class InvestorDatabase {
     public boolean updateInvestor(String uuid, InvestorBean investor) {
         Connection connection = null;
         try {
-            connection = DriverManager.getConnection("jdbc:h2:file:./jsudb.h2.db", "sa", "");
+            connection = DriverManager.getConnection("jdbc:h2:mem:jsudb", "sa", "");
 
             // update investor information
             String sql = "UPDATE Investor SET phone_number = ?, domain = ?, funding_available = ?, brands_built = ? WHERE uuid = ?";
@@ -82,7 +82,7 @@ public class InvestorDatabase {
     public boolean deleteInvestor(String UUID) {
         Connection connection = null;
         try {
-            connection = DriverManager.getConnection("jdbc:h2:file:./jsudb.h2.db", "sa", "");
+            connection = DriverManager.getConnection("jdbc:h2:mem:jsudb", "sa", "");
 
             // Delete investor
             String sql = "DELETE FROM Investor WHERE uuid = ?";
@@ -112,7 +112,7 @@ public class InvestorDatabase {
         InvestorBean investor = null;
         Connection conn = null;
         try {
-            conn = DriverManager.getConnection("jdbc:h2:file:./jsudb.h2.db", "sa", "");
+            conn = DriverManager.getConnection("jdbc:h2:mem:jsudb", "sa", "");
             PreparedStatement statement = conn.prepareStatement("SELECT * FROM Investor WHERE uuid = ?");
             statement.setString(1, UUID);
             ResultSet result = statement.executeQuery();
