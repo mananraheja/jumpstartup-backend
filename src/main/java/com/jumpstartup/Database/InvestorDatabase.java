@@ -1,11 +1,11 @@
 package com.jumpstartup.Database;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.jumpstartup.Connection.DatabaseConnector;
 import com.jumpstartup.Investor.InvestorBean;
 
 
@@ -14,7 +14,7 @@ public class InvestorDatabase {
     public boolean addInvestor(InvestorBean investor) {
         Connection connection = null;
         try {
-            connection = DriverManager.getConnection("jdbc:h2:mem:jsudb", "sa", "");
+            connection = DatabaseConnector.getConnection();
             String sql = "INSERT INTO Investor (uuid,phone_number, domain, funding_available, brands_built) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, investor.getUuid());
@@ -30,23 +30,17 @@ public class InvestorDatabase {
                 return false;
             }
         } catch (SQLException e) {
-            System.out.println("Error while trying to add investor: " + e.getMessage());
+            //Logging statement here System.out.println("Error while trying to add investor: " + e.getMessage());
             return false;
         } finally {
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    System.out.println("Error while trying to close investor database connection: " + e.getMessage());
-                }
-            }
+            DatabaseConnector.closeConnection(connection);
         }
     }
     
     public boolean updateInvestor(String uuid, InvestorBean investor) {
         Connection connection = null;
         try {
-            connection = DriverManager.getConnection("jdbc:h2:mem:jsudb", "sa", "");
+            connection = DatabaseConnector.getConnection();
 
             // update investor information
             String sql = "UPDATE Investor SET phone_number = ?, domain = ?, funding_available = ?, brands_built = ? WHERE uuid = ?";
@@ -66,23 +60,17 @@ public class InvestorDatabase {
                 return false;
             }
         } catch (SQLException e) {
-            System.out.println("Error while trying to update investor: " + e.getMessage());
+            //Logging statement here System.out.println("Error while trying to update investor: " + e.getMessage());
             return false;
         } finally {
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    System.out.println("Error while trying to close investor database connection: " + e.getMessage());
-                }
-            }
+            DatabaseConnector.closeConnection(connection);
         }
     }
 
     public boolean deleteInvestor(String UUID) {
         Connection connection = null;
         try {
-            connection = DriverManager.getConnection("jdbc:h2:mem:jsudb", "sa", "");
+            connection = DatabaseConnector.getConnection();
 
             // Delete investor
             String sql = "DELETE FROM Investor WHERE uuid = ?";
@@ -95,25 +83,19 @@ public class InvestorDatabase {
                 return false;
             }
         } catch (SQLException e) {
-            System.out.println("Error while trying to delete investor: " + e.getMessage());
+            //Logging statement here System.out.println("Error while trying to delete investor: " + e.getMessage());
             return false;
         } finally {
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    System.out.println("Error while trying to close investor database connection: " + e.getMessage());
-                }
-            }
+            DatabaseConnector.closeConnection(connection);
         }
     }
 
     public InvestorBean getInvestor(String UUID) {
         InvestorBean investor = null;
-        Connection conn = null;
+        Connection connection = null;
         try {
-            conn = DriverManager.getConnection("jdbc:h2:mem:jsudb", "sa", "");
-            PreparedStatement statement = conn.prepareStatement("SELECT * FROM Investor WHERE uuid = ?");
+            connection = DatabaseConnector.getConnection();
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Investor WHERE uuid = ?");
             statement.setString(1, UUID);
             ResultSet result = statement.executeQuery();
 
@@ -131,15 +113,9 @@ public class InvestorDatabase {
             e.printStackTrace();
             return null;
         } finally {
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    System.out.println("Error while trying to close database connection: " + e.getMessage());
-                }
-            }
+            DatabaseConnector.closeConnection(connection);
         }
-        System.out.println("FETCHED INVESTOR SUCCESSFULLY !!");
+        //Logging statement here System.out.println("FETCHED INVESTOR SUCCESSFULLY !!");
         return investor;
     }
 
