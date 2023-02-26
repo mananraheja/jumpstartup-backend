@@ -6,18 +6,24 @@ import com.jumpstartup.LoginBody.LoginRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/login")
 public class LoginController {
 
-    @GetMapping
-    public ResponseEntity<Object> login() {
-        return new ResponseEntity<>(HttpStatus.OK);
+    @GetMapping("/{username}")
+    public ResponseEntity<LoginRequest> login(@PathVariable String username) {
+
+        LoginDatabase loginDatabase = new LoginDatabase();
+        LoginRequest loginRequest = null;
+
+        loginRequest = loginDatabase.getDetails(username);
+
+        if(loginRequest == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(loginRequest,HttpStatus.OK);
     }
 
     @PostMapping
