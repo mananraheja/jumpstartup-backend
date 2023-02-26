@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.UUID;
 
 import com.jumpstartup.Connection.DatabaseConnector;
+import com.jumpstartup.LoginBody.LoginRequest;
 
 
 public class LoginDatabase {
@@ -53,6 +55,35 @@ public class LoginDatabase {
         } catch (SQLException e) {
             System.out.println("Error while trying to add new user: " + e.getMessage());
             return false;
+        } finally {
+            DatabaseConnector.closeConnection(connection);
+        }
+    }
+
+    public LoginRequest getDetails(String username) {
+        Connection connection = null;
+        LoginRequest loginRequest = null;
+        try {
+            connection = DatabaseConnector.getConnection();
+            String sql = "select * from MYUSER where username = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, username);
+            ResultSet result = statement.executeQuery();
+
+            if(result.next()){
+                loginRequest = new LoginRequest();
+                loginRequest.setUuid(UUID.fromString(result.getString("UUID")));
+                loginRequest.setEmail(result.getString("EMAIL"));
+                loginRequest.setType(result.getString("TYPE"));
+                loginRequest.setUsername(result.getString("USERNAME"));
+                return loginRequest;
+            }
+            else{
+                return null;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error while trying to add new user: " + e.getMessage());
+            return null;
         } finally {
             DatabaseConnector.closeConnection(connection);
         }
