@@ -1,0 +1,28 @@
+image: rvancea/maven-chrome-jdk8:latest
+
+variables:
+  DOCKER_HOST: tcp://172.17.0.1:2375
+
+include:
+  - template: Code-Quality.gitlab-ci.yml
+
+build:
+  stage: build 
+  script: 
+    - mvn compile 
+  tags:
+    - runner
+
+test:
+  stage: test
+  script: 
+    - mvn clean test 
+  tags:
+    - runner
+
+code_quality:
+  stage: test
+  tags:
+    - runner
+  artifacts:
+    paths: [gl-code-quality-report.json]
