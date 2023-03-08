@@ -135,7 +135,7 @@ public class FreeLancerDatabase {
         }
     }
 
-    public boolean deleteFreelancer(String UUID) {
+    public static boolean deleteFreelancer(String UUID) {
         Connection connection = null;
         try {
             connection = DatabaseConnector.getConnection();

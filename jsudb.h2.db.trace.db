@@ -92,3 +92,93 @@ Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Wrong user name
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:461)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
 	... 88 more
+2023-03-08 15:38:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "WORK_EXPERIENCE" not found; SQL statement:
+INSERT INTO Work_Experience (UUID, work_experience) VALUES (?, ?) [42102-200]
+2023-03-08 15:38:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "EDUCATION" not found; SQL statement:
+INSERT INTO Education (UUID, institution, degree, major, year_of_completion) VALUES (?, ?, ?, ?, ?) [42102-200]
+2023-03-08 15:38:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "EDUCATION" not found; SQL statement:
+INSERT INTO Education (UUID, institution, degree, major, year_of_completion) VALUES (?, ?, ?, ?, ?) [42102-200]
+2023-03-08 15:38:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "WORK_EXPERIENCE" not found; SQL statement:
+INSERT INTO Work_Experience (UUID, work_experience) VALUES (?, ?) [42102-200]
+2023-03-08 15:38:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "EDUCATION" not found; SQL statement:
+INSERT INTO Education (UUID, institution, degree, major, year_of_completion) VALUES (?, ?, ?, ?, ?) [42102-200]
+2023-03-08 15:38:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "FREELANCER" not found; SQL statement:
+INSERT INTO Freelancer (uuid,phone_number, skills, linkedin_link) VALUES (?, ?, ?, ?) [42102-200]
+2023-03-08 15:38:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "EDUCATION" not found; SQL statement:
+DELETE FROM Education WHERE uuid = ? [42102-200]
+2023-03-08 15:38:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "FREELANCER" not found; SQL statement:
+INSERT INTO Freelancer (uuid,phone_number, skills, linkedin_link) VALUES (?, ?, ?, ?) [42102-200]
+2023-03-08 15:38:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "FREELANCER" not found; SQL statement:
+UPDATE Freelancer SET phone_number = ?, skills = ?, linkedin_link = ? WHERE uuid = ? [42102-200]
+2023-03-08 15:38:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "EDUCATION" not found; SQL statement:
+DELETE FROM Education WHERE uuid = ? [42102-200]
+2023-03-08 15:50:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "WORK_EXPERIENCE" not found; SQL statement:
+INSERT INTO Work_Experience (UUID, work_experience) VALUES (?, ?) [42102-200]
+2023-03-08 15:50:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "EDUCATION" not found; SQL statement:
+INSERT INTO Education (UUID, institution, degree, major, year_of_completion) VALUES (?, ?, ?, ?, ?) [42102-200]
+2023-03-08 15:50:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "EDUCATION" not found; SQL statement:
+INSERT INTO Education (UUID, institution, degree, major, year_of_completion) VALUES (?, ?, ?, ?, ?) [42102-200]
+2023-03-08 15:50:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "WORK_EXPERIENCE" not found; SQL statement:
+INSERT INTO Work_Experience (UUID, work_experience) VALUES (?, ?) [42102-200]
+2023-03-08 15:50:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "EDUCATION" not found; SQL statement:
+INSERT INTO Education (UUID, institution, degree, major, year_of_completion) VALUES (?, ?, ?, ?, ?) [42102-200]
+2023-03-08 15:50:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "FREELANCER" not found; SQL statement:
+INSERT INTO Freelancer (uuid,phone_number, skills, linkedin_link) VALUES (?, ?, ?, ?) [42102-200]
+2023-03-08 15:50:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "EDUCATION" not found; SQL statement:
+DELETE FROM Education WHERE uuid = ? [42102-200]
+2023-03-08 15:50:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "FREELANCER" not found; SQL statement:
+INSERT INTO Freelancer (uuid,phone_number, skills, linkedin_link) VALUES (?, ?, ?, ?) [42102-200]
+2023-03-08 15:50:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "FREELANCER" not found; SQL statement:
+UPDATE Freelancer SET phone_number = ?, skills = ?, linkedin_link = ? WHERE uuid = ? [42102-200]
+2023-03-08 15:50:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "EDUCATION" not found; SQL statement:
+DELETE FROM Education WHERE uuid = ? [42102-200]
+2023-03-08 15:57:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "WORK_EXPERIENCE" not found; SQL statement:
+INSERT INTO Work_Experience (UUID, work_experience) VALUES (?, ?) [42102-200]
+2023-03-08 15:57:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "EDUCATION" not found; SQL statement:
+INSERT INTO Education (UUID, institution, degree, major, year_of_completion) VALUES (?, ?, ?, ?, ?) [42102-200]
+2023-03-08 15:57:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "EDUCATION" not found; SQL statement:
+INSERT INTO Education (UUID, institution, degree, major, year_of_completion) VALUES (?, ?, ?, ?, ?) [42102-200]
+2023-03-08 15:57:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "WORK_EXPERIENCE" not found; SQL statement:
+INSERT INTO Work_Experience (UUID, work_experience) VALUES (?, ?) [42102-200]
+2023-03-08 15:57:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "EDUCATION" not found; SQL statement:
+INSERT INTO Education (UUID, institution, degree, major, year_of_completion) VALUES (?, ?, ?, ?, ?) [42102-200]
+2023-03-08 15:57:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "FREELANCER" not found; SQL statement:
+INSERT INTO Freelancer (uuid,phone_number, skills, linkedin_link) VALUES (?, ?, ?, ?) [42102-200]
+2023-03-08 15:57:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "EDUCATION" not found; SQL statement:
+DELETE FROM Education WHERE uuid = ? [42102-200]
+2023-03-08 15:57:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "FREELANCER" not found; SQL statement:
+INSERT INTO Freelancer (uuid,phone_number, skills, linkedin_link) VALUES (?, ?, ?, ?) [42102-200]
+2023-03-08 15:57:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "FREELANCER" not found; SQL statement:
+UPDATE Freelancer SET phone_number = ?, skills = ?, linkedin_link = ? WHERE uuid = ? [42102-200]
+2023-03-08 15:57:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "EDUCATION" not found; SQL statement:
+DELETE FROM Education WHERE uuid = ? [42102-200]
