@@ -22,4 +22,9 @@ public class DatabaseConnector {
             }
         }
     }
+
+    public static String getDbUrl(){
+        return DB_URL;
+    }
+
 }
