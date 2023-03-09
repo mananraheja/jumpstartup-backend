@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/login")
+@CrossOrigin(origins = "http://localhost:4200")
 public class LoginController {
 
     @GetMapping("/{username}")
@@ -28,24 +29,21 @@ public class LoginController {
 
     @PostMapping
     public ResponseEntity<String> loginSubmit(@RequestBody LoginRequest loginRequest) {
-        PasswordEncryption encryption = new PasswordEncryption();
-        loginRequest.setHashpass(encryption.encryptPassword(loginRequest.getHashpass()));
-        if (authenticate(loginRequest.getUsername(), loginRequest.getHashpass())) {
-            return new ResponseEntity<>("AUTHORIZED",HttpStatus.OK);
+        if (PasswordEncryption.decryptPassword(loginRequest.getUsername(), loginRequest.getHashpass())) {
+            return new ResponseEntity<>(HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("NOT AUTHORIZED",HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
     }
 
     @PostMapping("/signup")
     public ResponseEntity<String> signupSubmit(@RequestBody LoginRequest loginRequest) {
-        PasswordEncryption encryption = new PasswordEncryption();
-        loginRequest.setHashpass(encryption.encryptPassword(loginRequest.getHashpass()));
+        loginRequest.setHashpass(PasswordEncryption.encryptPassword(loginRequest.getHashpass()));
         boolean success = signup(loginRequest.getUuid(),loginRequest.getUsername(),loginRequest.getHashpass(),loginRequest.getEmail(), loginRequest.getType());
         if (success) {
-            return new ResponseEntity<>("SIGNUP SUCCESSFUL", HttpStatus.OK);
+            return new ResponseEntity<>( HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("SIGNUP FAILED", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>( HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

@@ -19,7 +19,7 @@ public class LoginDatabase {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, username);
             statement.setString(2, password);
-
+            System.out.println(password);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 return true;
