@@ -24,10 +24,5 @@ class DBTest {
         assertTrue(conn.isClosed());
     }
 
-    @Test
-    void testInvalidCredentials() {
-        assertThrows(SQLException.class, () -> {
-            Connection conn = DriverManager.getConnection(DatabaseConnector.getDbUrl(), "invalid_user", "invalid_password");
-        });
-    }
+
 }

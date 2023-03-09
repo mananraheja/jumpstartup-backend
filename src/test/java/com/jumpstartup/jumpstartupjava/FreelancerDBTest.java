@@ -1,8 +1,8 @@
 package com.jumpstartup.jumpstartupjava;
 
+import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -12,12 +12,35 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.jumpstartup.Freelancer.FreelancerBean;
-import org.springframework.test.context.jdbc.Sql;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.TestInstance;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.util.StreamUtils;
 
-@Sql({"/schema.sql"})
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class FreelancerDBTest {
     private static FreeLancerDatabase freelancerDB;
 
+    @BeforeAll
+    static void setUpBeforeClass() throws Exception {
+        // Load schema.sql
+        Resource resource = new ClassPathResource("schema.sql");
+        String sqlScript = StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);
+
+        // Set up H2 database
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName("org.h2.Driver");
+        dataSource.setUrl("jdbc:h2:mem:jsudb");
+        dataSource.setUsername("sa");
+        dataSource.setPassword("");
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        jdbcTemplate.execute(sqlScript);
+
+    }
     @BeforeClass
     public static void setup() {
         freelancerDB = new FreeLancerDatabase();
@@ -25,12 +48,13 @@ public class FreelancerDBTest {
 
     @Test
     public void testAddFreelancer() {
+
+
         FreelancerBean freelancer = new FreelancerBean();
         freelancer.setUuid(UUID.randomUUID().toString());
         freelancer.setPhone_number("5551234567");
         freelancer.setSkills("Java, Python");
         freelancer.setLinkedin_link("https://www.linkedin.com/in/johndoe");
-
         assertTrue(freelancerDB.addFreelancer(freelancer));
     }
 
@@ -92,6 +116,7 @@ public class FreelancerDBTest {
 
     @AfterClass
     public static void cleanup() {
-        FreeLancerDatabase.deleteFreelancer("123456");
+        freelancerDB.deleteFreelancer("123456");
     }
+
 }

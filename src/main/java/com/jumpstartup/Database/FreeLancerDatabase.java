@@ -18,6 +18,8 @@ public class FreeLancerDatabase {
         Connection connection = null;
         try {
             connection = DatabaseConnector.getConnection();
+
+
             String sql = "INSERT INTO Freelancer (uuid,phone_number, skills, linkedin_link) VALUES (?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, freelancer.getUuid());
@@ -26,11 +28,14 @@ public class FreeLancerDatabase {
             statement.setString(4, freelancer.getLinkedin_link());
 
             int rowsAffected = statement.executeUpdate();
+
             if (rowsAffected > 0) {
                 return true;
             } else {
                 return false;
             }
+
+
         } catch (SQLException e) {
             System.out.println("Error while trying to add freelancer: " + e.getMessage());
             return false;

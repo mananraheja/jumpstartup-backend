@@ -65,4 +65,6 @@ public class InvestorController {
         // Return the investor data as a JSON response
         return new ResponseEntity<>(investor, HttpStatus.OK);
     }
+
+
 }

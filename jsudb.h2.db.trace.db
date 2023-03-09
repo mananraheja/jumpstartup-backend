@@ -182,3 +182,111 @@ UPDATE Freelancer SET phone_number = ?, skills = ?, linkedin_link = ? WHERE uuid
 2023-03-08 15:57:08 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "EDUCATION" not found; SQL statement:
 DELETE FROM Education WHERE uuid = ? [42102-200]
+2023-03-08 19:50:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+INSERT INTO Investor (uuid,phone_number, domain, funding_available, brands_built) VALUES (?, ?, ?, ?) [42102-200]
+2023-03-08 19:50:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+INSERT INTO Investor (uuid,phone_number, domain, funding_available, brands_built) VALUES (?, ?, ?, ?) [42102-200]
+2023-03-08 19:50:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+UPDATE Investor SET phone_number = ?, domain = ?, funding_available = ?, brands_built = ? WHERE uuid = ? [42102-200]
+2023-03-08 19:50:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+SELECT * FROM Investor WHERE uuid = ? [42102-200]
+2023-03-08 19:50:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+INSERT INTO Investor (uuid,phone_number, domain, funding_available, brands_built) VALUES (?, ?, ?, ?) [42102-200]
+2023-03-08 19:50:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+DELETE FROM Investor WHERE uuid = ? [42102-200]
+2023-03-08 19:50:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+INSERT INTO Investor (uuid,phone_number, domain, funding_available, brands_built) VALUES (?, ?, ?, ?) [42102-200]
+2023-03-08 19:50:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+SELECT * FROM Investor WHERE uuid = ? [42102-200]
+2023-03-08 19:59:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+INSERT INTO Investor (uuid,phone_number, domain, funding_available, brands_built) VALUES (?, ?, ?, ?) [42102-200]
+2023-03-08 19:59:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+INSERT INTO Investor (uuid,phone_number, domain, funding_available, brands_built) VALUES (?, ?, ?, ?) [42102-200]
+2023-03-08 19:59:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+UPDATE Investor SET phone_number = ?, domain = ?, funding_available = ?, brands_built = ? WHERE uuid = ? [42102-200]
+2023-03-08 19:59:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+SELECT * FROM Investor WHERE uuid = ? [42102-200]
+2023-03-08 19:59:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+INSERT INTO Investor (uuid,phone_number, domain, funding_available, brands_built) VALUES (?, ?, ?, ?) [42102-200]
+2023-03-08 19:59:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+DELETE FROM Investor WHERE uuid = ? [42102-200]
+2023-03-08 19:59:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+INSERT INTO Investor (uuid,phone_number, domain, funding_available, brands_built) VALUES (?, ?, ?, ?) [42102-200]
+2023-03-08 19:59:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+SELECT * FROM Investor WHERE uuid = ? [42102-200]
+2023-03-08 20:18:12 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+INSERT INTO Investor (uuid,phone_number, domain, funding_available, brands_built) VALUES (?, ?, ?, ?) [42102-200]
+2023-03-08 20:18:12 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+INSERT INTO Investor (uuid,phone_number, domain, funding_available, brands_built) VALUES (?, ?, ?, ?) [42102-200]
+2023-03-08 20:18:12 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+UPDATE Investor SET phone_number = ?, domain = ?, funding_available = ?, brands_built = ? WHERE uuid = ? [42102-200]
+2023-03-08 20:18:12 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+SELECT * FROM Investor WHERE uuid = ? [42102-200]
+2023-03-08 20:18:12 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+INSERT INTO Investor (uuid,phone_number, domain, funding_available, brands_built) VALUES (?, ?, ?, ?) [42102-200]
+2023-03-08 20:18:12 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+DELETE FROM Investor WHERE uuid = ? [42102-200]
+2023-03-08 20:18:12 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+INSERT INTO Investor (uuid,phone_number, domain, funding_available, brands_built) VALUES (?, ?, ?, ?) [42102-200]
+2023-03-08 20:18:12 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+SELECT * FROM Investor WHERE uuid = ? [42102-200]
+2023-03-08 20:20:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+INSERT INTO Investor (uuid,phone_number, domain, funding_available, brands_built) VALUES (?, ?, ?, ?) [42102-200]
+2023-03-08 20:20:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+INSERT INTO Investor (uuid,phone_number, domain, funding_available, brands_built) VALUES (?, ?, ?, ?) [42102-200]
+2023-03-08 20:20:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+UPDATE Investor SET phone_number = ?, domain = ?, funding_available = ?, brands_built = ? WHERE uuid = ? [42102-200]
+2023-03-08 20:20:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+SELECT * FROM Investor WHERE uuid = ? [42102-200]
+2023-03-08 20:20:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+INSERT INTO Investor (uuid,phone_number, domain, funding_available, brands_built) VALUES (?, ?, ?, ?) [42102-200]
+2023-03-08 20:20:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+DELETE FROM Investor WHERE uuid = ? [42102-200]
+2023-03-08 20:20:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+INSERT INTO Investor (uuid,phone_number, domain, funding_available, brands_built) VALUES (?, ?, ?, ?) [42102-200]
+2023-03-08 20:20:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+SELECT * FROM Investor WHERE uuid = ? [42102-200]
+2023-03-08 22:18:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+INSERT INTO Investor (uuid,phone_number, domain, funding_available, brands_built) VALUES (?, ?, ?, ?) [42102-200]
+2023-03-08 22:18:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+UPDATE Investor SET phone_number = ?, domain = ?, funding_available = ?, brands_built = ? WHERE uuid = ? [42102-200]
+2023-03-08 22:18:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+DELETE FROM Investor WHERE uuid = ? [42102-200]
+2023-03-08 22:18:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVESTOR" not found; SQL statement:
+SELECT * FROM Investor WHERE uuid = ? [42102-200]
