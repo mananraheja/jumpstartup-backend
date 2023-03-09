@@ -8,9 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Controller
 @RequestMapping("/login")
 public class LoginController {
+    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @GetMapping("/{username}")
     public ResponseEntity<LoginRequest> login(@PathVariable String username) {
@@ -20,10 +24,12 @@ public class LoginController {
 
         loginRequest = loginDatabase.getDetails(username);
 
-        if(loginRequest == null){
+        if (loginRequest == null) {
+            logger.warn("User with username {} not found.", username);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(loginRequest,HttpStatus.OK);
+        logger.info("User with username {} exists.", username);
+        return new ResponseEntity<>(loginRequest, HttpStatus.OK);
     }
 
     @PostMapping
@@ -31,9 +37,11 @@ public class LoginController {
         PasswordEncryption encryption = new PasswordEncryption();
         loginRequest.setHashpass(encryption.encryptPassword(loginRequest.getHashpass()));
         if (authenticate(loginRequest.getUsername(), loginRequest.getHashpass())) {
-            return new ResponseEntity<>("AUTHORIZED",HttpStatus.OK);
+            logger.info("User {} has been authorized.", loginRequest.getUsername());
+            return new ResponseEntity<>("AUTHORIZED", HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("NOT AUTHORIZED",HttpStatus.UNAUTHORIZED);
+            logger.warn("Failed to authorize user {}.", loginRequest.getUsername());
+            return new ResponseEntity<>("NOT AUTHORIZED", HttpStatus.UNAUTHORIZED);
         }
     }
 
@@ -43,8 +51,10 @@ public class LoginController {
         loginRequest.setHashpass(encryption.encryptPassword(loginRequest.getHashpass()));
         boolean success = signup(loginRequest.getUuid(),loginRequest.getUsername(),loginRequest.getHashpass(),loginRequest.getEmail(), loginRequest.getType());
         if (success) {
+            logger.info("User {} signed up successfully.", loginRequest.getUsername());
             return new ResponseEntity<>("SIGNUP SUCCESSFUL", HttpStatus.OK);
         } else {
+            logger.warn("Failed to sign up user {}.", loginRequest.getUsername());
             return new ResponseEntity<>("SIGNUP FAILED", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

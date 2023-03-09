@@ -1,19 +1,21 @@
 package com.jumpstartup.Database;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.jumpstartup.Connection.DatabaseConnector;
 
 import com.jumpstartup.Freelancer.FreelancerBean;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class FreeLancerDatabase {
+
+    private static final Logger logger = LoggerFactory.getLogger(FreeLancerDatabase.class);
+
     public boolean addFreelancer(FreelancerBean freelancer) {
         Connection connection = null;
         try {
@@ -27,12 +29,14 @@ public class FreeLancerDatabase {
 
             int rowsAffected = statement.executeUpdate();
             if (rowsAffected > 0) {
+                logger.info("Freelancer added successfully.");
                 return true;
             } else {
+                logger.warn("Failed to add freelancer.");
                 return false;
             }
         } catch (SQLException e) {
-            System.out.println("Error while trying to add freelancer: " + e.getMessage());
+            logger.error("Error while trying to add freelancer: {}", e.getMessage());
             return false;
         } finally {
             DatabaseConnector.closeConnection(connection);
@@ -53,12 +57,14 @@ public class FreeLancerDatabase {
 
             int rowsAffected = statement.executeUpdate();
             if (rowsAffected > 0) {
+                logger.info("Education added successfully for freelancer with UUID: {}", uuid);
                 return true;
             } else {
+                logger.warn("Failed to add education for freelancer with UUID: {}", uuid);
                 return false;
             }
         } catch (SQLException e) {
-            System.out.println("Error while trying to add education: " + e.getMessage());
+            logger.error("Error while trying to add education: {}", e.getMessage());
             return false;
         } finally {
             DatabaseConnector.closeConnection(connection);
@@ -76,12 +82,14 @@ public class FreeLancerDatabase {
 
             int rowsAffected = statement.executeUpdate();
             if (rowsAffected > 0) {
+                logger.info("Work experience added successfully for freelancer with UUID: {}", uuid);
                 return true;
             } else {
+                logger.warn("Failed to add work experience for freelancer with UUID: {}", uuid);
                 return false;
             }
         } catch (SQLException e) {
-            System.out.println("Error while trying to add work experience: " + e.getMessage());
+            logger.error("Error while trying to add work experience: {}", e.getMessage());
             return false;
         } finally {
             DatabaseConnector.closeConnection(connection);
@@ -123,12 +131,14 @@ public class FreeLancerDatabase {
 
             // check if all updates were successful
             if (rowsAffectedFreelancer > 0 && rowsAffectedEducation > 0 && rowsAffectedWorkExperience > 0) {
+                logger.info("Freelancer with UUID {} has been updated successfully.", uuid);
                 return true;
             } else {
+                logger.warn("Failed to update freelancer with UUID {}.", uuid);
                 return false;
             }
         } catch (SQLException e) {
-            System.out.println("Error while trying to update freelancer: " + e.getMessage());
+            logger.error("Error while trying to update freelancer: {}", e.getMessage());
             return false;
         } finally {
             DatabaseConnector.closeConnection(connection);
@@ -139,13 +149,14 @@ public class FreeLancerDatabase {
         Connection connection = null;
         try {
             connection = DatabaseConnector.getConnection();
+
             // Delete education
             String educationSql = "DELETE FROM Education WHERE uuid = ?";
             PreparedStatement educationStatement = connection.prepareStatement(educationSql);
             educationStatement.setString(1, UUID);
             int educationRowsAffected = educationStatement.executeUpdate();
             if (educationRowsAffected <= 0) {
-                System.out.print("educationRowsAffected");
+                logger.warn("No education rows affected while deleting freelancer with UUID: {}", UUID);
                 return false;
             }
 
@@ -155,7 +166,7 @@ public class FreeLancerDatabase {
             workExperienceStatement.setString(1, UUID);
             int workExperienceRowsAffected = workExperienceStatement.executeUpdate();
             if (workExperienceRowsAffected <= 0) {
-                System.out.print("WORKRowsAffected");
+                logger.warn("No work experience rows affected while deleting freelancer with UUID: {}", UUID);
                 return false;
             }
 
@@ -165,19 +176,19 @@ public class FreeLancerDatabase {
             freelancerStatement.setString(1, UUID);
             int freelancerRowsAffected = freelancerStatement.executeUpdate();
             if (freelancerRowsAffected <= 0) {
-                System.out.print("FREELANCERRowsAffected");
+                logger.warn("No freelancer rows affected while deleting freelancer with UUID: {}", UUID);
                 return false;
             }
 
+            logger.info("Freelancer with UUID {} deleted successfully", UUID);
             return true;
         } catch (SQLException e) {
-            System.out.println("Error while trying to delete freelancer: " + e.getMessage());
+            logger.error("Error while trying to delete freelancer with UUID: {}, error message: {}", UUID, e.getMessage());
             return false;
         } finally {
             DatabaseConnector.closeConnection(connection);
         }
     }
-
 
     public FreelancerBean getFreelancer(String UUID) {
         FreelancerBean freelancer = null;
@@ -212,14 +223,19 @@ public class FreeLancerDatabase {
                     freelancer.setWork_experience(result.getString("work_experience"));
                 }
             }
-
-
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
         } finally {
             DatabaseConnector.closeConnection(connection);
         }
+
+        if (freelancer == null) {
+            logger.info("Could not find freelancer with UUID {}", UUID);
+        } else {
+            logger.info("Retrieved freelancer with UUID {}: {}", UUID, freelancer.toString());
+        }
+
         return freelancer;
 
     }

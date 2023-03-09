@@ -8,8 +8,12 @@ import java.sql.SQLException;
 
 import com.jumpstartup.Investor.InvestorBean;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class InvestorDatabase {
+
+    private static final Logger logger = LoggerFactory.getLogger(InvestorDatabase.class);
     
     public boolean addInvestor(InvestorBean investor) {
         Connection connection = null;
@@ -25,19 +29,21 @@ public class InvestorDatabase {
 
             int rowsAffected = statement.executeUpdate();
             if (rowsAffected > 0) {
+                logger.info("Investor added successfully.");
                 return true;
             } else {
+                logger.warn("Failed to add investor.");
                 return false;
             }
         } catch (SQLException e) {
-            System.out.println("Error while trying to add investor: " + e.getMessage());
+            logger.error("Error while trying to add investor: {}", e.getMessage());
             return false;
         } finally {
             if (connection != null) {
                 try {
                     connection.close();
                 } catch (SQLException e) {
-                    System.out.println("Error while trying to close investor database connection: " + e.getMessage());
+                    logger.error("Error while trying to close investor database connection: {}", e.getMessage());
                 }
             }
         }
@@ -61,19 +67,20 @@ public class InvestorDatabase {
 
             // check if updates were successful
             if (rowsAffected > 0 ) {
+                logger.info("Investor {} updated successfully", uuid);
                 return true;
             } else {
                 return false;
             }
         } catch (SQLException e) {
-            System.out.println("Error while trying to update investor: " + e.getMessage());
+            logger.error("Error while trying to update investor: {}", e.getMessage());
             return false;
         } finally {
             if (connection != null) {
                 try {
                     connection.close();
                 } catch (SQLException e) {
-                    System.out.println("Error while trying to close investor database connection: " + e.getMessage());
+                    logger.error("Error while trying to close investor database connection: {}", e.getMessage());
                 }
             }
         }
@@ -95,14 +102,14 @@ public class InvestorDatabase {
                 return false;
             }
         } catch (SQLException e) {
-            System.out.println("Error while trying to delete investor: " + e.getMessage());
+            logger.error("Error while trying to delete investor: {}", e.getMessage());
             return false;
         } finally {
             if (connection != null) {
                 try {
                     connection.close();
                 } catch (SQLException e) {
-                    System.out.println("Error while trying to close investor database connection: " + e.getMessage());
+                    logger.error("Error while trying to close investor database connection: {}", e.getMessage());
                 }
             }
         }
@@ -135,11 +142,11 @@ public class InvestorDatabase {
                 try {
                     conn.close();
                 } catch (SQLException e) {
-                    System.out.println("Error while trying to close database connection: " + e.getMessage());
+                    logger.error("Error while trying to close database connection: {}", e.getMessage());
                 }
             }
         }
-        System.out.println("FETCHED INVESTOR SUCCESSFULLY !!");
+        logger.info("FETCHED INVESTOR SUCCESSFULLY !!");
         return investor;
     }
 
