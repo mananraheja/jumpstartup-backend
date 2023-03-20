@@ -6,11 +6,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.jumpstartup.Connection.DatabaseConnector;
 import com.jumpstartup.LoginBody.LoginRequest;
 
 
 public class LoginDatabase {
+
+    private static final Logger logger = LoggerFactory.getLogger(LoginDatabase.class);
+
     public boolean authenticate(String username, String password) {
         Connection connection = null;
         try {
@@ -22,12 +28,14 @@ public class LoginDatabase {
             System.out.println(password);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
+                logger.info("Username {} found successfully.", username);
                 return true;
             } else {
+                logger.warn("Username {} not found!!", username);
                 return false;
             }
         } catch (SQLException e) {
-            System.out.println("Error while trying to authenticate user: " + e.getMessage());
+            logger.error("Error while trying to authenticate user: {}", e.getMessage());
             return false;
         } finally {
             DatabaseConnector.closeConnection(connection);
@@ -48,12 +56,14 @@ public class LoginDatabase {
 
             int rowsAffected = statement.executeUpdate();
             if (rowsAffected > 0) {
+                logger.info("User with UUID {} added successfully.", UUID);
                 return true;
             } else {
+                logger.warn("Unable to add new user with UUID {}", UUID);
                 return false;
             }
         } catch (SQLException e) {
-            System.out.println("Error while trying to add new user: " + e.getMessage());
+            logger.error("Error while trying to add new user: {}", e.getMessage());
             return false;
         } finally {
             DatabaseConnector.closeConnection(connection);
@@ -76,13 +86,15 @@ public class LoginDatabase {
                 loginRequest.setEmail(result.getString("EMAIL"));
                 loginRequest.setType(result.getString("TYPE"));
                 loginRequest.setUsername(result.getString("USERNAME"));
+                logger.info("User details fetched successfully.");
                 return loginRequest;
             }
-            else{
+            else {
+                logger.warn("User {} not found in database.", username);
                 return null;
             }
         } catch (SQLException e) {
-            System.out.println("Error while trying to add new user: " + e.getMessage());
+            logger.error("Error while trying to get user details: {}", e.getMessage());
             return null;
         } finally {
             DatabaseConnector.closeConnection(connection);

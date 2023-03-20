@@ -5,13 +5,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.jumpstartup.Connection.DatabaseConnector;
 import com.jumpstartup.Investor.InvestorBean;
 
 
 public class InvestorDatabase {
+
+    private static final Logger logger = LoggerFactory.getLogger(InvestorDatabase.class);
     
     public boolean addInvestor(InvestorBean investor) {
+
         Connection connection = null;
         try {
             connection = DatabaseConnector.getConnection();
@@ -25,12 +31,14 @@ public class InvestorDatabase {
 
             int rowsAffected = statement.executeUpdate();
             if (rowsAffected > 0) {
+                logger.info("Investor added successfully.");
                 return true;
             } else {
+                logger.warn("Failed to add investor.");
                 return false;
             }
         } catch (SQLException e) {
-            //Logging statement here System.out.println("Error while trying to add investor: " + e.getMessage());
+            logger.error("Error while trying to add investor: {}", e.getMessage());
             return false;
         } finally {
             DatabaseConnector.closeConnection(connection);
@@ -55,12 +63,14 @@ public class InvestorDatabase {
 
             // check if updates were successful
             if (rowsAffected > 0 ) {
+                logger.info("Investor {} updated successfully", uuid);
                 return true;
             } else {
+                logger.warn("Failed to update investor {}", uuid);
                 return false;
             }
         } catch (SQLException e) {
-            //Logging statement here System.out.println("Error while trying to update investor: " + e.getMessage());
+            logger.error("Error while trying to update investor: {}", e.getMessage());
             return false;
         } finally {
             DatabaseConnector.closeConnection(connection);
@@ -78,12 +88,14 @@ public class InvestorDatabase {
             statement.setString(1, UUID);
             int rowsAffected = statement.executeUpdate();
             if (rowsAffected > 0 ) {
+                logger.info("Investor {} deleted successfully", UUID);
                 return true;
             } else {
+                logger.warn("Failed to delete Investor {}", UUID);
                 return false;
             }
         } catch (SQLException e) {
-            //Logging statement here System.out.println("Error while trying to delete investor: " + e.getMessage());
+            logger.error("Error while trying to delete investor: {}", e.getMessage());
             return false;
         } finally {
             DatabaseConnector.closeConnection(connection);
@@ -115,7 +127,7 @@ public class InvestorDatabase {
         } finally {
             DatabaseConnector.closeConnection(connection);
         }
-        //Logging statement here System.out.println("FETCHED INVESTOR SUCCESSFULLY !!");
+        logger.info("FETCHED INVESTOR SUCCESSFULLY !!");
         return investor;
     }
 
