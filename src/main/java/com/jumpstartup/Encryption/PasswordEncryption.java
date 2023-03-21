@@ -9,7 +9,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class PasswordEncryption {
+
+    private static final Logger logger = LoggerFactory.getLogger(PasswordEncryption.class);
 
    static BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     public static String encryptPassword(String password) {
@@ -25,18 +30,18 @@ public class PasswordEncryption {
             System.out.println(username);
             statement.setString(1, username);
             ResultSet result = statement.executeQuery();
-            if(result.next()) {
+            if (result.next()) {
                 String encodePassword = result.getString("HASHPASS");
-                System.out.println(encodePassword);
+                logger.info("encoded hashpass: {}", encodePassword);
                 return encoder.matches(password, encodePassword);
             }
-            else{
-                // not found in db condition
+            else {
+                logger.warn("Encoded hashpass not found in DB");
                 return false;
             }
         }
-        catch(SQLException e){
-            System.out.println("Error while login: " + e.getMessage());
+        catch (SQLException e) {
+            logger.error("Error while login: {}", e.getMessage());
             return false;
         } finally {
             DatabaseConnector.closeConnection(connection);
