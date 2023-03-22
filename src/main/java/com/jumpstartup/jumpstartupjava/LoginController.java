@@ -48,7 +48,7 @@ public class LoginController {
     @PostMapping("/signup")
     public ResponseEntity<String> signupSubmit(@RequestBody LoginRequest loginRequest) {
         loginRequest.setHashpass(PasswordEncryption.encryptPassword(loginRequest.getHashpass()));
-        boolean success = signup(loginRequest.getUuid(), loginRequest.getUsername(), loginRequest.getHashpass(), loginRequest.getEmail(), loginRequest.getType());
+        boolean success = signup(loginRequest.getUuid(), loginRequest.getUsername(), loginRequest.getFirstName(), loginRequest.getLastName(), loginRequest.getHashpass(), loginRequest.getEmail(), loginRequest.getType());
         if (success) {
             logger.info("User {} signed up successfully.", loginRequest.getUsername());
             return new ResponseEntity<>( HttpStatus.OK);
@@ -64,10 +64,8 @@ public class LoginController {
         return auth.authenticate(username,password);
     }
 
-    private boolean signup(String UUID, String username, String password, String email, String type) {
+    private boolean signup(String UUID, String username, String firstName, String lastName, String password, String email, String type) {
         LoginDatabase addUser = new LoginDatabase();
-        return addUser.newUser(UUID,username,email,password,type);
+        return addUser.newUser(UUID,username, firstName, lastName, email,password,type);
     }
-
-
 }
