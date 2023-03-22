@@ -10,9 +10,10 @@ public class InvestorBean {
 
     public InvestorBean() {}
 
-    public InvestorBean(String uuid, String phone_number, float funding_available, String brands_built) {
+    public InvestorBean(String uuid, String phone_number, String domain, float funding_available, String brands_built) {
         this.uuid = uuid;
         this.phone_number = phone_number;
+        this.domain = domain;
         this.funding_available = funding_available;
         this.brands_built = brands_built;
     }
