@@ -42,17 +42,19 @@ public class LoginDatabase {
         }
     }
 
-    public boolean newUser(String UUID,String username, String email, String hashpass, String type) {
+    public boolean newUser(String UUID,String username, String firstName, String lastName, String email, String hashpass, String type) {
         Connection connection = null;
         try {
             connection = DatabaseConnector.getConnection();
-            String sql = "INSERT INTO myUser(UUID, username, email, hashpass, type) VALUES(?,?, ?, ?, ?)";
+            String sql = "INSERT INTO myUser(UUID, username, first_name, last_name, email, hashpass, type) VALUES(?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, UUID);
             statement.setString(2, username);
-            statement.setString(3, email);
-            statement.setString(4, hashpass);
-            statement.setString(5, type);
+            statement.setString(3, firstName);
+            statement.setString(4, lastName);
+            statement.setString(5, email);
+            statement.setString(6, hashpass);
+            statement.setString(7, type);
 
             int rowsAffected = statement.executeUpdate();
             if (rowsAffected > 0) {
@@ -75,7 +77,7 @@ public class LoginDatabase {
         LoginRequest loginRequest = null;
         try {
             connection = DatabaseConnector.getConnection();
-            String sql = "select * from MYUSER where username = ?";
+            String sql = "select *z from MYUSER where username = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, username);
             ResultSet result = statement.executeQuery();
@@ -83,6 +85,8 @@ public class LoginDatabase {
             if(result.next()){
                 loginRequest = new LoginRequest();
                 loginRequest.setUuid(UUID.fromString(result.getString("UUID")));
+                loginRequest.setFirstName(result.getString("FIRST_NAME"));
+                loginRequest.setLastName(result.getString("LAST_NAME"));
                 loginRequest.setEmail(result.getString("EMAIL"));
                 loginRequest.setType(result.getString("TYPE"));
                 loginRequest.setUsername(result.getString("USERNAME"));
