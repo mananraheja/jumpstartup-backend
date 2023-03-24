@@ -1,7 +1,8 @@
 package com.jumpstartup.Encryption;
 
 import com.jumpstartup.Connection.DatabaseConnector;
-import org.springframework.security.crypto.bcrypt.BCrypt;
+import com.jumpstartup.Exception.UserDetailsNotValid;
+import com.jumpstartup.Model.Error;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.sql.Connection;
@@ -21,7 +22,7 @@ public class PasswordEncryption {
         return encoder.encode(password);
     }
 
-    public static boolean decryptPassword(String username, String password){
+    public static String decryptPassword(String username, String password) throws UserDetailsNotValid{
         Connection connection = null;
         try {
             connection = DatabaseConnector.getConnection();
@@ -33,16 +34,19 @@ public class PasswordEncryption {
             if (result.next()) {
                 String encodePassword = result.getString("HASHPASS");
                 logger.info("encoded hashpass: {}", encodePassword);
-                return encoder.matches(password, encodePassword);
+                if(!encoder.matches(password, encodePassword)){
+                    throw new UserDetailsNotValid( Error.buildError("ERR001","Password doesn't Match"));
+                }
+                return result.getString("UUID");
             }
             else {
                 logger.warn("Encoded hashpass not found in DB");
-                return false;
+                throw new UserDetailsNotValid(Error.buildError("ERR002","User not found"));
             }
         }
         catch (SQLException e) {
             logger.error("Error while login: {}", e.getMessage());
-            return false;
+            throw new UserDetailsNotValid(Error.buildError("ERR000",e.getMessage()));
         } finally {
             DatabaseConnector.closeConnection(connection);
         }

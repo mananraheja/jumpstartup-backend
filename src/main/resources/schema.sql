@@ -1,7 +1,7 @@
 CREATE TABLE myUser (
     UUID VARCHAR(255) PRIMARY KEY,
     username VARCHAR(20) NOT NULL UNIQUE,
-    first_name VARCHAR(20) NOT NULL,
+    first_name VARCHAR(20),
     last_name VARCHAR(20),
     email VARCHAR(255) UNIQUE NOT NULL CHECK (email LIKE '%@%.%'),
     hashpass VARCHAR(255) NOT NULL,
