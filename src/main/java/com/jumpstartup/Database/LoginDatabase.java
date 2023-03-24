@@ -46,15 +46,13 @@ public class LoginDatabase {
         Connection connection = null;
         try {
             connection = DatabaseConnector.getConnection();
-            String sql = "INSERT INTO myUser(UUID, username, first_name, last_name, email, hashpass, type) VALUES(?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO myUser(UUID, username, email, hashpass, type) VALUES(?, ?, ? ,?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, UUID);
             statement.setString(2, username);
-            statement.setString(3, firstName);
-            statement.setString(4, lastName);
-            statement.setString(5, email);
-            statement.setString(6, hashpass);
-            statement.setString(7, type);
+            statement.setString(3, email);
+            statement.setString(4, hashpass);
+            statement.setString(5, type);
 
             int rowsAffected = statement.executeUpdate();
             if (rowsAffected > 0) {
@@ -72,19 +70,44 @@ public class LoginDatabase {
         }
     }
 
+    public boolean updateDetails(String firstName,String lastName, String UUID){
+        Connection connection = null;
+        try {
+            connection = DatabaseConnector.getConnection();
+            String sql = "UPDATE MYUSER SET FIRST_NAME = ?, LAST_NAME = ? WHERE UUID = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, firstName);
+            statement.setString(2, lastName);
+            statement.setString(3, UUID);
+            int rowsAffected = statement.executeUpdate();
+            if (rowsAffected > 0) {
+                logger.info("User with UUID {} updated successfully.", UUID);
+                return true;
+            } else {
+                logger.warn("Unable to update user with UUID {}", UUID);
+                return false;
+            }
+        } catch (SQLException e) {
+            logger.error("Error while trying to update new user: {}", e.getMessage());
+            return false;
+        } finally {
+            DatabaseConnector.closeConnection(connection);
+        }
+    }
+
     public LoginRequest getDetails(String username) {
         Connection connection = null;
         LoginRequest loginRequest = null;
         try {
             connection = DatabaseConnector.getConnection();
-            String sql = "select *z from MYUSER where username = ?";
+            String sql = "select * from MYUSER where username = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, username);
             ResultSet result = statement.executeQuery();
 
             if(result.next()){
                 loginRequest = new LoginRequest();
-                loginRequest.setUuid(UUID.fromString(result.getString("UUID")));
+                loginRequest.setUuid(result.getString("UUID"));
                 loginRequest.setFirstName(result.getString("FIRST_NAME"));
                 loginRequest.setLastName(result.getString("LAST_NAME"));
                 loginRequest.setEmail(result.getString("EMAIL"));
