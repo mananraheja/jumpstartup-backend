@@ -41,8 +41,7 @@ public class LoginController {
     @PostMapping
     public ResponseEntity<?> loginSubmit(@RequestBody LoginRequest loginRequest) {
         try{
-            String uuid = PasswordEncryption.decryptPassword(loginRequest.getUsername(), loginRequest.getHashpass());
-            LoginDetails loginDetails = new LoginDetails().setUUID(uuid);
+            LoginDetails loginDetails = PasswordEncryption.decryptPassword(loginRequest.getUsername(), loginRequest.getHashpass());
             logger.info("User {} has been authorized.", loginRequest.getUsername());
             return new ResponseEntity<>(loginDetails,HttpStatus.OK);
         }
@@ -58,7 +57,8 @@ public class LoginController {
         boolean success = signup(loginRequest.getUuid(), loginRequest.getUsername(), loginRequest.getFirstName(), loginRequest.getLastName(), loginRequest.getHashpass(), loginRequest.getEmail(), loginRequest.getType());
         if (success) {
             logger.info("User {} signed up successfully.", loginRequest.getUsername());
-            return new ResponseEntity<>(new LoginDetails().setUUID(loginRequest.getUuid()), HttpStatus.OK);
+            LoginDetails loginDetails = LoginDetails.buildLoginDetails(loginRequest.getUsername(),loginRequest.getType(),loginRequest.getUuid());
+            return new ResponseEntity<>(loginDetails, HttpStatus.OK);
         } else {
             logger.warn("Failed to sign up user {}.", loginRequest.getUsername());
             return new ResponseEntity<>( HttpStatus.INTERNAL_SERVER_ERROR);
