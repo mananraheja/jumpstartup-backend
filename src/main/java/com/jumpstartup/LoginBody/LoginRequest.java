@@ -5,13 +5,15 @@ import java.util.UUID;
 public class LoginRequest {
 
     private String username;
+    private String firstName;
+    private String lastName;
     private String email;
     private String hashpass;
     private String type;
-    private UUID uuid;
+    private String uuid;
 
     public LoginRequest(){
-        this.uuid = UUID.randomUUID();
+        this.uuid = UUID.randomUUID().toString();
     }
 
     public LoginRequest(String username, String email, String hashpass, String type){
@@ -19,11 +21,27 @@ public class LoginRequest {
         this.email = email;
         this.hashpass = hashpass;
         this.type = type;
-        this.uuid = UUID.randomUUID();
+        this.uuid = UUID.randomUUID().toString();
     }
 
     public String getUsername() {
         return username;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public void setUsername(String username) {
@@ -55,10 +73,10 @@ public class LoginRequest {
     }
 
     public String getUuid() {
-        return uuid.toString();
+        return uuid;
     }
 
-    public void setUuid(UUID uuid) {
+    public void setUuid(String uuid) {
         this.uuid = uuid;
     }
 }
