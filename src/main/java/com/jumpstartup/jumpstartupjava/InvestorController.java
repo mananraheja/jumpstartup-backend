@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 @CrossOrigin(origins = "http://localhost:4200")
 public class InvestorController {
 
-    private static final Logger logger = LoggerFactory.getLogger(FreeLancerController.class);
+    private static final Logger logger = LoggerFactory.getLogger(InvestorController.class);
 
     @PostMapping("/add")
     public ResponseEntity<?> addInvestor(@RequestBody InvestorBean investor) {
@@ -30,6 +30,21 @@ public class InvestorController {
             return new ResponseEntity<>("Failed to add investor to database", HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
+        // Add the new education to the database
+        boolean isEducationAdded = investorDatabase.addEducation(investor.getUuid(), investor.getInstitution(), investor.getDegree(),
+                investor.getMajor(), investor.getYear_of_completion());
+        if (!isEducationAdded) {
+            logger.error("Failed to add education to database");
+            return new ResponseEntity<>("Failed to add education to database", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        // Add the new work experience to the database
+        boolean isWorkExperienceAdded = investorDatabase.addWorkExperience(investor.getUuid(), investor.getWork_experience());
+        if (!isWorkExperienceAdded) {
+            logger.error("Failed to add work experience to database");
+            return new ResponseEntity<>("Failed to add work experience to database", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        
         logger.info("Investor record added successfully.");
         return new ResponseEntity<>(Status.buildStatus("ADDINV001","Added Investor succesfully"), HttpStatus.OK);
     }
