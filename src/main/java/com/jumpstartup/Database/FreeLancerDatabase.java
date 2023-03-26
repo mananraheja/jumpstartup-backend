@@ -45,7 +45,7 @@ public class FreeLancerDatabase {
         }
     }
 
-    public boolean addEducation(String uuid, String institution, String degree, String major, int year_of_completion) {
+    public boolean addEducation(String uuid, String institution, String degree, String major, String year_of_completion) {
         Connection connection = null;
         try {
             connection = DatabaseConnector.getConnection();
@@ -55,7 +55,7 @@ public class FreeLancerDatabase {
             statement.setString(2, institution);
             statement.setString(3, degree);
             statement.setString(4, major);
-            statement.setInt(5, year_of_completion);
+            statement.setString(5, year_of_completion);
 
             int rowsAffected = statement.executeUpdate();
             if (rowsAffected > 0) {
@@ -118,7 +118,7 @@ public class FreeLancerDatabase {
             statementEducation.setString(1, freelancer.getInstitution());
             statementEducation.setString(2, freelancer.getDegree());
             statementEducation.setString(3, freelancer.getMajor());
-            statementEducation.setInt(4, freelancer.getYear_of_completion());
+            statementEducation.setString(4, freelancer.getYear_of_completion());
             statementEducation.setString(5, uuid);
 
             int rowsAffectedEducation = statementEducation.executeUpdate();
@@ -215,7 +215,7 @@ public class FreeLancerDatabase {
                     freelancer.setInstitution(result.getString("institution"));
                     freelancer.setDegree(result.getString("degree"));
                     freelancer.setMajor(result.getString("major"));
-                    freelancer.setYear_of_completion(result.getInt("year_of_completion"));
+                    freelancer.setYear_of_completion(result.getString("year_of_completion"));
                 }
 
                 statement = connection.prepareStatement("SELECT * FROM work_experience WHERE uuid = ?");
