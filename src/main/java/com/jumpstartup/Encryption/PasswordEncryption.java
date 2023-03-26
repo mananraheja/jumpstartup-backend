@@ -37,7 +37,7 @@ public class PasswordEncryption {
                 if(!encoder.matches(password, encodePassword)){
                     throw new UserDetailsNotValid( Error.buildError("ERR001","Password doesn't Match"));
                 }
-                return LoginDetails.buildLoginDetails(username,result.getString("type"),result.getString("UUID"));
+                return LoginDetails.buildLoginDetails(username,result.getString("type"),result.getString("UUID"), result.getString("email"));
             }
             else {
                 logger.warn("Encoded hashpass not found in DB");
