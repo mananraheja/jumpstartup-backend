@@ -67,7 +67,7 @@ class LoginControllerTest {
         LoginRequest loginRequest = new LoginRequest("username", "password", "email", "type");
         PasswordEncryption encryption = new PasswordEncryption();
         loginRequest.setHashpass(encryption.encryptPassword(loginRequest.getHashpass()));
-        when(loginDatabase.newUser(anyString(), anyString(), anyString(), anyString(), anyString())).thenReturn(true);
+        when(loginDatabase.newUser(anyString(), anyString(), anyString(), anyString(), anyString(),anyString(),anyString())).thenReturn(true);
 
         MvcResult result = mockMvc.perform(post("/login/signup")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
