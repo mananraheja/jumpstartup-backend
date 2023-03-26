@@ -57,7 +57,7 @@ public class LoginController {
         boolean success = signup(loginRequest.getUuid(), loginRequest.getUsername(), loginRequest.getFirstName(), loginRequest.getLastName(), loginRequest.getHashpass(), loginRequest.getEmail(), loginRequest.getType());
         if (success) {
             logger.info("User {} signed up successfully.", loginRequest.getUsername());
-            LoginDetails loginDetails = LoginDetails.buildLoginDetails(loginRequest.getUsername(),loginRequest.getType(),loginRequest.getUuid());
+            LoginDetails loginDetails = LoginDetails.buildLoginDetails(loginRequest.getUsername(),loginRequest.getType(),loginRequest.getUuid(),loginRequest.getEmail());
             return new ResponseEntity<>(loginDetails, HttpStatus.OK);
         } else {
             logger.warn("Failed to sign up user {}.", loginRequest.getUsername());

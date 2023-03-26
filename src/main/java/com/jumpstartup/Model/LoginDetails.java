@@ -4,7 +4,7 @@ public class LoginDetails {
     private String UUID;
     private String username;
     private String type;
-
+    private String email;
     public String getUUID() {
         return UUID;
     }
@@ -30,11 +30,20 @@ public class LoginDetails {
         this.type = type;
     }
 
-    public static LoginDetails buildLoginDetails(String username, String type, String uuid){
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public static LoginDetails buildLoginDetails(String username, String type, String uuid, String email){
         LoginDetails loginDetails = new LoginDetails();
         loginDetails.setType(type);
         loginDetails.setUUID(uuid);
         loginDetails.setUsername(username);
+        loginDetails.setEmail(email);
         return loginDetails;
     }
 }
