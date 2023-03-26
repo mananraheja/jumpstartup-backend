@@ -18,7 +18,7 @@ public class FreelancerBean  {
 
     private String degree;
     private String major;
-    private int year_of_completion;
+    private String year_of_completion;
 
     // WORK EXPERIENCE
     private String work_experience;
@@ -27,7 +27,7 @@ public class FreelancerBean  {
 
     public FreelancerBean() {}
 
-    public FreelancerBean(String UUID,String username, String email, String phone_number, String skills, String linkedin_link, String institution, String degree, String major, int year_of_completion, String work_experience) {
+    public FreelancerBean(String UUID,String username, String email, String phone_number, String skills, String linkedin_link, String institution, String degree, String major, String year_of_completion, String work_experience) {
         this.uuid = UUID;
         this.username = username;
         this.email = email;
@@ -115,11 +115,11 @@ public class FreelancerBean  {
         this.major = major;
     }
 
-    public int getYear_of_completion() {
+    public String getYear_of_completion() {
         return year_of_completion;
     }
 
-    public void setYear_of_completion(int year_of_completion) {
+    public void setYear_of_completion(String year_of_completion) {
         this.year_of_completion = year_of_completion;
     }
 

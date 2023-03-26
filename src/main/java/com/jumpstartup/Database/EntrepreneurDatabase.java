@@ -39,7 +39,7 @@ public class EntrepreneurDatabase {
         }
     }
 
-    public boolean addEducation(String uuid, String institution, String degree, String major, int year_of_completion) {
+    public boolean addEducation(String uuid, String institution, String degree, String major, String year_of_completion) {
         Connection connection = null;
         try {
             connection = DatabaseConnector.getConnection();
@@ -49,7 +49,7 @@ public class EntrepreneurDatabase {
             statement.setString(2, institution);
             statement.setString(3, degree);
             statement.setString(4, major);
-            statement.setInt(5, year_of_completion);
+            statement.setString(5, year_of_completion);
 
             int rowsAffected = statement.executeUpdate();
             if (rowsAffected > 0) {
@@ -112,7 +112,7 @@ public class EntrepreneurDatabase {
             statementEducation.setString(1, entrepreneur.getInstitution());
             statementEducation.setString(2, entrepreneur.getDegree());
             statementEducation.setString(3, entrepreneur.getMajor());
-            statementEducation.setInt(4, entrepreneur.getYear_of_completion());
+            statementEducation.setString(4, entrepreneur.getYear_of_completion());
             statementEducation.setString(5, uuid);
 
             int rowsAffectedEducation = statementEducation.executeUpdate();
@@ -206,7 +206,7 @@ public class EntrepreneurDatabase {
                     entrepreneur.setInstitution(result.getString("institution"));
                     entrepreneur.setDegree(result.getString("degree"));
                     entrepreneur.setMajor(result.getString("major"));
-                    entrepreneur.setYear_of_completion(result.getInt("year_of_completion"));
+                    entrepreneur.setYear_of_completion(result.getString("year_of_completion"));
                 }
 
                 statement = connection.prepareStatement("SELECT * FROM work_experience WHERE uuid = ?");

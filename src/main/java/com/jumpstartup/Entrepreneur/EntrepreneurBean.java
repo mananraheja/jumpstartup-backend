@@ -10,7 +10,7 @@ public class EntrepreneurBean {
     private String institution;
     private String degree;
     private String major;
-    private int year_of_completion;
+    private String year_of_completion;
 
     //Work Ex
     private String work_experience;
@@ -19,10 +19,15 @@ public class EntrepreneurBean {
 
     public EntrepreneurBean() {}
 
-    public EntrepreneurBean(String uuid, String phone_number, String domain) {
+    public EntrepreneurBean(String uuid, String phone_number, String domain, String institution, String degree, String major, String year_of_completion, String work_experience) {
         this.uuid = uuid;
         this.phone_number = phone_number;
         this.domain = domain;
+        this.institution = institution;
+        this.degree = degree;
+        this.major = major;
+        this.year_of_completion = year_of_completion;
+        this.work_experience = work_experience;
     }
 
     public String getUuid() {
@@ -73,11 +78,11 @@ public class EntrepreneurBean {
         this.major = major;
     }
 
-    public int getYear_of_completion() {
+    public String getYear_of_completion() {
         return year_of_completion;
     }
 
-    public void setYear_of_completion(int year_of_completion) {
+    public void setYear_of_completion(String year_of_completion) {
         this.year_of_completion = year_of_completion;
     }
 

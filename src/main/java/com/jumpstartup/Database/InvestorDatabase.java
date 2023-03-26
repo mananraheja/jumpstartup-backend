@@ -26,7 +26,7 @@ public class InvestorDatabase {
             statement.setString(1, investor.getUuid());
             statement.setString(2, investor.getPhone_number());
             statement.setString(3, investor.getDomain());
-            statement.setFloat(4, investor.getFunding_available());
+            statement.setString(4, investor.getFunding_available());
             statement.setString(5, investor.getBrands_built());
 
             int rowsAffected = statement.executeUpdate();
@@ -45,7 +45,7 @@ public class InvestorDatabase {
         }
     }
 
-    public boolean addEducation(String uuid, String institution, String degree, String major, int year_of_completion) {
+    public boolean addEducation(String uuid, String institution, String degree, String major, String year_of_completion) {
         Connection connection = null;
         try {
             connection = DatabaseConnector.getConnection();
@@ -55,7 +55,7 @@ public class InvestorDatabase {
             statement.setString(2, institution);
             statement.setString(3, degree);
             statement.setString(4, major);
-            statement.setInt(5, year_of_completion);
+            statement.setString(5, year_of_completion);
 
             int rowsAffected = statement.executeUpdate();
             if (rowsAffected > 0) {
@@ -108,7 +108,7 @@ public class InvestorDatabase {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, investor.getPhone_number());
             statement.setString(2, investor.getDomain());
-            statement.setFloat(3, investor.getFunding_available());
+            statement.setString(3, investor.getFunding_available());
             statement.setString(4, investor.getBrands_built());
             statement.setString(5, uuid);
 
@@ -120,7 +120,7 @@ public class InvestorDatabase {
             statementEducation.setString(1, investor.getInstitution());
             statementEducation.setString(2, investor.getDegree());
             statementEducation.setString(3, investor.getMajor());
-            statementEducation.setInt(4, investor.getYear_of_completion());
+            statementEducation.setString(4, investor.getYear_of_completion());
             statementEducation.setString(5, uuid);
 
             int rowsAffectedEducation = statementEducation.executeUpdate();
@@ -207,7 +207,7 @@ public class InvestorDatabase {
                 investor.setUuid(result.getString("uuid"));
                 investor.setPhone_number(result.getString("phone_number"));
                 investor.setDomain(result.getString("domain"));
-                investor.setFunding_available(result.getFloat("funding_available"));
+                investor.setFunding_available(result.getString("funding_available"));
                 investor.setBrands_built(result.getString("brands_built"));
 
                 statement = connection.prepareStatement("SELECT * FROM education WHERE uuid = ?");
@@ -217,7 +217,7 @@ public class InvestorDatabase {
                     investor.setInstitution(result.getString("institution"));
                     investor.setDegree(result.getString("degree"));
                     investor.setMajor(result.getString("major"));
-                    investor.setYear_of_completion(result.getInt("year_of_completion"));
+                    investor.setYear_of_completion(result.getString("year_of_completion"));
                 }
 
                 statement = connection.prepareStatement("SELECT * FROM work_experience WHERE uuid = ?");
