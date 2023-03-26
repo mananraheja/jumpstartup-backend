@@ -44,6 +44,59 @@ public class InvestorDatabase {
             DatabaseConnector.closeConnection(connection);
         }
     }
+
+    public boolean addEducation(String uuid, String institution, String degree, String major, int year_of_completion) {
+        Connection connection = null;
+        try {
+            connection = DatabaseConnector.getConnection();
+            String sql = "INSERT INTO Education (UUID, institution, degree, major, year_of_completion) VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, uuid);
+            statement.setString(2, institution);
+            statement.setString(3, degree);
+            statement.setString(4, major);
+            statement.setInt(5, year_of_completion);
+
+            int rowsAffected = statement.executeUpdate();
+            if (rowsAffected > 0) {
+                logger.info("Education added successfully for investor with UUID: {}", uuid);
+                return true;
+            } else {
+                logger.warn("Failed to add education for investor with UUID: {}", uuid);
+                return false;
+            }
+        } catch (SQLException e) {
+            logger.error("Error while trying to add education: {}", e.getMessage());
+            return false;
+        } finally {
+            DatabaseConnector.closeConnection(connection);
+        }
+    }
+
+    public boolean addWorkExperience(String uuid, String work_experience) {
+        Connection connection = null;
+        try {
+            connection = DatabaseConnector.getConnection();
+            String sql = "INSERT INTO Work_Experience (UUID, work_experience) VALUES (?, ?)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, uuid);
+            statement.setString(2, work_experience);
+
+            int rowsAffected = statement.executeUpdate();
+            if (rowsAffected > 0) {
+                logger.info("Work experience added successfully for investor with UUID: {}", uuid);
+                return true;
+            } else {
+                logger.warn("Failed to add work experience for investor with UUID: {}", uuid);
+                return false;
+            }
+        } catch (SQLException e) {
+            logger.error("Error while trying to add work experience: {}", e.getMessage());
+            return false;
+        } finally {
+            DatabaseConnector.closeConnection(connection);
+        }
+    }
     
     public boolean updateInvestor(String uuid, InvestorBean investor) {
         Connection connection = null;
@@ -61,8 +114,27 @@ public class InvestorDatabase {
 
             int rowsAffected = statement.executeUpdate();
 
+            // update education information
+            String sqlEducation = "UPDATE Education SET institution = ?, degree = ?, major = ?, year_of_completion = ? WHERE uuid = ?";
+            PreparedStatement statementEducation = connection.prepareStatement(sqlEducation);
+            statementEducation.setString(1, investor.getInstitution());
+            statementEducation.setString(2, investor.getDegree());
+            statementEducation.setString(3, investor.getMajor());
+            statementEducation.setInt(4, investor.getYear_of_completion());
+            statementEducation.setString(5, uuid);
+
+            int rowsAffectedEducation = statementEducation.executeUpdate();
+
+            // update work experience information
+            String sqlWorkExperience = "UPDATE Work_Experience SET work_experience = ? WHERE uuid = ?";
+            PreparedStatement statementWorkExperience = connection.prepareStatement(sqlWorkExperience);
+            statementWorkExperience.setString(1, investor.getWork_experience());
+            statementWorkExperience.setString(2, uuid);
+
+            int rowsAffectedWorkExperience = statementWorkExperience.executeUpdate();
+
             // check if updates were successful
-            if (rowsAffected > 0 ) {
+            if (rowsAffected > 0 && rowsAffectedEducation > 0 && rowsAffectedWorkExperience > 0) {
                 logger.info("Investor {} updated successfully", uuid);
                 return true;
             } else {
@@ -82,6 +154,25 @@ public class InvestorDatabase {
         try {
             connection = DatabaseConnector.getConnection();
 
+            String educationSql = "DELETE FROM Education WHERE uuid = ?";
+            PreparedStatement educationStatement = connection.prepareStatement(educationSql);
+            educationStatement.setString(1, UUID);
+            int educationRowsAffected = educationStatement.executeUpdate();
+            if (educationRowsAffected <= 0) {
+                logger.warn("No education rows affected while deleting investor with UUID: {}", UUID);
+                return false;
+            }
+
+            // Delete work experience
+            String workExperienceSql = "DELETE FROM Work_Experience WHERE uuid = ?";
+            PreparedStatement workExperienceStatement = connection.prepareStatement(workExperienceSql);
+            workExperienceStatement.setString(1, UUID);
+            int workExperienceRowsAffected = workExperienceStatement.executeUpdate();
+            if (workExperienceRowsAffected <= 0) {
+                logger.warn("No work experience rows affected while deleting investor with UUID: {}", UUID);
+                return false;
+            }
+            
             // Delete investor
             String sql = "DELETE FROM Investor WHERE uuid = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -118,6 +209,23 @@ public class InvestorDatabase {
                 investor.setDomain(result.getString("domain"));
                 investor.setFunding_available(result.getFloat("funding_available"));
                 investor.setBrands_built(result.getString("brands_built"));
+
+                statement = connection.prepareStatement("SELECT * FROM education WHERE uuid = ?");
+                statement.setString(1, UUID);
+                result = statement.executeQuery();
+                if (result.next()) {
+                    investor.setInstitution(result.getString("institution"));
+                    investor.setDegree(result.getString("degree"));
+                    investor.setMajor(result.getString("major"));
+                    investor.setYear_of_completion(result.getInt("year_of_completion"));
+                }
+
+                statement = connection.prepareStatement("SELECT * FROM work_experience WHERE uuid = ?");
+                statement.setString(1, UUID);
+                result = statement.executeQuery();
+                if (result.next()) {
+                    investor.setWork_experience(result.getString("work_experience"));
+                }
 
             }
 
