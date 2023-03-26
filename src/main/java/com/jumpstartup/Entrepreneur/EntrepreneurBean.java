@@ -6,6 +6,16 @@ public class EntrepreneurBean {
     private String phone_number;
     private String domain;
 
+    // EDUCATION
+    private String institution;
+    private String degree;
+    private String major;
+    private int year_of_completion;
+
+    //Work Ex
+    private String work_experience;
+
+
 
     public EntrepreneurBean() {}
 
@@ -37,6 +47,46 @@ public class EntrepreneurBean {
 
     public void setDomain(String domain) {
         this.domain = domain;
+    }
+
+    public String getInstitution() {
+        return institution;
+    }
+
+    public void setInstitution(String institution) {
+        this.institution = institution;
+    }
+
+    public String getDegree() {
+        return degree;
+    }
+
+    public void setDegree(String degree) {
+        this.degree = degree;
+    }
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    public int getYear_of_completion() {
+        return year_of_completion;
+    }
+
+    public void setYear_of_completion(int year_of_completion) {
+        this.year_of_completion = year_of_completion;
+    }
+
+    public String getWork_experience() {
+        return work_experience;
+    }
+
+    public void setWork_experience(String work_experience) {
+        this.work_experience = work_experience;
     }
 }
 
