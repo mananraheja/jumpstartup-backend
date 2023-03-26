@@ -2,6 +2,7 @@ package com.jumpstartup.jumpstartupjava;
 
 
 import com.jumpstartup.Investor.InvestorBean;
+import com.jumpstartup.Model.Status;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,12 +13,13 @@ import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("/investor")
+@CrossOrigin(origins = "http://localhost:4200")
 public class InvestorController {
 
     private static final Logger logger = LoggerFactory.getLogger(FreeLancerController.class);
 
     @PostMapping("/add")
-    public ResponseEntity<String> addInvestor(@RequestBody InvestorBean investor) {
+    public ResponseEntity<?> addInvestor(@RequestBody InvestorBean investor) {
         logger.info("Adding new investor data: {}", investor.toString());
         InvestorDatabase investorDatabase = new InvestorDatabase();
 
@@ -29,7 +31,7 @@ public class InvestorController {
         }
 
         logger.info("Investor record added successfully.");
-        return new ResponseEntity<>("Record Added", HttpStatus.OK);
+        return new ResponseEntity<>(Status.buildStatus("ADDINV001","Added Investor succesfully"), HttpStatus.OK);
     }
 
     @PutMapping("/update/{UUID}")

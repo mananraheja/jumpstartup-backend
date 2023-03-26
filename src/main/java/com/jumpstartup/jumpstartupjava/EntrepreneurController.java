@@ -2,6 +2,7 @@ package com.jumpstartup.jumpstartupjava;
 
 import com.jumpstartup.Database.EntrepreneurDatabase;
 import com.jumpstartup.Entrepreneur.EntrepreneurBean;
+import com.jumpstartup.Model.Status;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,10 +10,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/entrepreneur")
+@CrossOrigin(origins = "http://localhost:4200")
 public class EntrepreneurController {
 
     @PostMapping("/add")
-    public ResponseEntity<String> addEntrepreneur(@RequestBody EntrepreneurBean entrepreneur) {
+    public ResponseEntity<?> addEntrepreneur(@RequestBody EntrepreneurBean entrepreneur) {
 
         EntrepreneurDatabase entrepreneurDatabase = new EntrepreneurDatabase();
 
@@ -22,7 +24,7 @@ public class EntrepreneurController {
             return new ResponseEntity<>("Failed to add entrepreneur to database", HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        return new ResponseEntity<>("Record Added", HttpStatus.OK);
+        return new ResponseEntity<>(Status.buildStatus("ADDENT001","Added Entrepreneur succesfully"), HttpStatus.OK);
     }
 
     @PutMapping("/update/{UUID}")

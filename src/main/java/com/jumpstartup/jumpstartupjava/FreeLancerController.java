@@ -1,6 +1,7 @@
 package com.jumpstartup.jumpstartupjava;
 
 import com.jumpstartup.Freelancer.FreelancerBean;
+import com.jumpstartup.Model.Status;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,12 +12,13 @@ import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("/freelancer")
+@CrossOrigin(origins = "http://localhost:4200")
 public class FreeLancerController {
 
     private static final Logger logger = LoggerFactory.getLogger(FreeLancerController.class);
 
     @PostMapping("/add")
-    public ResponseEntity<String> addFreelancerData(@RequestBody FreelancerBean freelancer) {
+    public ResponseEntity<?> addFreelancerData(@RequestBody FreelancerBean freelancer) {
         logger.info("Adding new freelancer data: {}", freelancer.toString());
 
         FreeLancerDatabase flDatabase = new FreeLancerDatabase();
@@ -44,7 +46,7 @@ public class FreeLancerController {
         }
 
         logger.info("Freelancer record added successfully.");
-        return new ResponseEntity<>("Record Added", HttpStatus.OK);
+        return new ResponseEntity<>(Status.buildStatus("ADDFREE001","Added Freelancer succesfully"), HttpStatus.OK);
     }
 
     @PutMapping("/update/{UUID}")
