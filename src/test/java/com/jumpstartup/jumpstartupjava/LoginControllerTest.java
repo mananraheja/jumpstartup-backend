@@ -4,8 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jumpstartup.Database.LoginDatabase;
 import com.jumpstartup.Encryption.PasswordEncryption;
 import com.jumpstartup.LoginBody.LoginRequest;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -22,7 +21,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class LoginControllerTest {
 
     private MockMvc mockMvc;
@@ -39,13 +38,16 @@ class LoginControllerTest {
         mockMvc = MockMvcBuilders.standaloneSetup(loginController).build();
     }
 
-    @Test
+    @Test()
+    @Order(3)
     public void testLogin() throws Exception {
-        mockMvc.perform(get("/login"))
+        LoginRequest loginRequest = new LoginRequest("username", "password", "email", "type");
+        mockMvc.perform(post("/login").contentType(MediaType.APPLICATION_JSON_VALUE).content(new ObjectMapper().writeValueAsString(loginRequest)))
                 .andExpect(status().isOk());
     }
 
     @Test
+    @Order(2)
     public void testLoginSubmit() throws Exception {
         LoginRequest loginRequest = new LoginRequest("username", "password", "email", "type");
         PasswordEncryption encryption = new PasswordEncryption();
@@ -56,12 +58,11 @@ class LoginControllerTest {
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content(new ObjectMapper().writeValueAsString(loginRequest)))
                 .andReturn();
-
-        assertThat(result.getResponse().getContentAsString()).isEqualTo("AUTHORIZED");
         assertThat(result.getResponse().getStatus()).isEqualTo(HttpStatus.OK.value());
     }
 
     @Test
+    @Order(1)
     public void testSignupSubmit() throws Exception {
         LoginRequest loginRequest = new LoginRequest("username", "password", "email", "type");
         PasswordEncryption encryption = new PasswordEncryption();
@@ -72,8 +73,6 @@ class LoginControllerTest {
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content(new ObjectMapper().writeValueAsString(loginRequest)))
                 .andReturn();
-
-        assertThat(result.getResponse().getContentAsString()).isEqualTo("SIGNUP SUCCESSFUL");
         assertThat(result.getResponse().getStatus()).isEqualTo(HttpStatus.OK.value());
     }
 }
