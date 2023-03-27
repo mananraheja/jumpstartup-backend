@@ -46,13 +46,15 @@ public class LoginDatabase {
         Connection connection = null;
         try {
             connection = DatabaseConnector.getConnection();
-            String sql = "INSERT INTO myUser(UUID, username, email, hashpass, type) VALUES(?, ?, ? ,?, ?)";
+            String sql = "INSERT INTO myUser(UUID, username, first_name, last_name, email, hashpass, type) VALUES(?, ?, ? ,?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, UUID);
             statement.setString(2, username);
-            statement.setString(3, email);
-            statement.setString(4, hashpass);
-            statement.setString(5, type);
+            statement.setString(3, firstName);
+            statement.setString(4, lastName);
+            statement.setString(5, email);
+            statement.setString(6, hashpass);
+            statement.setString(7, type);
 
             int rowsAffected = statement.executeUpdate();
             if (rowsAffected > 0) {

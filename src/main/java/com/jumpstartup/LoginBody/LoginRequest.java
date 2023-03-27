@@ -16,12 +16,14 @@ public class LoginRequest {
         this.uuid = UUID.randomUUID().toString();
     }
 
-    public LoginRequest(String username, String email, String hashpass, String type){
+    public LoginRequest(String username,  String firstName, String lastName, String email, String hashpass, String type){
         this.username = username;
         this.email = email;
         this.hashpass = hashpass;
         this.type = type;
         this.uuid = UUID.randomUUID().toString();
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public String getUsername() {
