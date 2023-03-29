@@ -5,11 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.jumpstartup.Entrepreneur.EntrepreneurBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.jumpstartup.Connection.DatabaseConnector;
 import com.jumpstartup.Investor.InvestorBean;
+
+import javax.persistence.criteria.CriteriaBuilder;
 
 
 public class InvestorDatabase {
@@ -198,12 +201,21 @@ public class InvestorDatabase {
         Connection connection = null;
         try {
             connection = DatabaseConnector.getConnection();
+
+            PreparedStatement nameStatement = connection.prepareStatement("SELECT * FROM myuser WHERE uuid = ?");
+            nameStatement.setString(1, UUID);
+            ResultSet nameResult = nameStatement.executeQuery();
+            investor = new InvestorBean();
+            if(nameResult.next()) {
+                investor.setFirstName(nameResult.getString("first_name"));
+                investor.setLastName(nameResult.getString("last_name"));
+            }
+
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM Investor WHERE uuid = ?");
             statement.setString(1, UUID);
             ResultSet result = statement.executeQuery();
 
             if (result.next()) {
-                investor = new InvestorBean();
                 investor.setUuid(result.getString("uuid"));
                 investor.setPhone_number(result.getString("phone_number"));
                 investor.setDomain(result.getString("domain"));

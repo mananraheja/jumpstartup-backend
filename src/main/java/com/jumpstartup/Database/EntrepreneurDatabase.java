@@ -26,6 +26,7 @@ public class EntrepreneurDatabase {
             statement.setString(3, entrepreneur.getDomain());
 
             int rowsAffected = statement.executeUpdate();
+            
             if (rowsAffected > 0) {
                 return true;
             } else {
@@ -39,6 +40,44 @@ public class EntrepreneurDatabase {
         }
     }
 
+    public boolean addCompanyDetails(EntrepreneurBean entrepreneur){
+        Connection connection = null;
+        try {
+            connection = DatabaseConnector.getConnection();
+            String companySql = "INSERT INTO Company (uuid, company_name, is_registered, stakeholder," +
+                    "                            company_size, funding_status, equity_offered, assets," +
+                    "                            open_to_negotiations, profits_in_last_FY, pitch) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement companyStatement = connection.prepareStatement(companySql);
+            companyStatement.setString(1, entrepreneur.getUuid());
+            companyStatement.setString(2, entrepreneur.getCompany_name());
+            companyStatement.setString(3, entrepreneur.getIs_registered());
+            companyStatement.setString(4, entrepreneur.getStakeholder());
+            companyStatement.setString(5, entrepreneur.getCompany_size());
+            companyStatement.setString(6, entrepreneur.getFunding_status());
+            companyStatement.setString(7, entrepreneur.getEquity_offered());
+            companyStatement.setString(8, entrepreneur.getAssets());
+            companyStatement.setString(9, entrepreneur.getOpen_to_negotiations());
+            companyStatement.setString(10, entrepreneur.getProfits_in_last_fy());
+            companyStatement.setString(11, entrepreneur.getPitch());
+
+            int companyRowsAffected = companyStatement.executeUpdate();
+
+            if (companyRowsAffected > 0) {
+                logger.info("Company Details added successfully for entrepreneur with UUID: {}", entrepreneur.getUuid());
+                return true;
+            } else {
+                logger.warn("Failed to add company details for entrepreneur with UUID: {}", entrepreneur.getUuid());
+                return false;
+            }
+        } catch (SQLException e) {
+            logger.error("Error while trying to add Company Details: {}", e.getMessage());
+            return false;
+        } finally {
+            DatabaseConnector.closeConnection(connection);
+        }
+    }
+    
     public boolean addEducation(String uuid, String institution, String degree, String major, String year_of_completion) {
         Connection connection = null;
         try {
@@ -125,8 +164,28 @@ public class EntrepreneurDatabase {
 
             int rowsAffectedWorkExperience = statementWorkExperience.executeUpdate();
 
+            // update company details information
+            String companySql = "UPDATE Company SET company_name = ?, is_registered = ?, stakeholder = ?," +
+                    "company_size = ?, funding_status = ?, equity_offered = ?, assets = ?," +
+                    "open_to_negotiations = ?, profits_in_last_FY = ?, pitch = ? " +
+                    "WHERE uuid = ?";
+            PreparedStatement companyStatement = connection.prepareStatement(companySql);
+            companyStatement.setString(1, entrepreneur.getCompany_name());
+            companyStatement.setString(2, entrepreneur.getIs_registered());
+            companyStatement.setString(3, entrepreneur.getStakeholder());
+            companyStatement.setString(4, entrepreneur.getCompany_size());
+            companyStatement.setString(5, entrepreneur.getFunding_status());
+            companyStatement.setString(6, entrepreneur.getEquity_offered());
+            companyStatement.setString(7, entrepreneur.getAssets());
+            companyStatement.setString(8, entrepreneur.getOpen_to_negotiations());
+            companyStatement.setString(9, entrepreneur.getProfits_in_last_fy());
+            companyStatement.setString(10, entrepreneur.getPitch());
+            companyStatement.setString(11, entrepreneur.getUuid());
+
+            int companyRowsAffected = companyStatement.executeUpdate();
+
             // check if updates were successful
-            if (rowsAffected > 0 && rowsAffectedEducation > 0 && rowsAffectedWorkExperience > 0) {
+            if (rowsAffected > 0 && rowsAffectedEducation > 0 && rowsAffectedWorkExperience > 0 && companyRowsAffected > 0) {
                 logger.info("Entrepreneur with UUID {} has been updated successfully.", uuid);
                 return true;
             } else {
@@ -163,7 +222,16 @@ public class EntrepreneurDatabase {
                 logger.warn("No work experience rows affected while deleting entrepreneur with UUID: {}", UUID);
                 return false;
             }
-            
+
+            // Delete Company Details
+            String companySql = "DELETE FROM Company WHERE uuid = ?";
+            PreparedStatement companyStatement = connection.prepareStatement(companySql);
+            companyStatement.setString(1, UUID);
+            int companyRowsAffected = companyStatement.executeUpdate();
+            if (companyRowsAffected <= 0) {
+                logger.warn("No Company rows affected while deleting entrepreneur with UUID: {}", UUID);
+                return false;
+            }
             // Delete entrepreneur
             String sql = "DELETE FROM Entrepreneur WHERE uuid = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -189,12 +257,20 @@ public class EntrepreneurDatabase {
         Connection connection = null;
         try {
             connection = DatabaseConnector.getConnection();
+            PreparedStatement nameStatement = connection.prepareStatement("SELECT * FROM myuser WHERE uuid = ?");
+            nameStatement.setString(1, UUID);
+            ResultSet nameResult = nameStatement.executeQuery();
+            entrepreneur = new EntrepreneurBean();
+            if(nameResult.next()) {
+                entrepreneur.setFirstName(nameResult.getString("first_name"));
+                entrepreneur.setLastName(nameResult.getString("last_name"));
+            }
+
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM Entrepreneur WHERE uuid = ?");
             statement.setString(1, UUID);
             ResultSet result = statement.executeQuery();
 
             if (result.next()) {
-                entrepreneur = new EntrepreneurBean();
                 entrepreneur.setUuid(result.getString("uuid"));
                 entrepreneur.setPhone_number(result.getString("phone_number"));
                 entrepreneur.setDomain(result.getString("domain"));
@@ -215,6 +291,22 @@ public class EntrepreneurDatabase {
                 if (result.next()) {
                     entrepreneur.setWork_experience(result.getString("work_experience"));
                 }
+
+                statement = connection.prepareStatement("SELECT * FROM Company WHERE uuid = ?");
+                statement.setString(1, UUID);
+                result = statement.executeQuery();
+                if (result.next()) {
+                    entrepreneur.setCompany_name(result.getString("company_name"));
+                    entrepreneur.setIs_registered(result.getString("is_registered"));
+                    entrepreneur.setStakeholder(result.getString("stakeholder"));
+                    entrepreneur.setCompany_size(result.getString("company_size"));
+                    entrepreneur.setFunding_status(result.getString("funding_status"));
+                    entrepreneur.setEquity_offered(result.getString("equity_offered"));
+                    entrepreneur.setAssets(result.getString("assets"));
+                    entrepreneur.setOpen_to_negotiations(result.getString("open_to_negotiations"));
+                    entrepreneur.setProfits_in_last_fy(result.getString("profits_in_last_FY"));
+                    entrepreneur.setPitch(result.getString("pitch"));
+                }
             }
 
         } catch (SQLException e) {
@@ -223,7 +315,7 @@ public class EntrepreneurDatabase {
         } finally {
             DatabaseConnector.closeConnection(connection);
         }
-        //Logging statement here System.out.println("FETCHED ENTREPRENEUR SUCCESSFULLY !!");
+        logger.info("Fetched Entrepreneur successfully");
         return entrepreneur;
     }
 

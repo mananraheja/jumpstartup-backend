@@ -20,7 +20,7 @@ CREATE TABLE Education (
     institution VARCHAR(255),
     degree VARCHAR(255),
     major VARCHAR(255),
-    year_of_completion INT,
+    year_of_completion VARCHAR(255),
     FOREIGN KEY (UUID) REFERENCES myUser(UUID)
 );
 
@@ -33,14 +33,14 @@ CREATE TABLE Work_Experience (
 CREATE TABLE Company (
     UUID VARCHAR(255) PRIMARY KEY,
     company_name VARCHAR(255),
-    is_registered BOOLEAN,
+    is_registered VARCHAR(255),
     stakeholder VARCHAR(255),
-    company_size INT,
+    company_size VARCHAR(255),
     funding_status ENUM('Seed', 'Series A', 'Series B', 'Series C', 'Public'),
-    equity_offered FLOAT,
-    assets FLOAT,
-    open_to_negotiations BOOLEAN,
-    profits_in_last_FY FLOAT,
+    equity_offered VARCHAR(255),
+    assets VARCHAR(255),
+    open_to_negotiations VARCHAR(255),
+    profits_in_last_FY VARCHAR(255),
     pitch VARCHAR(255),
     FOREIGN KEY (UUID) REFERENCES Entrepreneur(UUID)
 );
@@ -56,10 +56,10 @@ CREATE TABLE Freelancer (
 CREATE TABLE Jobs (
     UUID VARCHAR(255) PRIMARY KEY,
     description VARCHAR(255),
-    is_active BOOLEAN,
-    number_of_openings INT,
+    is_active VARCHAR(255),
+    number_of_openings VARCHAR(255),
     skills VARCHAR(255),
-    pay_estimate FLOAT,
+    pay_estimate VARCHAR(255),
     type ENUM('full-time', 'part-time', 'contract') CHECK (type IN ('full-time', 'part-time', 'contract')),
     posting_date DATE,
     FOREIGN KEY (UUID) REFERENCES Company(UUID)
