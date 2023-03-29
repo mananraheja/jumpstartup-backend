@@ -45,25 +45,16 @@ public class EntrepreneurController {
             logger.error("Failed to add work experience to database");
             return new ResponseEntity<>("Failed to add work experience to database", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+
+        boolean isCompanyDetailsAdded = entrepreneurDatabase.addCompanyDetails(entrepreneur);
+        if (!isCompanyDetailsAdded) {
+            logger.error("Failed to add company details to database");
+            return new ResponseEntity<>("Failed to add company details to database", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         
         return new ResponseEntity<>(Status.buildStatus("ADDENT001","Added Entrepreneur succesfully"), HttpStatus.OK);
     }
 
-//    @PutMapping("/update/{UUID}")
-//    public ResponseEntity<String> updateEntrepreneur(@PathVariable String UUID, @RequestBody EntrepreneurBean entrepreneur) {
-//        logger.info("Updating entrepreneur data: {}", entrepreneur.toString());
-//        EntrepreneurDatabase entrepreneurDatabase = new EntrepreneurDatabase();
-//
-//        // Update the entrepreneur in the database
-//        boolean isEntrepreneurUpdated = entrepreneurDatabase.updateEntrepreneur(UUID, entrepreneur);
-//        if (!isEntrepreneurUpdated) {
-//            logger.error("Failed to update entrepreneur {} in database", UUID);
-//            return new ResponseEntity<>("Failed to update entrepreneur in database", HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//
-//        logger.info("Entrepreneur record updated successfully.");
-//        return new ResponseEntity<>("Updated", HttpStatus.OK);
-//    }
 
     @PutMapping("/update/{UUID}")
     public ResponseEntity<String> updateEntrepreneur(@PathVariable String UUID, @RequestBody EntrepreneurBean entrepreneur) {
