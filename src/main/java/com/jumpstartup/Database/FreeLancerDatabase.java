@@ -1,12 +1,10 @@
 package com.jumpstartup.Database;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -197,12 +195,21 @@ public class FreeLancerDatabase {
         Connection connection = null;
         try {
             connection = DatabaseConnector.getConnection();
+
+            PreparedStatement nameStatement = connection.prepareStatement("SELECT * FROM myuser WHERE uuid = ?");
+            nameStatement.setString(1, UUID);
+            ResultSet nameResult = nameStatement.executeQuery();
+            freelancer = new FreelancerBean();
+            if(nameResult.next()) {
+                freelancer.setFirstName(nameResult.getString("first_name"));
+                freelancer.setLastName(nameResult.getString("last_name"));
+            }
+
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM freelancer WHERE uuid = ?");
             statement.setString(1, UUID);
             ResultSet result = statement.executeQuery();
 
             if (result.next()) {
-                freelancer = new FreelancerBean();
                 freelancer.setUuid(result.getString("uuid"));
                 freelancer.setPhone_number(result.getString("phone_number"));
                 freelancer.setSkills(result.getString("skills"));

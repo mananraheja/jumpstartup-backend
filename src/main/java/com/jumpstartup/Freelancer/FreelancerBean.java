@@ -1,13 +1,15 @@
 package com.jumpstartup.Freelancer;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 public class FreelancerBean  {
 
     private String uuid;
-    private String username;
-    private String email;
-
+//    private String username;
+//    private String email;
+    private String firstName;
+    private String lastName;
     // FREELANCER
     private String phone_number;
     private String skills;
@@ -24,13 +26,14 @@ public class FreelancerBean  {
     private String work_experience;
 
 
-
     public FreelancerBean() {}
 
-    public FreelancerBean(String UUID,String username, String email, String phone_number, String skills, String linkedin_link, String institution, String degree, String major, String year_of_completion, String work_experience) {
+    public FreelancerBean(String UUID, String firstName, String lastName,/*String username, String email,*/ String phone_number, String skills, String linkedin_link, String institution, String degree, String major, String year_of_completion, String work_experience) {
         this.uuid = UUID;
-        this.username = username;
-        this.email = email;
+//        this.username = username;
+//        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.phone_number = phone_number;
         this.skills = skills;
         this.linkedin_link = linkedin_link;
@@ -50,20 +53,37 @@ public class FreelancerBean  {
         this.uuid = uuid;
     }
 
-    public String getUsername() {
-        return username;
+//    public String getUsername() {
+//        return username;
+//    }
+
+//    public void setUsername(String username) {
+//        this.username = username;
+//    }
+
+//    public String getEmail() {
+//        return email;
+//    }
+//
+//    public void setEmail(String email) {
+//        this.email = email;
+//    }
+
+
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPhone_number() {
