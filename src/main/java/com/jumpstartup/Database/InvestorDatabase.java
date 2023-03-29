@@ -216,7 +216,6 @@ public class InvestorDatabase {
             ResultSet result = statement.executeQuery();
 
             if (result.next()) {
-                investor = new InvestorBean();
                 investor.setUuid(result.getString("uuid"));
                 investor.setPhone_number(result.getString("phone_number"));
                 investor.setDomain(result.getString("domain"));
