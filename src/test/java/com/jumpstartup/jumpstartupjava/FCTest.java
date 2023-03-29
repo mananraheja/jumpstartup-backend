@@ -9,6 +9,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.util.UUID;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(MockitoExtension.class)
 public class FCTest {
@@ -91,5 +93,71 @@ public class FCTest {
         assertEquals(2020, freelancer.getYear_of_completion());
         assertEquals("3 years", freelancer.getWork_experience());
     }
+
+    @Test
+    public void testAddFreelancerDataWithNullInput() {
+        ResponseEntity<String> response = controller.addFreelancerData(null);
+        System.out.println(response);
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+    }
+
+    @Test
+    public void testAddFreelancerDataWithDuplicateUUID() {
+        // Create a new FreelancerBean object
+        FreelancerBean freelancer = new FreelancerBean();
+        freelancer.setUuid(UUID.randomUUID().toString());
+        freelancer.setUsername("John Doe");
+        freelancer.setEmail("john.doe@gmail.com");
+        freelancer.setPhone_number("1234567890");
+        freelancer.setInstitution("ABC University");
+        freelancer.setDegree("Bachelor's");
+        freelancer.setMajor("Computer Science");
+        freelancer.setYear_of_completion(2020);
+        freelancer.setWork_experience("3 years");
+
+        // Call the addFreelancerData() method twice with the same UUID and verify the response
+        ResponseEntity<String> mockResponse = new ResponseEntity<>(HttpStatus.OK);
+        Mockito.when(controller.addFreelancerData(Mockito.any())).thenReturn(mockResponse);
+
+        ResponseEntity<String> response1 = controller.addFreelancerData(freelancer);
+        assertEquals(HttpStatus.OK, response1.getStatusCode());
+
+        ResponseEntity<String> response2 = controller.addFreelancerData(freelancer);
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response2.getStatusCode());
+    }
+
+    @Test
+    public void testUpdateFreelancerWithNonExistentUUID() {
+        // Create a new FreelancerBean object
+        FreelancerBean freelancer = new FreelancerBean();
+        freelancer.setUsername("Jane Smith");
+        freelancer.setEmail("jane.smith@gmail.com");
+        freelancer.setPhone_number("111-222-3333");
+
+        // Call the updateFreelancer() method with a non-existent UUID and verify the response
+        ResponseEntity<String> mockResponse = new ResponseEntity<>(HttpStatus.OK);
+        Mockito.when(controller.updateFreelancer(Mockito.anyString(),Mockito.any())).thenReturn(mockResponse);
+
+        ResponseEntity<String> response = controller.updateFreelancer("non-existent-uuid", freelancer);
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+    }
+
+    @Test
+    public void testDeleteFreelancerWithNonExistentUUID() {
+        // Call the deleteFreelancer() method with a non-existent UUID and verify the response
+        ResponseEntity<String> mockResponse = new ResponseEntity<>(HttpStatus.OK);
+        Mockito.when(controller.deleteFreelancer(Mockito.anyString())).thenReturn(mockResponse);
+        ResponseEntity<String> response = controller.deleteFreelancer("non-existent-uuid");
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+    }
+
+    @Test
+    public void testGetFreelancerWithNonExistentUUID() {
+        // Call the getFreelancer() method with a non-existent UUID and verify the response
+        Mockito.when(controller.getFreelancer(Mockito.anyString())).thenReturn(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        ResponseEntity<FreelancerBean> response = controller.getFreelancer("non-existent-uuid");
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+    }
+
 
 }

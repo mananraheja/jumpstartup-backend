@@ -17,6 +17,10 @@ public class FreeLancerController {
 
     @PostMapping("/add")
     public ResponseEntity<String> addFreelancerData(@RequestBody FreelancerBean freelancer) {
+        if(freelancer == null){
+            logger.error("Received null input in addFreelancerData() method");
+            return ResponseEntity.badRequest().body("Input cannot be null");
+        }
         logger.info("Adding new freelancer data: {}", freelancer.toString());
 
         FreeLancerDatabase flDatabase = new FreeLancerDatabase();
@@ -95,5 +99,7 @@ public class FreeLancerController {
         logger.info("Freelancer {} details fetched successfully.", UUID);
         return new ResponseEntity<>(freelancer, HttpStatus.OK);
     }
+
+
 
 }

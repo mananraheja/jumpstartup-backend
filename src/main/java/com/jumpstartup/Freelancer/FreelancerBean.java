@@ -131,4 +131,5 @@ public class FreelancerBean  {
     public void setWork_experience(String work_experience) {
         this.work_experience = work_experience;
     }
+
 }
