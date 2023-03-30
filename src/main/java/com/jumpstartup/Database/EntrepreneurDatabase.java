@@ -1,5 +1,6 @@
 package com.jumpstartup.Database;
 
+import com.jumpstartup.Company.CompanyBean;
 import com.jumpstartup.Connection.DatabaseConnector;
 import com.jumpstartup.Entrepreneur.EntrepreneurBean;
 import org.slf4j.Logger;
@@ -10,11 +11,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class EntrepreneurDatabase {
 
     private static final Logger logger = LoggerFactory.getLogger(EntrepreneurDatabase.class);
+
     public boolean addEntrepreneur(EntrepreneurBean entrepreneur) {
         Connection connection = null;
         try {
@@ -26,7 +30,7 @@ public class EntrepreneurDatabase {
             statement.setString(3, entrepreneur.getDomain());
 
             int rowsAffected = statement.executeUpdate();
-            
+
             if (rowsAffected > 0) {
                 return true;
             } else {
@@ -40,7 +44,7 @@ public class EntrepreneurDatabase {
         }
     }
 
-    public boolean addCompanyDetails(EntrepreneurBean entrepreneur){
+    public boolean addCompanyDetails(EntrepreneurBean entrepreneur) {
         Connection connection = null;
         try {
             connection = DatabaseConnector.getConnection();
@@ -77,7 +81,7 @@ public class EntrepreneurDatabase {
             DatabaseConnector.closeConnection(connection);
         }
     }
-    
+
     public boolean addEducation(String uuid, String institution, String degree, String major, String year_of_completion) {
         Connection connection = null;
         try {
@@ -130,7 +134,7 @@ public class EntrepreneurDatabase {
             DatabaseConnector.closeConnection(connection);
         }
     }
-    
+
     public boolean updateEntrepreneur(String uuid, EntrepreneurBean entrepreneur) {
         Connection connection = null;
         try {
@@ -213,7 +217,7 @@ public class EntrepreneurDatabase {
                 logger.warn("No education rows affected while deleting entrepreneur with UUID: {}", UUID);
                 return false;
             }
-            
+
             String workExperienceSql = "DELETE FROM Work_Experience WHERE uuid = ?";
             PreparedStatement workExperienceStatement = connection.prepareStatement(workExperienceSql);
             workExperienceStatement.setString(1, UUID);
@@ -237,7 +241,7 @@ public class EntrepreneurDatabase {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, UUID);
             int rowsAffected = statement.executeUpdate();
-            if (rowsAffected > 0 ) {
+            if (rowsAffected > 0) {
                 logger.info("Entrepreneur with UUID {} deleted successfully", UUID);
                 return true;
             } else {
@@ -261,7 +265,7 @@ public class EntrepreneurDatabase {
             nameStatement.setString(1, UUID);
             ResultSet nameResult = nameStatement.executeQuery();
             entrepreneur = new EntrepreneurBean();
-            if(nameResult.next()) {
+            if (nameResult.next()) {
                 entrepreneur.setFirstName(nameResult.getString("first_name"));
                 entrepreneur.setLastName(nameResult.getString("last_name"));
             }
@@ -319,4 +323,44 @@ public class EntrepreneurDatabase {
         return entrepreneur;
     }
 
+    public List<CompanyBean> getCompanies() {
+        Connection connection = null;
+        List<CompanyBean> allCompanies = null;
+        CompanyBean company = null;
+        try {
+            connection = DatabaseConnector.getConnection();
+            allCompanies = new ArrayList<CompanyBean>();
+
+            PreparedStatement companyStatement = connection.prepareStatement("SELECT * FROM Company");
+
+            ResultSet companyResult = companyStatement.executeQuery();
+
+            while (companyResult.next()) {
+                company = new CompanyBean();
+
+                company.setEntrepreneurUUID(companyResult.getString("uuid"));
+                company.setCompany_name(companyResult.getString("company_name"));
+                company.setIs_registered(companyResult.getString("is_registered"));
+                company.setStakeholder(companyResult.getString("stakeholder"));
+                company.setCompany_size(companyResult.getString("company_size"));
+                company.setFunding_status(companyResult.getString("funding_status"));
+                company.setEquity_offered(companyResult.getString("equity_offered"));
+                company.setAssets(companyResult.getString("assets"));
+                company.setOpen_to_negotiations(companyResult.getString("open_to_negotiations"));
+                company.setProfits_in_last_fy(companyResult.getString("profits_in_last_FY"));
+                company.setPitch(companyResult.getString("pitch"));
+
+                allCompanies.add(company);
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            DatabaseConnector.closeConnection(connection);
+        }
+
+        return allCompanies;
+    }
 }
