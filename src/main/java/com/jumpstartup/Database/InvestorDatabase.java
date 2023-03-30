@@ -201,20 +201,21 @@ public class InvestorDatabase {
         try {
             connection = DatabaseConnector.getConnection();
 
-            PreparedStatement nameStatement = connection.prepareStatement("SELECT * FROM myuser WHERE uuid = ?");
-            nameStatement.setString(1, UUID);
-            ResultSet nameResult = nameStatement.executeQuery();
-            investor = new InvestorBean();
-            if(nameResult.next()) {
-                investor.setFirstName(nameResult.getString("first_name"));
-                investor.setLastName(nameResult.getString("last_name"));
-            }
-
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM Investor WHERE uuid = ?");
             statement.setString(1, UUID);
             ResultSet result = statement.executeQuery();
 
             if (result.next()) {
+
+                PreparedStatement nameStatement = connection.prepareStatement("SELECT * FROM myuser WHERE uuid = ?");
+                nameStatement.setString(1, UUID);
+                ResultSet nameResult = nameStatement.executeQuery();
+                investor = new InvestorBean();
+                if(nameResult.next()) {
+                    investor.setFirstName(nameResult.getString("first_name"));
+                    investor.setLastName(nameResult.getString("last_name"));
+                }
+
                 investor.setUuid(result.getString("uuid"));
                 investor.setPhone_number(result.getString("phone_number"));
                 investor.setDomain(result.getString("domain"));
