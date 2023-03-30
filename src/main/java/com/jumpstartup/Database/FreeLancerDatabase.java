@@ -200,20 +200,21 @@ public class FreeLancerDatabase {
         try {
             connection = DatabaseConnector.getConnection();
 
-            PreparedStatement nameStatement = connection.prepareStatement("SELECT * FROM myuser WHERE uuid = ?");
-            nameStatement.setString(1, UUID);
-            ResultSet nameResult = nameStatement.executeQuery();
-            freelancer = new FreelancerBean();
-            if(nameResult.next()) {
-                freelancer.setFirstName(nameResult.getString("first_name"));
-                freelancer.setLastName(nameResult.getString("last_name"));
-            }
-
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM freelancer WHERE uuid = ?");
             statement.setString(1, UUID);
             ResultSet result = statement.executeQuery();
 
             if (result.next()) {
+
+                PreparedStatement nameStatement = connection.prepareStatement("SELECT * FROM myuser WHERE uuid = ?");
+                nameStatement.setString(1, UUID);
+                ResultSet nameResult = nameStatement.executeQuery();
+                freelancer = new FreelancerBean();
+                if(nameResult.next()) {
+                    freelancer.setFirstName(nameResult.getString("first_name"));
+                    freelancer.setLastName(nameResult.getString("last_name"));
+                }
+
                 freelancer.setUuid(result.getString("uuid"));
                 freelancer.setPhone_number(result.getString("phone_number"));
                 freelancer.setSkills(result.getString("skills"));

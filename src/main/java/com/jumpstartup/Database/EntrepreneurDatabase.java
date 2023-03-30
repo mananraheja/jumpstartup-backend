@@ -261,20 +261,21 @@ public class EntrepreneurDatabase {
         Connection connection = null;
         try {
             connection = DatabaseConnector.getConnection();
-            PreparedStatement nameStatement = connection.prepareStatement("SELECT * FROM myuser WHERE uuid = ?");
-            nameStatement.setString(1, UUID);
-            ResultSet nameResult = nameStatement.executeQuery();
-            entrepreneur = new EntrepreneurBean();
-            if (nameResult.next()) {
-                entrepreneur.setFirstName(nameResult.getString("first_name"));
-                entrepreneur.setLastName(nameResult.getString("last_name"));
-            }
 
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM Entrepreneur WHERE uuid = ?");
             statement.setString(1, UUID);
             ResultSet result = statement.executeQuery();
 
             if (result.next()) {
+                PreparedStatement nameStatement = connection.prepareStatement("SELECT * FROM myuser WHERE uuid = ?");
+                nameStatement.setString(1, UUID);
+                ResultSet nameResult = nameStatement.executeQuery();
+                entrepreneur = new EntrepreneurBean();
+                if (nameResult.next()) {
+                    entrepreneur.setFirstName(nameResult.getString("first_name"));
+                    entrepreneur.setLastName(nameResult.getString("last_name"));
+                }
+
                 entrepreneur.setUuid(result.getString("uuid"));
                 entrepreneur.setPhone_number(result.getString("phone_number"));
                 entrepreneur.setDomain(result.getString("domain"));
@@ -352,7 +353,6 @@ public class EntrepreneurDatabase {
 
                 allCompanies.add(company);
             }
-
 
         } catch (SQLException e) {
             e.printStackTrace();
