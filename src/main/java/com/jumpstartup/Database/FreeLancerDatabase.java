@@ -5,13 +5,17 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.jumpstartup.Investor.InvestorBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.jumpstartup.Connection.DatabaseConnector;
 
 import com.jumpstartup.Freelancer.FreelancerBean;
+import org.springframework.context.annotation.Bean;
 
 
 public class FreeLancerDatabase {
@@ -242,6 +246,34 @@ public class FreeLancerDatabase {
         }
         return freelancer;
 
+    }
+
+    public List<FreelancerBean> getAllFreelancers() {
+        Connection connection = null;
+        List<FreelancerBean> allFreelancers = null;
+        FreelancerBean freelancer = null;
+        try {
+            connection = DatabaseConnector.getConnection();
+            allFreelancers = new ArrayList<FreelancerBean>();
+
+            PreparedStatement freelancerStatement = connection.prepareStatement("SELECT uuid FROM Freelancer");
+
+            ResultSet freelancerResult = freelancerStatement.executeQuery();
+
+            while (freelancerResult.next()) {
+                freelancer = this.getFreelancer(freelancerResult.getString("uuid"));
+
+                allFreelancers.add(freelancer);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            DatabaseConnector.closeConnection(connection);
+        }
+
+        return allFreelancers;
     }
 
 }

@@ -11,6 +11,8 @@ import com.jumpstartup.Database.InvestorDatabase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/investor")
 @CrossOrigin(origins = "http://localhost:4200")
@@ -96,5 +98,16 @@ public class InvestorController {
         // Return the investor data as a JSON response
         logger.info("Investor {} details fetched successfully.", UUID);
         return new ResponseEntity<>(investor, HttpStatus.OK);
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<InvestorBean>> getAllInvestors() {
+        logger.info("Getting all investors");
+        InvestorDatabase investorDatabase = new InvestorDatabase();
+
+        List<InvestorBean> allInvestors = investorDatabase.getAllInvestors();
+
+        logger.info("All investors fetched successfully");
+        return new ResponseEntity<>(allInvestors, HttpStatus.OK);
     }
 }
