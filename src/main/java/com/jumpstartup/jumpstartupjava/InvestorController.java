@@ -105,7 +105,7 @@ public class InvestorController {
         logger.info("Getting all investors");
         InvestorDatabase investorDatabase = new InvestorDatabase();
 
-        List<InvestorBean> allInvestors = investorDatabase.getInvestors();
+        List<InvestorBean> allInvestors = investorDatabase.getAllInvestors();
 
         logger.info("All investors fetched successfully");
         return new ResponseEntity<>(allInvestors, HttpStatus.OK);

@@ -7,16 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.jumpstartup.Company.CompanyBean;
-import com.jumpstartup.Entrepreneur.EntrepreneurBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.jumpstartup.Connection.DatabaseConnector;
 import com.jumpstartup.Investor.InvestorBean;
-import org.springframework.context.annotation.Bean;
-
-import javax.persistence.criteria.CriteriaBuilder;
 
 
 public class InvestorDatabase {
@@ -255,7 +250,7 @@ public class InvestorDatabase {
         return investor;
     }
 
-    public List<InvestorBean> getInvestors() {
+    public List<InvestorBean> getAllInvestors() {
         Connection connection = null;
         List<InvestorBean> allInvestors = null;
         InvestorBean investor = null;

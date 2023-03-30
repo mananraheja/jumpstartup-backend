@@ -1,7 +1,10 @@
 package com.jumpstartup.jumpstartupjava;
 
+import com.jumpstartup.Database.InvestorDatabase;
 import com.jumpstartup.Freelancer.FreelancerBean;
+import com.jumpstartup.Investor.InvestorBean;
 import com.jumpstartup.Model.Status;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +12,8 @@ import com.jumpstartup.Database.FreeLancerDatabase;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/freelancer")
@@ -96,6 +101,17 @@ public class FreeLancerController {
         // Return the freelancer data as a JSON response
         logger.info("Freelancer {} details fetched successfully.", UUID);
         return new ResponseEntity<>(freelancer, HttpStatus.OK);
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<FreelancerBean>> getAllFreelancers() {
+        logger.info("Getting all freelancers");
+        FreeLancerDatabase freeLancerDatabase = new FreeLancerDatabase();
+
+        List<FreelancerBean> allFreelancers = freeLancerDatabase.getAllFreelancers();
+
+        logger.info("All investors fetched successfully");
+        return new ResponseEntity<>(allFreelancers, HttpStatus.OK);
     }
 
 }
