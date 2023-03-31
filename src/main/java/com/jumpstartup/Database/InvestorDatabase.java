@@ -23,13 +23,14 @@ public class InvestorDatabase {
         Connection connection = null;
         try {
             connection = DatabaseConnector.getConnection();
-            String sql = "INSERT INTO Investor (uuid,phone_number, domain, funding_available, brands_built) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO Investor (uuid,phone_number, domain, linkedin_link, funding_available, brands_built) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, investor.getUuid());
             statement.setString(2, investor.getPhone_number());
             statement.setString(3, investor.getDomain());
-            statement.setString(4, investor.getFunding_available());
-            statement.setString(5, investor.getBrands_built());
+            statement.setString(4, investor.getLinkedin_link());
+            statement.setString(5, investor.getFunding_available());
+            statement.setString(6, investor.getBrands_built());
 
             int rowsAffected = statement.executeUpdate();
             if (rowsAffected > 0) {
@@ -106,13 +107,14 @@ public class InvestorDatabase {
             connection = DatabaseConnector.getConnection();
 
             // update investor information
-            String sql = "UPDATE Investor SET phone_number = ?, domain = ?, funding_available = ?, brands_built = ? WHERE uuid = ?";
+            String sql = "UPDATE Investor SET phone_number = ?, domain = ?, linkedin_link = ?, funding_available = ?, brands_built = ? WHERE uuid = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, investor.getPhone_number());
             statement.setString(2, investor.getDomain());
-            statement.setString(3, investor.getFunding_available());
-            statement.setString(4, investor.getBrands_built());
-            statement.setString(5, uuid);
+            statement.setString(3, investor.getLinkedin_link());
+            statement.setString(4, investor.getFunding_available());
+            statement.setString(5, investor.getBrands_built());
+            statement.setString(6, uuid);
 
             int rowsAffected = statement.executeUpdate();
 
@@ -219,6 +221,7 @@ public class InvestorDatabase {
                 investor.setUuid(result.getString("uuid"));
                 investor.setPhone_number(result.getString("phone_number"));
                 investor.setDomain(result.getString("domain"));
+                investor.setLinkedin_link(result.getString("linkedin_link"));
                 investor.setFunding_available(result.getString("funding_available"));
                 investor.setBrands_built(result.getString("brands_built"));
 
