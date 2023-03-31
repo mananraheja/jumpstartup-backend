@@ -8,14 +8,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.jumpstartup.Investor.InvestorBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.jumpstartup.Connection.DatabaseConnector;
 
 import com.jumpstartup.Freelancer.FreelancerBean;
-import org.springframework.context.annotation.Bean;
 
 
 public class FreeLancerDatabase {
