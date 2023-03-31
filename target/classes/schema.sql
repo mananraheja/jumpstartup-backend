@@ -70,7 +70,7 @@ CREATE TABLE Investor (
     UUID VARCHAR(255) PRIMARY KEY,
     phone_number VARCHAR(10) CHECK (phone_number ~ '^[0-9]{10}$'),
     domain VARCHAR(255),
-    funding_available FLOAT,
+    funding_available VARCHAR(255),
     brands_built VARCHAR(255),
     linkedin_link VARCHAR(255),
     FOREIGN KEY (UUID) REFERENCES myUser(UUID)
