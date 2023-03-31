@@ -7,6 +7,7 @@ public class InvestorBean {
     private String lastName;
     private String phone_number;
     private String domain;
+    private String linkedin_link;
     private String funding_available;
     private String brands_built;
 
@@ -22,12 +23,13 @@ public class InvestorBean {
 
     public InvestorBean() {}
 
-    public InvestorBean(String uuid, String firstName, String lastName, String phone_number, String domain, String funding_available, String brands_built, String institution, String degree, String major, String year_of_completion, String work_experience) {
+    public InvestorBean(String uuid, String firstName, String lastName, String phone_number, String domain, String linkedin_link, String funding_available, String brands_built, String institution, String degree, String major, String year_of_completion, String work_experience) {
         this.uuid = uuid;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone_number = phone_number;
         this.domain = domain;
+        this.linkedin_link = linkedin_link;
         this.funding_available = funding_available;
         this.brands_built = brands_built;
         this.institution = institution;
@@ -75,6 +77,14 @@ public class InvestorBean {
 
     public void setDomain(String domain) {
         this.domain = domain;
+    }
+
+    public String getLinkedin_link() {
+        return linkedin_link;
+    }
+
+    public void setLinkedin_link(String linkedin_link) {
+        this.linkedin_link = linkedin_link;
     }
 
     public String getInstitution() {
