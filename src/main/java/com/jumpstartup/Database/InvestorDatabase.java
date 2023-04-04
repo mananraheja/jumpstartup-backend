@@ -4,15 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-import com.jumpstartup.Entrepreneur.EntrepreneurBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.jumpstartup.Connection.DatabaseConnector;
 import com.jumpstartup.Investor.InvestorBean;
-
-import javax.persistence.criteria.CriteriaBuilder;
 
 
 public class InvestorDatabase {
@@ -24,13 +23,14 @@ public class InvestorDatabase {
         Connection connection = null;
         try {
             connection = DatabaseConnector.getConnection();
-            String sql = "INSERT INTO Investor (uuid,phone_number, domain, funding_available, brands_built) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO Investor (uuid,phone_number, domain, linkedin_link, funding_available, brands_built) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, investor.getUuid());
             statement.setString(2, investor.getPhone_number());
             statement.setString(3, investor.getDomain());
-            statement.setString(4, investor.getFunding_available());
-            statement.setString(5, investor.getBrands_built());
+            statement.setString(4, investor.getLinkedin_link());
+            statement.setString(5, investor.getFunding_available());
+            statement.setString(6, investor.getBrands_built());
 
             int rowsAffected = statement.executeUpdate();
             if (rowsAffected > 0) {
@@ -107,13 +107,14 @@ public class InvestorDatabase {
             connection = DatabaseConnector.getConnection();
 
             // update investor information
-            String sql = "UPDATE Investor SET phone_number = ?, domain = ?, funding_available = ?, brands_built = ? WHERE uuid = ?";
+            String sql = "UPDATE Investor SET phone_number = ?, domain = ?, linkedin_link = ?, funding_available = ?, brands_built = ? WHERE uuid = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, investor.getPhone_number());
             statement.setString(2, investor.getDomain());
-            statement.setString(3, investor.getFunding_available());
-            statement.setString(4, investor.getBrands_built());
-            statement.setString(5, uuid);
+            statement.setString(3, investor.getLinkedin_link());
+            statement.setString(4, investor.getFunding_available());
+            statement.setString(5, investor.getBrands_built());
+            statement.setString(6, uuid);
 
             int rowsAffected = statement.executeUpdate();
 
@@ -202,23 +203,25 @@ public class InvestorDatabase {
         try {
             connection = DatabaseConnector.getConnection();
 
-            PreparedStatement nameStatement = connection.prepareStatement("SELECT * FROM myuser WHERE uuid = ?");
-            nameStatement.setString(1, UUID);
-            ResultSet nameResult = nameStatement.executeQuery();
-            investor = new InvestorBean();
-            if(nameResult.next()) {
-                investor.setFirstName(nameResult.getString("first_name"));
-                investor.setLastName(nameResult.getString("last_name"));
-            }
-
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM Investor WHERE uuid = ?");
             statement.setString(1, UUID);
             ResultSet result = statement.executeQuery();
 
             if (result.next()) {
+
+                PreparedStatement nameStatement = connection.prepareStatement("SELECT * FROM myuser WHERE uuid = ?");
+                nameStatement.setString(1, UUID);
+                ResultSet nameResult = nameStatement.executeQuery();
+                investor = new InvestorBean();
+                if(nameResult.next()) {
+                    investor.setFirstName(nameResult.getString("first_name"));
+                    investor.setLastName(nameResult.getString("last_name"));
+                }
+
                 investor.setUuid(result.getString("uuid"));
                 investor.setPhone_number(result.getString("phone_number"));
                 investor.setDomain(result.getString("domain"));
+                investor.setLinkedin_link(result.getString("linkedin_link"));
                 investor.setFunding_available(result.getString("funding_available"));
                 investor.setBrands_built(result.getString("brands_built"));
 
@@ -249,6 +252,34 @@ public class InvestorDatabase {
         }
         logger.info("FETCHED INVESTOR SUCCESSFULLY !!");
         return investor;
+    }
+
+    public List<InvestorBean> getAllInvestors() {
+        Connection connection = null;
+        List<InvestorBean> allInvestors = null;
+        InvestorBean investor = null;
+        try {
+            connection = DatabaseConnector.getConnection();
+            allInvestors = new ArrayList<InvestorBean>();
+
+            PreparedStatement investorStatement = connection.prepareStatement("SELECT uuid FROM Investor");
+
+            ResultSet investorResult = investorStatement.executeQuery();
+
+            while (investorResult.next()) {
+                investor = this.getInvestor(investorResult.getString("uuid"));
+
+                allInvestors.add(investor);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            DatabaseConnector.closeConnection(connection);
+        }
+
+        return allInvestors;
     }
 
 }

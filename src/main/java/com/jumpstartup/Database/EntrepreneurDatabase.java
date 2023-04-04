@@ -23,11 +23,12 @@ public class EntrepreneurDatabase {
         Connection connection = null;
         try {
             connection = DatabaseConnector.getConnection();
-            String sql = "INSERT INTO Entrepreneur (uuid,phone_number, domain) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO Entrepreneur (uuid, phone_number, domain, linkedin_link) VALUES (?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, entrepreneur.getUuid());
             statement.setString(2, entrepreneur.getPhone_number());
             statement.setString(3, entrepreneur.getDomain());
+            statement.setString(4, entrepreneur.getLinkedin_link());
 
             int rowsAffected = statement.executeUpdate();
 
@@ -141,11 +142,12 @@ public class EntrepreneurDatabase {
             connection = DatabaseConnector.getConnection();
 
             // update entrepreneur information
-            String sql = "UPDATE Entrepreneur SET phone_number = ?, domain = ? WHERE uuid = ?";
+            String sql = "UPDATE Entrepreneur SET phone_number = ?, domain = ?, linkedin_link = ? WHERE uuid = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, entrepreneur.getPhone_number());
             statement.setString(2, entrepreneur.getDomain());
-            statement.setString(3, uuid);
+            statement.setString(3, entrepreneur.getLinkedin_link());
+            statement.setString(4, uuid);
 
             int rowsAffected = statement.executeUpdate();
 
@@ -261,23 +263,25 @@ public class EntrepreneurDatabase {
         Connection connection = null;
         try {
             connection = DatabaseConnector.getConnection();
-            PreparedStatement nameStatement = connection.prepareStatement("SELECT * FROM myuser WHERE uuid = ?");
-            nameStatement.setString(1, UUID);
-            ResultSet nameResult = nameStatement.executeQuery();
-            entrepreneur = new EntrepreneurBean();
-            if (nameResult.next()) {
-                entrepreneur.setFirstName(nameResult.getString("first_name"));
-                entrepreneur.setLastName(nameResult.getString("last_name"));
-            }
 
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM Entrepreneur WHERE uuid = ?");
             statement.setString(1, UUID);
             ResultSet result = statement.executeQuery();
 
             if (result.next()) {
+                PreparedStatement nameStatement = connection.prepareStatement("SELECT * FROM myuser WHERE uuid = ?");
+                nameStatement.setString(1, UUID);
+                ResultSet nameResult = nameStatement.executeQuery();
+                entrepreneur = new EntrepreneurBean();
+                if (nameResult.next()) {
+                    entrepreneur.setFirstName(nameResult.getString("first_name"));
+                    entrepreneur.setLastName(nameResult.getString("last_name"));
+                }
+
                 entrepreneur.setUuid(result.getString("uuid"));
                 entrepreneur.setPhone_number(result.getString("phone_number"));
                 entrepreneur.setDomain(result.getString("domain"));
+                entrepreneur.setLinkedin_link(result.getString("linkedin_link"));
 
                 statement = connection.prepareStatement("SELECT * FROM education WHERE uuid = ?");
                 statement.setString(1, UUID);
@@ -352,7 +356,6 @@ public class EntrepreneurDatabase {
 
                 allCompanies.add(company);
             }
-
 
         } catch (SQLException e) {
             e.printStackTrace();
