@@ -1,20 +1,20 @@
-INSERT INTO MYUSER (uuid, username, first_name, last_name, email, hashpass, type) values ('UUID_1', 'Username_1', 'FirstName_1', 'LastName_1', 'email1@email.com', 'pass_1', 'freelancer');
-INSERT INTO MYUSER (uuid, username, first_name, last_name, email, hashpass, type) values ('UUID_2', 'Username_2', 'FirstName_2', 'LastName_2', 'email2@email.com', 'pass_2', 'freelancer');
-INSERT INTO MYUSER (uuid, username, first_name, last_name, email, hashpass, type) values ('UUID_3', 'Username_3', 'FirstName_3', 'LastName_3', 'email3@email.com', 'pass_3', 'freelancer');
-INSERT INTO MYUSER (uuid, username, first_name, last_name, email, hashpass, type) values ('UUID_4', 'Username_4', 'FirstName_4', 'LastName_4', 'email4@email.com', 'pass_4', 'freelancer');
-INSERT INTO MYUSER (uuid, username, first_name, last_name, email, hashpass, type) values ('UUID_5', 'Username_5', 'FirstName_5', 'LastName_5', 'email5@email.com', 'pass_5', 'freelancer');
+INSERT INTO MYUSER (uuid, username, first_name, last_name, email, hashpass, type) values ('UUID_1', 'Username_1', 'FirstName_1', 'LastName_1', 'email1@email.com', '$2a$10$tAX7ii19/WRgVN5JeWpZS.XubPUZ6uPmCBW5LzLWe8rUGvZDsyL2K', 'freelancer');
+INSERT INTO MYUSER (uuid, username, first_name, last_name, email, hashpass, type) values ('UUID_2', 'Username_2', 'FirstName_2', 'LastName_2', 'email2@email.com', '$2a$10$tAX7ii19/WRgVN5JeWpZS.XubPUZ6uPmCBW5LzLWe8rUGvZDsyL2K', 'freelancer');
+INSERT INTO MYUSER (uuid, username, first_name, last_name, email, hashpass, type) values ('UUID_3', 'Username_3', 'FirstName_3', 'LastName_3', 'email3@email.com', '$2a$10$tAX7ii19/WRgVN5JeWpZS.XubPUZ6uPmCBW5LzLWe8rUGvZDsyL2K', 'freelancer');
+INSERT INTO MYUSER (uuid, username, first_name, last_name, email, hashpass, type) values ('UUID_4', 'Username_4', 'FirstName_4', 'LastName_4', 'email4@email.com', '$2a$10$tAX7ii19/WRgVN5JeWpZS.XubPUZ6uPmCBW5LzLWe8rUGvZDsyL2K', 'freelancer');
+INSERT INTO MYUSER (uuid, username, first_name, last_name, email, hashpass, type) values ('UUID_5', 'Username_5', 'FirstName_5', 'LastName_5', 'email5@email.com', '$2a$10$tAX7ii19/WRgVN5JeWpZS.XubPUZ6uPmCBW5LzLWe8rUGvZDsyL2K', 'freelancer');
 
-INSERT INTO MYUSER (uuid, username, first_name, last_name, email, hashpass, type) values ('UUID_6', 'Username_6', 'FirstName_6', 'LastName_6', 'email6@email.com', 'pass_6', 'investor');
-INSERT INTO MYUSER (uuid, username, first_name, last_name, email, hashpass, type) values ('UUID_7', 'Username_7', 'FirstName_7', 'LastName_7', 'email7@email.com', 'pass_7', 'investor');
-INSERT INTO MYUSER (uuid, username, first_name, last_name, email, hashpass, type) values ('UUID_8', 'Username_8', 'FirstName_8', 'LastName_8', 'email8@email.com', 'pass_8', 'investor');
-INSERT INTO MYUSER (uuid, username, first_name, last_name, email, hashpass, type) values ('UUID_9', 'Username_9', 'FirstName_9', 'LastName_9', 'email9@email.com', 'pass_9', 'investor');
-INSERT INTO MYUSER (uuid, username, first_name, last_name, email, hashpass, type) values ('UUID_10', 'Username_10', 'FirstName_10', 'LastName_10', 'email10@email.com', 'pass_10', 'investor');
+INSERT INTO MYUSER (uuid, username, first_name, last_name, email, hashpass, type) values ('UUID_6', 'Username_6', 'FirstName_6', 'LastName_6', 'email6@email.com', '$2a$10$tAX7ii19/WRgVN5JeWpZS.XubPUZ6uPmCBW5LzLWe8rUGvZDsyL2K', 'investor');
+INSERT INTO MYUSER (uuid, username, first_name, last_name, email, hashpass, type) values ('UUID_7', 'Username_7', 'FirstName_7', 'LastName_7', 'email7@email.com', '$2a$10$tAX7ii19/WRgVN5JeWpZS.XubPUZ6uPmCBW5LzLWe8rUGvZDsyL2K', 'investor');
+INSERT INTO MYUSER (uuid, username, first_name, last_name, email, hashpass, type) values ('UUID_8', 'Username_8', 'FirstName_8', 'LastName_8', 'email8@email.com', '$2a$10$tAX7ii19/WRgVN5JeWpZS.XubPUZ6uPmCBW5LzLWe8rUGvZDsyL2K', 'investor');
+INSERT INTO MYUSER (uuid, username, first_name, last_name, email, hashpass, type) values ('UUID_9', 'Username_9', 'FirstName_9', 'LastName_9', 'email9@email.com', '$2a$10$tAX7ii19/WRgVN5JeWpZS.XubPUZ6uPmCBW5LzLWe8rUGvZDsyL2K', 'investor');
+INSERT INTO MYUSER (uuid, username, first_name, last_name, email, hashpass, type) values ('UUID_10', 'Username_10', 'FirstName_10', 'LastName_10', 'email10@email.com', '$2a$10$tAX7ii19/WRgVN5JeWpZS.XubPUZ6uPmCBW5LzLWe8rUGvZDsyL2K', 'investor');
 
-INSERT INTO MYUSER (uuid, username, first_name, last_name, email, hashpass, type) values ('UUID_11', 'Username_11', 'FirstName_11', 'LastName_11', 'email11@email.com', 'pass_11', 'entrepreneur');
-INSERT INTO MYUSER (uuid, username, first_name, last_name, email, hashpass, type) values ('UUID_12', 'Username_12', 'FirstName_12', 'LastName_12', 'email12@email.com', 'pass_12', 'entrepreneur');
-INSERT INTO MYUSER (uuid, username, first_name, last_name, email, hashpass, type) values ('UUID_13', 'Username_13', 'FirstName_13', 'LastName_13', 'email13@email.com', 'pass_13', 'entrepreneur');
-INSERT INTO MYUSER (uuid, username, first_name, last_name, email, hashpass, type) values ('UUID_14', 'Username_14', 'FirstName_14', 'LastName_14', 'email14@email.com', 'pass_14', 'entrepreneur');
-INSERT INTO MYUSER (uuid, username, first_name, last_name, email, hashpass, type) values ('UUID_15', 'Username_15', 'FirstName_15', 'LastName_15', 'email15@email.com', 'pass_15', 'entrepreneur');
+INSERT INTO MYUSER (uuid, username, first_name, last_name, email, hashpass, type) values ('UUID_11', 'Username_11', 'FirstName_11', 'LastName_11', 'email11@email.com', '$2a$10$tAX7ii19/WRgVN5JeWpZS.XubPUZ6uPmCBW5LzLWe8rUGvZDsyL2K', 'entrepreneur');
+INSERT INTO MYUSER (uuid, username, first_name, last_name, email, hashpass, type) values ('UUID_12', 'Username_12', 'FirstName_12', 'LastName_12', 'email12@email.com', '$2a$10$tAX7ii19/WRgVN5JeWpZS.XubPUZ6uPmCBW5LzLWe8rUGvZDsyL2K', 'entrepreneur');
+INSERT INTO MYUSER (uuid, username, first_name, last_name, email, hashpass, type) values ('UUID_13', 'Username_13', 'FirstName_13', 'LastName_13', 'email13@email.com', '$2a$10$tAX7ii19/WRgVN5JeWpZS.XubPUZ6uPmCBW5LzLWe8rUGvZDsyL2K', 'entrepreneur');
+INSERT INTO MYUSER (uuid, username, first_name, last_name, email, hashpass, type) values ('UUID_14', 'Username_14', 'FirstName_14', 'LastName_14', 'email14@email.com', '$2a$10$tAX7ii19/WRgVN5JeWpZS.XubPUZ6uPmCBW5LzLWe8rUGvZDsyL2K', 'entrepreneur');
+INSERT INTO MYUSER (uuid, username, first_name, last_name, email, hashpass, type) values ('UUID_15', 'Username_15', 'FirstName_15', 'LastName_15', 'email15@email.com', '$2a$10$tAX7ii19/WRgVN5JeWpZS.XubPUZ6uPmCBW5LzLWe8rUGvZDsyL2K', 'entrepreneur');
 
 INSERT INTO ENTREPRENEUR (uuid, phone_number, domain, linkedin_link) values ('UUID_11', '1234567890', 'Domain_1', 'LinkedinLink_11');
 INSERT INTO ENTREPRENEUR (uuid, phone_number, Domain, Linkedin_link) values ('UUID_12', '1234567890', 'Domain_2', 'LinkedinLink_12');
