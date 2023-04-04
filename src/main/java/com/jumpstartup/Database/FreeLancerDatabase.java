@@ -40,6 +40,7 @@ public class FreeLancerDatabase {
             return false;
         } finally {
             DatabaseConnector.closeConnection(connection);
+            return false;
         }
     }
 

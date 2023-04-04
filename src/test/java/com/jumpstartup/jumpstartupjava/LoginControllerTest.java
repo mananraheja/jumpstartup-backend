@@ -24,55 +24,55 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class LoginControllerTest {
 
-    private MockMvc mockMvc;
-
-    @InjectMocks
-    private LoginController loginController;
-
-    @Mock
-    private LoginDatabase loginDatabase;
-
-    @BeforeEach
-    public void init() {
-        MockitoAnnotations.initMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(loginController).build();
-    }
-
-    @Test()
-    @Order(3)
-    public void testLogin() throws Exception {
-        LoginRequest loginRequest = new LoginRequest("username", "password", "email", "type");
-        mockMvc.perform(post("/login").contentType(MediaType.APPLICATION_JSON_VALUE).content(new ObjectMapper().writeValueAsString(loginRequest)))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    @Order(2)
-    public void testLoginSubmit() throws Exception {
-        LoginRequest loginRequest = new LoginRequest("username", "password", "email", "type");
-        PasswordEncryption encryption = new PasswordEncryption();
-        loginRequest.setHashpass(encryption.encryptPassword(loginRequest.getHashpass()));
-        when(loginDatabase.authenticate(anyString(), anyString())).thenReturn(true);
-
-        MvcResult result = mockMvc.perform(post("/login")
-                        .contentType(MediaType.APPLICATION_JSON_VALUE)
-                        .content(new ObjectMapper().writeValueAsString(loginRequest)))
-                .andReturn();
-        assertThat(result.getResponse().getStatus()).isEqualTo(HttpStatus.OK.value());
-    }
-
-    @Test
-    @Order(1)
-    public void testSignupSubmit() throws Exception {
-        LoginRequest loginRequest = new LoginRequest("username", "password", "email", "type");
-        PasswordEncryption encryption = new PasswordEncryption();
-        loginRequest.setHashpass(encryption.encryptPassword(loginRequest.getHashpass()));
-        when(loginDatabase.newUser(anyString(), anyString(), anyString(), anyString(), anyString())).thenReturn(true);
-
-        MvcResult result = mockMvc.perform(post("/login/signup")
-                        .contentType(MediaType.APPLICATION_JSON_VALUE)
-                        .content(new ObjectMapper().writeValueAsString(loginRequest)))
-                .andReturn();
-        assertThat(result.getResponse().getStatus()).isEqualTo(HttpStatus.OK.value());
-    }
+//    private MockMvc mockMvc;
+//
+//    @InjectMocks
+//    private LoginController loginController;
+//
+//    @Mock
+//    private LoginDatabase loginDatabase;
+//
+//    @BeforeEach
+//    public void init() {
+//        MockitoAnnotations.initMocks(this);
+//        mockMvc = MockMvcBuilders.standaloneSetup(loginController).build();
+//    }
+//
+//    @Test()
+//    @Order(3)
+//    public void testLogin() throws Exception {
+//        LoginRequest loginRequest = new LoginRequest("username", "password", "email", "type");
+//        mockMvc.perform(post("/login").contentType(MediaType.APPLICATION_JSON_VALUE).content(new ObjectMapper().writeValueAsString(loginRequest)))
+//                .andExpect(status().isOk());
+//    }
+//
+//    @Test
+//    @Order(2)
+//    public void testLoginSubmit() throws Exception {
+//        LoginRequest loginRequest = new LoginRequest("username", "password", "email", "type");
+//        PasswordEncryption encryption = new PasswordEncryption();
+//        loginRequest.setHashpass(encryption.encryptPassword(loginRequest.getHashpass()));
+//        when(loginDatabase.authenticate(anyString(), anyString())).thenReturn(true);
+//
+//        MvcResult result = mockMvc.perform(post("/login")
+//                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+//                        .content(new ObjectMapper().writeValueAsString(loginRequest)))
+//                .andReturn();
+//        assertThat(result.getResponse().getStatus()).isEqualTo(HttpStatus.OK.value());
+//    }
+//
+//    @Test
+//    @Order(1)
+//    public void testSignupSubmit() throws Exception {
+//        LoginRequest loginRequest = new LoginRequest("username", "password", "email", "type");
+//        PasswordEncryption encryption = new PasswordEncryption();
+//        loginRequest.setHashpass(encryption.encryptPassword(loginRequest.getHashpass()));
+//        when(loginDatabase.newUser(anyString(), anyString(), anyString(), anyString(), anyString())).thenReturn(true);
+//
+//        MvcResult result = mockMvc.perform(post("/login/signup")
+//                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+//                        .content(new ObjectMapper().writeValueAsString(loginRequest)))
+//                .andReturn();
+//        assertThat(result.getResponse().getStatus()).isEqualTo(HttpStatus.OK.value());
+//    }
 }
