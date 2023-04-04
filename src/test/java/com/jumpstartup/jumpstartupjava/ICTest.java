@@ -1,119 +1,166 @@
 package com.jumpstartup.jumpstartupjava;
 
-import com.jumpstartup.Investor.InvestorBean;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-
-import java.util.UUID;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@ExtendWith(MockitoExtension.class)
-public class ICTest {
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jumpstartup.Database.InvestorDatabase;
+import com.jumpstartup.Investor.InvestorBean;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import static org.mockito.Mockito.verify;
+
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+class ICTest {
+
+    private MockMvc mockMvc;
+
+    @InjectMocks
+    private InvestorController investorController;
 
     @Mock
-    InvestorController controller = new InvestorController();
+    private InvestorDatabase investorDatabase;
 
-
-    @Test
-    public void testAddInvestor() {
-        InvestorBean investor = new InvestorBean();
-        investor.setUuid(UUID.randomUUID().toString());
-        investor.setDomain("Artificial Intelligence");
-        investor.setPhone_number("9876543210");
-        investor.setBrands_built("ABC");
-        investor.setFunding_available(100000);
-        ResponseEntity<String> mockResponse = new ResponseEntity<>(HttpStatus.OK);
-        Mockito.when(controller.addInvestor(investor)).thenReturn(mockResponse);
-        ResponseEntity<String> response = controller.addInvestor(investor);
-        assertEquals(HttpStatus.OK, response.getStatusCode());
+    @BeforeEach
+    public void init() {
+        MockitoAnnotations.initMocks(this);
+        mockMvc = MockMvcBuilders.standaloneSetup(investorController).build();
     }
 
     @Test
-    public void testAddInvestorFails(){
+    @Order(1)
+    public void testAddInvestorData() throws Exception {
         InvestorBean investor = new InvestorBean();
-        ResponseEntity<String> mockResponse = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        Mockito.when(controller.addInvestor(investor)).thenReturn(mockResponse);
-        ResponseEntity<String> response = controller.addInvestor(investor);
-        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
-    }
-
-    @Test
-    public void testUpdateInvestor() {
-        InvestorBean investor = new InvestorBean();
-        investor.setUuid(UUID.randomUUID().toString());
-        investor.setDomain("Cloud Computing");
-        investor.setPhone_number("5558889999");
-        investor.setBrands_built("XYZ");
-        investor.setFunding_available(75000);
-        ResponseEntity<String> mockResponse = new ResponseEntity<>(HttpStatus.OK);
-        Mockito.when(controller.updateInvestor(investor.getUuid(), investor)).thenReturn(mockResponse);
-        ResponseEntity<String> response = controller.updateInvestor(investor.getUuid(), investor);
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-    }
-
-    @Test
-    public void testUpdateInvestorFailed() {
-        InvestorBean investor = new InvestorBean();
-        ResponseEntity<String> mockResponse = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        Mockito.when(controller.updateInvestor(investor.getUuid(), investor)).thenReturn(mockResponse);
-        ResponseEntity<String> response = controller.updateInvestor(investor.getUuid(), investor);
-        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
-    }
-
-    @Test
-    public void testDeleteInvestor() {
-        InvestorBean investor = new InvestorBean();
-        investor.setUuid(UUID.randomUUID().toString());
-        investor.setDomain("Data Analytics");
-        investor.setPhone_number("1112223333");
-        investor.setBrands_built("LMN");
-        investor.setFunding_available(25000);
-        ResponseEntity<String> mockResponse = new ResponseEntity<>(HttpStatus.OK);
-        Mockito.when(controller.deleteInvestor(investor.getUuid())).thenReturn(mockResponse);
-        ResponseEntity<String> response = controller.deleteInvestor(investor.getUuid());
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-    }
-
-    @Test
-    public void testDeleteInvestorError() {
-        InvestorBean investor = new InvestorBean();
-        ResponseEntity<String> mockResponse = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        Mockito.when(controller.deleteInvestor(investor.getUuid())).thenReturn(mockResponse);
-        ResponseEntity<String> response = controller.deleteInvestor(investor.getUuid());
-        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
-    }
-
-    @Test
-    public void testGetInvestor() {
-        InvestorBean investor = new InvestorBean();
-        String uuid = UUID.randomUUID().toString();
-        investor.setUuid(uuid);
-        investor.setDomain("Image Processing");
-        investor.setBrands_built("XYX");
+        investor.setUuid("1234");
+        investor.setFirstName("John");
+        investor.setLastName("Doe");
         investor.setPhone_number("1234567890");
-        investor.setFunding_available(50000);
-        ResponseEntity<InvestorBean> mockResponse = new ResponseEntity<>(investor,HttpStatus.OK);
-        Mockito.when(controller.getInvestor(uuid)).thenReturn(mockResponse);
-        ResponseEntity<InvestorBean> response = controller.getInvestor(uuid);
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(investor, response.getBody());
+        investor.setDomain("Blockchain");
+        investor.setBrands_built("FTX");
+        investor.setFunding_available("10000000");
+        investor.setInstitution("University of Waterloo");
+        investor.setDegree("Bachelor of Science");
+        investor.setMajor("Computer Science");
+        investor.setYear_of_completion("2020");
+        investor.setWork_experience("5 years");
+
+        when(investorDatabase.addInvestor(any(InvestorBean.class))).thenReturn(true);
+        when(investorDatabase.addEducation(any(String.class), any(String.class), any(String.class), any(String.class), any(String.class))).thenReturn(true);
+        when(investorDatabase.addWorkExperience(any(String.class), any(String.class))).thenReturn(true);
+
+        // Call the controller method
+        MvcResult result = mockMvc.perform(post("/investor/add")
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .content(new ObjectMapper().writeValueAsString(investor)))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        // Verify that the controller method calls the database methods with correct parameters
+        verify(investorDatabase).addInvestor(investor);
+        verify(investorDatabase).addEducation(investor.getUuid(), investor.getInstitution(),
+                investor.getDegree(), investor.getMajor(), investor.getYear_of_completion());
+        verify(investorDatabase).addWorkExperience(investor.getUuid(), investor.getWork_experience());
+
+        // Verify that the controller method returns a valid response
+        assertEquals(200, result.getResponse().getStatus());
     }
 
     @Test
-    public void testGetInvestorError() {
+    @Order(2)
+    public void testUpdateInvestorData() throws Exception {
         InvestorBean investor = new InvestorBean();
-        ResponseEntity<InvestorBean> mockResponse = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        Mockito.when(controller.getInvestor("67890")).thenReturn(mockResponse);
-        ResponseEntity<InvestorBean> response = controller.getInvestor("67890");
-        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
-        assertNull(response.getBody());
+        investor.setUuid("1234");
+        investor.setFirstName("John");
+        investor.setLastName("Doe");
+        investor.setPhone_number("1234567890");
+        investor.setDomain("Blockchain");
+        investor.setBrands_built("FTX");
+        investor.setFunding_available("10000000");
+        investor.setInstitution("ABC University");
+        investor.setDegree("Bachelor of Science");
+        investor.setMajor("Computer Science");
+        investor.setYear_of_completion("2020");
+        investor.setWork_experience("5 years");
+
+        when(investorDatabase.updateInvestor(any(String.class), any(InvestorBean.class))).thenReturn(true);
+
+        // Call the controller method
+        MvcResult result = mockMvc.perform(put("/investor/update/" + investor.getUuid())
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .content(new ObjectMapper().writeValueAsString(investor)))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        // Verify that the controller method calls the database methods with correct parameters
+        verify(investorDatabase).updateInvestor(investor.getUuid(), investor);
+
+        // Verify that the controller method returns a valid response
+        assertEquals(200, result.getResponse().getStatus());
     }
 
+    @Test
+    @Order(4)
+    public void testDeleteInvestorData() throws Exception {
+        String uuid = "1234";
+
+        when(investorDatabase.deleteInvestor(any(String.class))).thenReturn(true);
+
+        // Call the controller method
+        MvcResult result = mockMvc.perform(delete("/investor/delete/{uuid}", uuid))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        // Verify that the controller method calls the database method with the correct parameter
+        verify(investorDatabase).deleteInvestor(uuid);
+
+        // Verify that the controller method returns a valid response
+        assertEquals(200, result.getResponse().getStatus());
+    }
+
+    @Test
+    @Order(3)
+    public void testGetInvestorData() throws Exception {
+        String uuid = "1234";
+        InvestorBean investor = new InvestorBean();
+        investor.setUuid(uuid);
+        investor.setFirstName("John");
+        investor.setLastName("Doe");
+        investor.setDomain("Blockchain");
+        investor.setBrands_built("FTX");
+        investor.setFunding_available("10000000");
+        investor.setPhone_number("1234567890");
+        investor.setInstitution("ABC University");
+        investor.setDegree("Bachelor of Science");
+        investor.setMajor("Computer Science");
+        investor.setYear_of_completion("2020");
+        investor.setWork_experience("5 years");
+
+        when(investorDatabase.getInvestor(any(String.class))).thenReturn(investor);
+
+        // Call the controller method
+        MvcResult result = mockMvc.perform(get("/investor/{uuid}", uuid))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        // Verify that the controller method calls the database method with the correct parameter
+        verify(investorDatabase).getInvestor(uuid);
+
+        // Verify that the controller method returns a valid response
+        assertEquals(200, result.getResponse().getStatus());
+    }
 }

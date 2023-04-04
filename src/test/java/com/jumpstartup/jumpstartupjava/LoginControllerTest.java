@@ -41,7 +41,7 @@ class LoginControllerTest {
     @Test()
     @Order(3)
     public void testLogin() throws Exception {
-        LoginRequest loginRequest = new LoginRequest("username", "password", "email", "type");
+        LoginRequest loginRequest = new LoginRequest("username", "firstName", "lastName", "email", "hashpass", "type");
         mockMvc.perform(post("/login").contentType(MediaType.APPLICATION_JSON_VALUE).content(new ObjectMapper().writeValueAsString(loginRequest)))
                 .andExpect(status().isOk());
     }
@@ -49,7 +49,7 @@ class LoginControllerTest {
     @Test
     @Order(2)
     public void testLoginSubmit() throws Exception {
-        LoginRequest loginRequest = new LoginRequest("username", "password", "email", "type");
+        LoginRequest loginRequest = new LoginRequest("username", "firstName", "lastName", "email", "hashpass", "type");
         PasswordEncryption encryption = new PasswordEncryption();
         loginRequest.setHashpass(encryption.encryptPassword(loginRequest.getHashpass()));
         when(loginDatabase.authenticate(anyString(), anyString())).thenReturn(true);
@@ -64,10 +64,10 @@ class LoginControllerTest {
     @Test
     @Order(1)
     public void testSignupSubmit() throws Exception {
-        LoginRequest loginRequest = new LoginRequest("username", "password", "email", "type");
+        LoginRequest loginRequest = new LoginRequest("username", "firstName", "lastName", "email", "hashpass", "type");
         PasswordEncryption encryption = new PasswordEncryption();
         loginRequest.setHashpass(encryption.encryptPassword(loginRequest.getHashpass()));
-        when(loginDatabase.newUser(anyString(), anyString(), anyString(), anyString(), anyString())).thenReturn(true);
+        when(loginDatabase.newUser(anyString(), anyString(), anyString(), anyString(), anyString(), anyString(), anyString())).thenReturn(true);
 
         MvcResult result = mockMvc.perform(post("/login/signup")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
