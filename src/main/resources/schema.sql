@@ -12,7 +12,6 @@ CREATE TABLE Entrepreneur (
     UUID VARCHAR(255) PRIMARY KEY,
     phone_number VARCHAR(10) CHECK (phone_number ~ '^[0-9]{10}$'),
     domain VARCHAR(255),
-    linkedin_link VARCHAR(255),
     FOREIGN KEY (UUID) REFERENCES myUser(UUID)
 );
 
@@ -50,7 +49,7 @@ CREATE TABLE Freelancer (
     UUID VARCHAR(255) PRIMARY KEY,
     phone_number VARCHAR(10) CHECK (phone_number ~ '^[0-9]{10}$'),
     skills VARCHAR(255),
-    linkedin_link VARCHAR(255),
+    linkedin_link VARCHAR(255) CHECK (linkedin_link ~ '^https://www\.linkedin\.com/in/[a-zA-Z0-9-_]+'),
     FOREIGN KEY (UUID) REFERENCES myUser(UUID)
 );
 
@@ -70,8 +69,7 @@ CREATE TABLE Investor (
     UUID VARCHAR(255) PRIMARY KEY,
     phone_number VARCHAR(10) CHECK (phone_number ~ '^[0-9]{10}$'),
     domain VARCHAR(255),
-    funding_available VARCHAR(255),
+    funding_available FLOAT,
     brands_built VARCHAR(255),
-    linkedin_link VARCHAR(255),
     FOREIGN KEY (UUID) REFERENCES myUser(UUID)
 );

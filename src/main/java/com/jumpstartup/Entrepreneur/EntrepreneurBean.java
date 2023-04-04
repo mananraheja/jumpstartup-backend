@@ -7,7 +7,6 @@ public class EntrepreneurBean {
     private String lastName;
     private String phone_number;
     private String domain;
-    private String linkedin_link;
 
     // EDUCATION
     private String institution;
@@ -33,7 +32,7 @@ public class EntrepreneurBean {
     public EntrepreneurBean() {}
 
     public EntrepreneurBean(String uuid, String firstName, String lastName, String phone_number, String domain,
-                            String linkedin_link, String institution, String degree, String major, String year_of_completion,
+                            String institution, String degree, String major, String year_of_completion,
                             String work_experience, String company_name, String is_registered, String stakeholder,
                             String company_size, String funding_status, String equity_offered, String assets,
                             String open_to_negotiations, String profits_in_last_fy, String pitch) {
@@ -42,7 +41,6 @@ public class EntrepreneurBean {
         this.lastName = lastName;
         this.phone_number = phone_number;
         this.domain = domain;
-        this.linkedin_link = linkedin_link;
         this.institution = institution;
         this.degree = degree;
         this.major = major;
@@ -94,14 +92,6 @@ public class EntrepreneurBean {
 
     public String getDegree() {
         return degree;
-    }
-
-    public String getLinkedin_link() {
-        return linkedin_link;
-    }
-
-    public void setLinkedin_link(String linkedin_link) {
-        this.linkedin_link = linkedin_link;
     }
 
     public void setDegree(String degree) {
