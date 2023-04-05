@@ -1,8 +1,7 @@
 package com.jumpstartup.Database;
 
-import com.jumpstartup.Company.CompanyBean;
+
 import com.jumpstartup.Connection.DatabaseConnector;
-import com.jumpstartup.Entrepreneur.EntrepreneurBean;
 import com.jumpstartup.Jobs.JobsBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
