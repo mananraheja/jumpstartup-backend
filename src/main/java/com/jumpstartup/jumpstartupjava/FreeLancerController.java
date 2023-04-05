@@ -2,6 +2,7 @@ package com.jumpstartup.jumpstartupjava;
 
 import com.jumpstartup.Freelancer.FreelancerBean;
 import com.jumpstartup.Model.Status;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,13 +16,14 @@ import org.slf4j.LoggerFactory;
 @CrossOrigin(origins = "http://localhost:4200")
 public class FreeLancerController {
 
+    @Autowired
+    FreeLancerDatabase flDatabase;
+
     private static final Logger logger = LoggerFactory.getLogger(FreeLancerController.class);
 
     @PostMapping("/add")
     public ResponseEntity<?> addFreelancerData(@RequestBody FreelancerBean freelancer) {
         logger.info("Adding new freelancer data: {}", freelancer.toString());
-
-        FreeLancerDatabase flDatabase = new FreeLancerDatabase();
 
         // Add the new freelancer to the database
         boolean isFreelancerAdded = flDatabase.addFreelancer(freelancer);
@@ -52,7 +54,6 @@ public class FreeLancerController {
     @PutMapping("/update/{UUID}")
     public ResponseEntity<String> updateFreelancer(@PathVariable String UUID, @RequestBody FreelancerBean freelancer) {
         logger.info("Updating freelancer data: {}", freelancer.toString());
-        FreeLancerDatabase flDatabase = new FreeLancerDatabase();
 
         // Update the freelancer in the database
         boolean isFreelancerUpdated = flDatabase.updateFreelancer(UUID, freelancer);
@@ -68,7 +69,6 @@ public class FreeLancerController {
     @DeleteMapping("/delete/{UUID}")
     public ResponseEntity<String> deleteFreelancer(@PathVariable String UUID) {
         logger.info("Deleting freelancer: {}", UUID);
-        FreeLancerDatabase flDatabase = new FreeLancerDatabase();
 
         // Delete the freelancer from the database
         boolean isFreelancerDeleted = flDatabase.deleteFreelancer(UUID);
@@ -84,7 +84,6 @@ public class FreeLancerController {
     @GetMapping("/{UUID}")
     public ResponseEntity<FreelancerBean> getFreelancer(@PathVariable String UUID) {
         logger.info("Getting freelancer data: {}", UUID);
-        FreeLancerDatabase flDatabase = new FreeLancerDatabase();
 
         // Retrieve the freelancer from the database
         FreelancerBean freelancer = flDatabase.getFreelancer(UUID);

@@ -6,7 +6,25 @@ import java.util.UUID;
 public class FreelancerBean  {
 
     private String uuid;
-//    private String username;
+
+    @Override
+    public String toString() {
+        return "FreelancerBean{" +
+                "uuid='" + uuid + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phone_number='" + phone_number + '\'' +
+                ", skills='" + skills + '\'' +
+                ", linkedin_link='" + linkedin_link + '\'' +
+                ", institution='" + institution + '\'' +
+                ", degree='" + degree + '\'' +
+                ", major='" + major + '\'' +
+                ", year_of_completion='" + year_of_completion + '\'' +
+                ", work_experience='" + work_experience + '\'' +
+                '}';
+    }
+
+    //    private String username;
 //    private String email;
     private String firstName;
     private String lastName;
