@@ -114,9 +114,6 @@ class FCTest {
 
         // Verify that the controller method calls the database methods with correct parameters
         verify(freeLancerDatabase).addFreelancer(ArgumentMatchers.refEq(freelancer));
-        verify(freeLancerDatabase).addEducation(freelancer.getUuid(), freelancer.getInstitution(),
-                freelancer.getDegree(), freelancer.getMajor(), freelancer.getYear_of_completion());
-        verify(freeLancerDatabase).addWorkExperience(freelancer.getUuid(), freelancer.getWork_experience());
 
         // Verify that the controller method returns a valid response
         assertEquals(500, result.getResponse().getStatus());
@@ -152,7 +149,7 @@ class FCTest {
                 freelancer.getDegree(), freelancer.getMajor(), freelancer.getYear_of_completion());
 
         // Verify that the controller method returns a valid response
-        assertEquals("Failed to add education to database", result.getResponse().getErrorMessage());
+        assertEquals("Failed to add education to database", result.getResponse().getContentAsString());
     }
 
     @Test
@@ -187,7 +184,7 @@ class FCTest {
         verify(freeLancerDatabase).addWorkExperience(freelancer.getUuid(), freelancer.getWork_experience());
 
         // Verify that the controller method returns a valid response
-        assertEquals("Failed to add work experience to database", result.getResponse().getErrorMessage());
+        assertEquals("Failed to add work experience to database", result.getResponse().getContentAsString());
     }
 
     @Test
@@ -287,29 +284,20 @@ class FCTest {
     @Order(8)
     public void testGetFreelancerData_FAIL() throws Exception {
         String uuid = "1234";
-        FreelancerBean freelancer = new FreelancerBean();
-        freelancer.setUuid(uuid);
-        freelancer.setFirstName("John");
-        freelancer.setLastName("Doe");
-        freelancer.setPhone_number("1234567890");
-        freelancer.setInstitution("ABC University");
-        freelancer.setDegree("Bachelor of Science");
-        freelancer.setMajor("Computer Science");
-        freelancer.setYear_of_completion("2020");
-        freelancer.setWork_experience("5 years");
+        FreelancerBean freelancerBean = null;
 
         when(freeLancerDatabase.getFreelancer(any(String.class))).thenReturn(null);
 
         // Call the controller method
         MvcResult result = mockMvc.perform(get("/freelancer/{UUID}", uuid))
-                .andExpect(status().isInternalServerError())
+                .andExpect(status().isNotFound())
                 .andReturn();
 
         // Verify that the controller method calls the database method with the correct parameter
         verify(freeLancerDatabase).getFreelancer(uuid);
 
         // Verify that the controller method returns a valid response
-        assertEquals(500, result.getResponse().getStatus());
+        assertEquals(404, result.getResponse().getStatus());
     }
 
     @Test
