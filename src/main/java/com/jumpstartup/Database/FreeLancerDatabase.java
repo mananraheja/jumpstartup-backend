@@ -5,8 +5,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -198,21 +196,20 @@ public class FreeLancerDatabase {
         try {
             connection = DatabaseConnector.getConnection();
 
+            PreparedStatement nameStatement = connection.prepareStatement("SELECT * FROM myuser WHERE uuid = ?");
+            nameStatement.setString(1, UUID);
+            ResultSet nameResult = nameStatement.executeQuery();
+            freelancer = new FreelancerBean();
+            if(nameResult.next()) {
+                freelancer.setFirstName(nameResult.getString("first_name"));
+                freelancer.setLastName(nameResult.getString("last_name"));
+            }
+
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM freelancer WHERE uuid = ?");
             statement.setString(1, UUID);
             ResultSet result = statement.executeQuery();
 
             if (result.next()) {
-
-                PreparedStatement nameStatement = connection.prepareStatement("SELECT * FROM myuser WHERE uuid = ?");
-                nameStatement.setString(1, UUID);
-                ResultSet nameResult = nameStatement.executeQuery();
-                freelancer = new FreelancerBean();
-                if(nameResult.next()) {
-                    freelancer.setFirstName(nameResult.getString("first_name"));
-                    freelancer.setLastName(nameResult.getString("last_name"));
-                }
-
                 freelancer.setUuid(result.getString("uuid"));
                 freelancer.setPhone_number(result.getString("phone_number"));
                 freelancer.setSkills(result.getString("skills"));
@@ -245,34 +242,6 @@ public class FreeLancerDatabase {
         }
         return freelancer;
 
-    }
-
-    public List<FreelancerBean> getAllFreelancers() {
-        Connection connection = null;
-        List<FreelancerBean> allFreelancers = null;
-        FreelancerBean freelancer = null;
-        try {
-            connection = DatabaseConnector.getConnection();
-            allFreelancers = new ArrayList<FreelancerBean>();
-
-            PreparedStatement freelancerStatement = connection.prepareStatement("SELECT uuid FROM Freelancer");
-
-            ResultSet freelancerResult = freelancerStatement.executeQuery();
-
-            while (freelancerResult.next()) {
-                freelancer = this.getFreelancer(freelancerResult.getString("uuid"));
-
-                allFreelancers.add(freelancer);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        } finally {
-            DatabaseConnector.closeConnection(connection);
-        }
-
-        return allFreelancers;
     }
 
 }
