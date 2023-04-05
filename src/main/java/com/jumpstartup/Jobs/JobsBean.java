@@ -1,7 +1,10 @@
 package com.jumpstartup.Jobs;
 
+import java.util.UUID;
+
 public class JobsBean {
 
+    private String jobUuid;
     private String entrepreneurUuid;
     private String description;
     private String isActive;
@@ -11,18 +14,31 @@ public class JobsBean {
     private String type;
     private String postingDate;
 
-    public JobsBean() {}
+    public JobsBean() {
+        this.jobUuid = UUID.randomUUID().toString();
+    }
     
     public JobsBean ( String entrepreneurUuid, String description, String isActive, String numberOfOpenings, 
                       String skills, String payEstimate, String type, String postingDate ) {
-         this.entrepreneurUuid= entrepreneurUuid;
-         this.description= description;
-         this.isActive= isActive;
-         this.numberOfOpenings= numberOfOpenings;
-         this.skills= skills;
-         this.payEstimate= payEstimate;
-         this.type= type;
-         this.postingDate= postingDate;
+
+        this.jobUuid = UUID.randomUUID().toString();
+        this.entrepreneurUuid= entrepreneurUuid;
+        this.description= description;
+        this.isActive= isActive;
+        this.numberOfOpenings= numberOfOpenings;
+        this.skills= skills;
+        this.payEstimate= payEstimate;
+        this.type= type;
+        this.postingDate= postingDate;
+
+    }
+
+    public String getJobUuid() {
+        return jobUuid;
+    }
+
+    public void setJobUuid(String jobUuid) {
+        this.jobUuid = jobUuid;
     }
 
     public String getEntrepreneurUuid() {

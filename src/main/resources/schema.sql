@@ -55,7 +55,8 @@ CREATE TABLE Freelancer (
 );
 
 CREATE TABLE Jobs (
-    UUID VARCHAR(255) PRIMARY KEY,
+    JOB_UUID VARCHAR(255)  PRIMARY KEY,
+    ENTREPRENEUR_UUID VARCHAR(255),
     description VARCHAR(255),
     is_active VARCHAR(255),
     number_of_openings VARCHAR(255),
