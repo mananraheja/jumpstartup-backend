@@ -56,7 +56,6 @@ public class EntrepreneurController {
         return new ResponseEntity<>(Status.buildStatus("ADDENT001","Added Entrepreneur succesfully"), HttpStatus.OK);
     }
 
-
     @PutMapping("/update/{UUID}")
     public ResponseEntity<String> updateEntrepreneur(@PathVariable String UUID, @RequestBody EntrepreneurBean entrepreneur) {
         logger.info("Updating entrepreneur data: {}", entrepreneur.toString());

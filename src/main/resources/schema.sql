@@ -55,7 +55,8 @@ CREATE TABLE Freelancer (
 );
 
 CREATE TABLE Jobs (
-    UUID VARCHAR(255) PRIMARY KEY,
+    JOB_UUID VARCHAR(255) PRIMARY KEY,
+    ENTREPRENEUR_UUID VARCHAR(255),
     description VARCHAR(255),
     is_active VARCHAR(255),
     number_of_openings VARCHAR(255),
@@ -63,7 +64,7 @@ CREATE TABLE Jobs (
     pay_estimate VARCHAR(255),
     type ENUM('full-time', 'part-time', 'contract') CHECK (type IN ('full-time', 'part-time', 'contract')),
     posting_date DATE,
-    FOREIGN KEY (UUID) REFERENCES Company(UUID)
+    FOREIGN KEY (ENTREPRENEUR_UUID) REFERENCES Company(UUID)
 );
 
 CREATE TABLE Investor (
