@@ -31,11 +31,11 @@ public class JobsController {
             return new ResponseEntity<>("Failed to add Job to database", HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        return new ResponseEntity<>(Status.buildStatus("ADDENT001","Added Job succesfully"), HttpStatus.OK);
+        return new ResponseEntity<>(Status.buildStatus("ADDENT001","Added Job successfully"), HttpStatus.OK);
     }
 
     @PutMapping("/update/{jobUuid}")
-    public ResponseEntity<String> updateEntrepreneur(@PathVariable String jobUuid, @RequestBody JobsBean job) {
+    public ResponseEntity<String> updateJob(@PathVariable String jobUuid, @RequestBody JobsBean job) {
         logger.info("Updating job data: {}", job.toString());
         JobsDatabase jobsDatabase = new JobsDatabase();
 
@@ -108,7 +108,5 @@ public class JobsController {
         return new ResponseEntity<>(allJobs, HttpStatus.OK);
 
     }
-
-
 
 }

@@ -20,8 +20,8 @@ public class JobsDatabase {
         Connection connection = null;
         try {
             connection = DatabaseConnector.getConnection();
-            String sql = "INSERT INTO Jobs (job_uuid, entrepreneur_uuid, description,  isActive,  numberOfOpenings," +
-                         "skills,  payEstimate,  type,  postingDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO Jobs (job_uuid, entrepreneur_uuid, description,  is_active,  number_of_openings," +
+                         "skills,  pay_estimate,  type,  posting_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, job.getJobUuid());
             statement.setString(2, job.getEntrepreneurUuid());
@@ -53,9 +53,9 @@ public class JobsDatabase {
         try {
             connection = DatabaseConnector.getConnection();
 
-            // update entrepreneur information
-            String sql = "UPDATE Jobs SET description = ?, isActive = ?, numberOfOpenings = ?, skills = ?, " +
-                        "payEstimate = ?, type = ?, postingDate = ? WHERE job_uuid = ?";
+            // update Job information
+            String sql = "UPDATE Jobs SET description = ?, is_active = ?, number_of_openings = ?, skills = ?, " +
+                        "pay_estimate = ?, type = ?, posting_date = ? WHERE job_uuid = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
 
             statement.setString(1, job.getDescription());
@@ -65,7 +65,7 @@ public class JobsDatabase {
             statement.setString(5, job.getPayEstimate());
             statement.setString(6, job.getType());
             statement.setString(7, job.getPostingDate());
-            statement.setString(8, job.getJobUuid());
+            statement.setString(8, jobUuid);
 
             int rowsAffected = statement.executeUpdate();
 
@@ -139,7 +139,7 @@ public class JobsDatabase {
         } finally {
             DatabaseConnector.closeConnection(connection);
         }
-        logger.info("Fetched Entrepreneur successfully");
+        logger.info("Fetched Job successfully");
         return job;
     }
 
@@ -160,6 +160,7 @@ public class JobsDatabase {
                 JobsBean job = new JobsBean();
 
                 job.setJobUuid(jobsResult.getString("job_uuid"));
+                job.setEntrepreneurUuid(jobsResult.getString("entrepreneur_uuid"));
                 job.setDescription(jobsResult.getString("description"));
                 job.setIsActive(jobsResult.getString("is_active"));
                 job.setNumberOfOpenings(jobsResult.getString("number_of_openings"));

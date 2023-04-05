@@ -22,14 +22,14 @@ public class JobsBean {
                       String skills, String payEstimate, String type, String postingDate ) {
 
         this.jobUuid = UUID.randomUUID().toString();
-        this.entrepreneurUuid= entrepreneurUuid;
-        this.description= description;
-        this.isActive= isActive;
-        this.numberOfOpenings= numberOfOpenings;
-        this.skills= skills;
-        this.payEstimate= payEstimate;
-        this.type= type;
-        this.postingDate= postingDate;
+        this.entrepreneurUuid = entrepreneurUuid;
+        this.description = description;
+        this.isActive = isActive;
+        this.numberOfOpenings = numberOfOpenings;
+        this.skills = skills;
+        this.payEstimate = payEstimate;
+        this.type = type;
+        this.postingDate = postingDate;
 
     }
 
