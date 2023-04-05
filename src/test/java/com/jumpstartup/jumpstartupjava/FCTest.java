@@ -25,8 +25,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class FCTest {
@@ -284,7 +283,6 @@ class FCTest {
     @Order(8)
     public void testGetFreelancerData_FAIL() throws Exception {
         String uuid = "1234";
-        FreelancerBean freelancerBean = null;
 
         when(freeLancerDatabase.getFreelancer(any(String.class))).thenReturn(null);
 
@@ -302,7 +300,7 @@ class FCTest {
 
     @Test
     @Order(8)
-    public void testDeleteEntrepreneurData_PASS() throws Exception {
+    public void testDeleteFreelancerData_PASS() throws Exception {
         String uuid = "1234";
 
         when(freeLancerDatabase.deleteFreelancer(any(String.class))).thenReturn(true);
@@ -321,7 +319,7 @@ class FCTest {
 
     @Test
     @Order(9)
-    public void testDeleteEntrepreneurData_FAIL() throws Exception {
+    public void testDeleteFreelancerData_FAIL() throws Exception {
         String uuid = "1234";
 
         when(freeLancerDatabase.deleteFreelancer(any(String.class))).thenReturn(false);
