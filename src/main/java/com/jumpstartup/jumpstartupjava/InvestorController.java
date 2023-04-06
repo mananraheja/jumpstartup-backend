@@ -3,6 +3,7 @@ package com.jumpstartup.jumpstartupjava;
 
 import com.jumpstartup.Investor.InvestorBean;
 import com.jumpstartup.Model.Status;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,12 +19,14 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200")
 public class InvestorController {
 
+    @Autowired
+    InvestorDatabase investorDatabase;
+
     private static final Logger logger = LoggerFactory.getLogger(InvestorController.class);
 
     @PostMapping("/add")
     public ResponseEntity<?> addInvestor(@RequestBody InvestorBean investor) {
         logger.info("Adding new investor data: {}", investor.toString());
-        InvestorDatabase investorDatabase = new InvestorDatabase();
 
         // Add the new investor to the database
         boolean isInvestorAdded = investorDatabase.addInvestor(investor);
@@ -54,7 +57,6 @@ public class InvestorController {
     @PutMapping("/update/{UUID}")
     public ResponseEntity<String> updateInvestor(@PathVariable String UUID, @RequestBody InvestorBean investor) {
         logger.info("Updating investor data: {}", UUID);
-        InvestorDatabase investorDatabase = new InvestorDatabase();
 
         // Update the investor in the database
         boolean isInvestorUpdated = investorDatabase.updateInvestor(UUID, investor);
@@ -70,7 +72,6 @@ public class InvestorController {
     @DeleteMapping("/delete/{UUID}")
     public ResponseEntity<String> deleteInvestor(@PathVariable String UUID) {
         logger.info("Deleting investor: {}", UUID);
-        InvestorDatabase investorDatabase = new InvestorDatabase();
 
         // Delete the investor from the database
         boolean isInvestorDeleted = investorDatabase.deleteInvestor(UUID);
@@ -86,7 +87,6 @@ public class InvestorController {
     @GetMapping("/{UUID}")
     public ResponseEntity<InvestorBean> getInvestor(@PathVariable String UUID) {
         logger.info("Getting investor data: {}", UUID);
-        InvestorDatabase investorDatabase = new InvestorDatabase();
 
         // Retrieve the investor from the database
         InvestorBean investor = investorDatabase.getInvestor(UUID);
@@ -103,7 +103,6 @@ public class InvestorController {
     @GetMapping()
     public ResponseEntity<List<InvestorBean>> getAllInvestors() {
         logger.info("Getting all investors");
-        InvestorDatabase investorDatabase = new InvestorDatabase();
 
         List<InvestorBean> allInvestors = investorDatabase.getAllInvestors();
 

@@ -6,6 +6,7 @@ import com.jumpstartup.Entrepreneur.EntrepreneurBean;
 import com.jumpstartup.Model.Status;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,12 +19,14 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200")
 public class EntrepreneurController {
 
+    @Autowired
+    EntrepreneurDatabase entrepreneurDatabase;
+
     private static final Logger logger = LoggerFactory.getLogger(EntrepreneurController.class);
     
     @PostMapping("/add")
     public ResponseEntity<?> addEntrepreneur(@RequestBody EntrepreneurBean entrepreneur) {
         logger.info("Adding new entrepreneur data: {}", entrepreneur.toString());
-        EntrepreneurDatabase entrepreneurDatabase = new EntrepreneurDatabase();
 
         // Add the new entrepreneur to the database
         boolean isEntrepreneurAdded = entrepreneurDatabase.addEntrepreneur(entrepreneur);
@@ -56,11 +59,9 @@ public class EntrepreneurController {
         return new ResponseEntity<>(Status.buildStatus("ADDENT001","Added Entrepreneur succesfully"), HttpStatus.OK);
     }
 
-
     @PutMapping("/update/{UUID}")
     public ResponseEntity<String> updateEntrepreneur(@PathVariable String UUID, @RequestBody EntrepreneurBean entrepreneur) {
         logger.info("Updating entrepreneur data: {}", entrepreneur.toString());
-        EntrepreneurDatabase entrepreneurDatabase = new EntrepreneurDatabase();
 
         // Update the entrepreneur in the database
         boolean isEntrepreneurUpdated = entrepreneurDatabase.updateEntrepreneur(UUID, entrepreneur);
@@ -76,7 +77,6 @@ public class EntrepreneurController {
     @DeleteMapping("/delete/{UUID}")
     public ResponseEntity<String> deleteEntrepreneur(@PathVariable String UUID) {
         logger.info("Deleting entrepreneur: {}", UUID);
-        EntrepreneurDatabase entrepreneurDatabase = new EntrepreneurDatabase();
 
         // Delete the entrepreneur from the database
         boolean isEntrepreneurDeleted = entrepreneurDatabase.deleteEntrepreneur(UUID);
@@ -92,7 +92,6 @@ public class EntrepreneurController {
     @GetMapping("/{UUID}")
     public ResponseEntity<EntrepreneurBean> getEntrepreneur(@PathVariable String UUID) {
         logger.info("Getting entrepreneur data: {}", UUID);
-        EntrepreneurDatabase entrepreneurDatabase = new EntrepreneurDatabase();
 
         // Retrieve the entrepreneur from the database
         EntrepreneurBean entrepreneur = entrepreneurDatabase.getEntrepreneur(UUID);
@@ -107,7 +106,7 @@ public class EntrepreneurController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CompanyBean>> getAllCompanies(){
+    public ResponseEntity<List<CompanyBean>> getAllCompanies() {
         logger.info("Getting all companies");
 
         List<CompanyBean> allCompanies = new ArrayList<CompanyBean>();
