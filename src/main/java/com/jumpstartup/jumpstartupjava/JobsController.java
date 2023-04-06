@@ -5,6 +5,7 @@ import com.jumpstartup.Jobs.JobsBean;
 import com.jumpstartup.Model.Status;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,14 +16,17 @@ import java.util.List;
 @RestController
 @RequestMapping("/jobs")
 @CrossOrigin(origins = "http://localhost:4200")
+
 public class JobsController {
+
+    @Autowired
+    JobsDatabase jobsDatabase;
 
     private static final Logger logger = LoggerFactory.getLogger(JobsController.class);
 
     @PostMapping("/add")
     public ResponseEntity<?> addJob(@RequestBody JobsBean job) {
         logger.info("Adding new Job data: {}", job.toString());
-        JobsDatabase jobsDatabase = new JobsDatabase();
 
         // Add the new job to the database
         boolean isJobAdded = jobsDatabase.addJob(job);
@@ -37,7 +41,6 @@ public class JobsController {
     @PutMapping("/update/{jobUuid}")
     public ResponseEntity<String> updateJob(@PathVariable String jobUuid, @RequestBody JobsBean job) {
         logger.info("Updating job data: {}", job.toString());
-        JobsDatabase jobsDatabase = new JobsDatabase();
 
         // Update the Job in the database
         boolean isJobUpdated = jobsDatabase.updateJob(jobUuid, job);
@@ -53,7 +56,6 @@ public class JobsController {
     @DeleteMapping("/delete/{jobUuid}")
     public ResponseEntity<String> deleteJob(@PathVariable String jobUuid) {
         logger.info("Deleting Job: {}", jobUuid);
-        JobsDatabase jobsDatabase = new JobsDatabase();
 
         // Delete the Job from the database
         boolean isJobDeleted = jobsDatabase.deleteJob(jobUuid);
@@ -69,7 +71,6 @@ public class JobsController {
     @GetMapping("/{jobUuid}")
     public ResponseEntity<JobsBean> getJobDetails(@PathVariable String jobUuid) {
         logger.info("Getting Job data: {}", jobUuid);
-        JobsDatabase jobsDatabase = new JobsDatabase();
 
         // Retrieve the Job from the database
         JobsBean job = jobsDatabase.getJob(jobUuid);
@@ -84,11 +85,10 @@ public class JobsController {
     }
 
     @GetMapping("/entrepreneur/{entrepreneurUuid}")
-    public ResponseEntity<List<JobsBean>> getJobs(@PathVariable String entrepreneurUuid){
+    public ResponseEntity<List<JobsBean>> getJobs(@PathVariable String entrepreneurUuid) {
         logger.info("Getting all Jobs for Entrepreneur with UUID {}", entrepreneurUuid);
 
         List<JobsBean> allJobs = new ArrayList<JobsBean>();
-        JobsDatabase jobsDatabase = new JobsDatabase();
 
         allJobs = jobsDatabase.getJobs(entrepreneurUuid);
 
@@ -97,11 +97,10 @@ public class JobsController {
     }
 
     @GetMapping
-    public ResponseEntity<List<JobsBean>> getAllJobs(){
+    public ResponseEntity<List<JobsBean>> getAllJobs() {
         logger.info("Getting all Jobs");
 
         List<JobsBean> allJobs = new ArrayList<JobsBean>();
-        JobsDatabase jobsDatabase = new JobsDatabase();
 
         allJobs = jobsDatabase.getAllJobs();
 

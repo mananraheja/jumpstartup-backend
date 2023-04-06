@@ -7,6 +7,7 @@ import com.jumpstartup.Exception.UserDetailsNotValid;
 import com.jumpstartup.Model.Error;
 import com.jumpstartup.Model.LoginDetails;
 import com.jumpstartup.Model.Status;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,24 +19,27 @@ import org.slf4j.LoggerFactory;
 @Controller
 @RequestMapping("/login")
 @CrossOrigin(origins = "http://localhost:4200")
+
 public class LoginController {
+
+    @Autowired
+    LoginDatabase loginDatabase;
 
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @GetMapping("/{username}")
     public ResponseEntity<?> login(@PathVariable String username) {
 
-        LoginDatabase loginDatabase = new LoginDatabase();
         LoginRequest loginRequest = null;
 
         loginRequest = loginDatabase.getDetails(username);
 
         if (loginRequest == null) {
             logger.warn("User with username {} not found.", username);
-            return new ResponseEntity<>(Error.buildError("ERROO4","User with username not found"),HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(Error.buildError("ERROO4", "User with username not found"), HttpStatus.NOT_FOUND);
         }
         logger.info("User with username {} exists.", username);
-        return new ResponseEntity<>(loginRequest,HttpStatus.OK);
+        return new ResponseEntity<>(loginRequest, HttpStatus.OK);
     }
 
     @PostMapping
@@ -45,7 +49,7 @@ public class LoginController {
             logger.info("User {} has been authorized.", loginRequest.getUsername());
             return new ResponseEntity<>(loginDetails,HttpStatus.OK);
         }
-        catch (UserDetailsNotValid u){
+        catch (UserDetailsNotValid u) {
             logger.warn("Failed to authorize user {}.", loginRequest.getUsername());
             return new ResponseEntity<>(u.getError(),HttpStatus.UNAUTHORIZED);
         }
@@ -57,7 +61,7 @@ public class LoginController {
         boolean success = signup(loginRequest.getUuid(), loginRequest.getUsername(), loginRequest.getFirstName(), loginRequest.getLastName(), loginRequest.getHashpass(), loginRequest.getEmail(), loginRequest.getType());
         if (success) {
             logger.info("User {} signed up successfully.", loginRequest.getUsername());
-            LoginDetails loginDetails = LoginDetails.buildLoginDetails(loginRequest.getUsername(),loginRequest.getType(),loginRequest.getUuid(),loginRequest.getEmail());
+            LoginDetails loginDetails = LoginDetails.buildLoginDetails(loginRequest.getUsername(), loginRequest.getType(), loginRequest.getUuid(), loginRequest.getEmail());
             return new ResponseEntity<>(loginDetails, HttpStatus.OK);
         } else {
             logger.warn("Failed to sign up user {}.", loginRequest.getUsername());
@@ -66,23 +70,20 @@ public class LoginController {
     }
 
     @PutMapping("/updateUser")
-    public ResponseEntity<?> updateUserDetails(@RequestBody LoginRequest loginRequest){
-        LoginDatabase updateUser = new LoginDatabase();
-        boolean updated = updateUser.updateDetails(loginRequest.getFirstName(),loginRequest.getLastName(),loginRequest.getUuid());
+    public ResponseEntity<?> updateUserDetails(@RequestBody LoginRequest loginRequest) {
+        boolean updated = loginDatabase.updateDetails(loginRequest.getFirstName(), loginRequest.getLastName(), loginRequest.getUuid());
         if(updated){
-            return new ResponseEntity<>(Status.buildStatus("JSUP001","Updated Successfuly"),HttpStatus.OK);
+            return new ResponseEntity<>(Status.buildStatus("JSUP001", "Updated Successfuly"), HttpStatus.OK);
         }
-        return new ResponseEntity<>(Error.buildError("ERR003","Error Updating the User"),HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(Error.buildError("ERR003", "Error Updating the User"), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 
     private boolean authenticate(String username, String password) {
-        LoginDatabase auth = new LoginDatabase();
-        return auth.authenticate(username,password);
+        return loginDatabase.authenticate(username,password);
     }
 
     private boolean signup(String UUID, String username, String firstName, String lastName, String password, String email, String type) {
-        LoginDatabase addUser = new LoginDatabase();
-        return addUser.newUser(UUID,username, firstName, lastName, email,password,type);
+        return loginDatabase.newUser(UUID, username, firstName, lastName, email, password, type);
     }
 }
