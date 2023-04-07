@@ -29,10 +29,16 @@ public class DBTest {
     }
 
     @Test
-    void testInvalidCredentials() {
+    void testConnectionWithInvalidCredentialsThrowsSQLException() {
+        final String url = DatabaseConnector.getDbUrl();
+        final String username = null;
+        final String password = null;
+
         assertThrows(SQLException.class, () -> {
-            Connection conn = DriverManager.getConnection(DatabaseConnector.getDbUrl(), null, null);
-        });
+            Connection conn = DriverManager.getConnection(url, username, password);
+        }, "Expected SQLException to be thrown when connecting with invalid credentials");
     }
+
+
 
 }

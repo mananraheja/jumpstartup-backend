@@ -19,7 +19,7 @@ public class Error {
     }
 
     public void setErrorCode(String errorCode) {
-        errorCode = errorCode;
+        this.errorCode = errorCode;
     }
 
     public String getErrorMessage() {
@@ -27,7 +27,7 @@ public class Error {
     }
 
     public void setErrorMessage(String errorMessage) {
-        errorMessage = errorMessage;
+        this.errorMessage = errorMessage;
     }
 
     public static Error buildError(String errorCode,String errorMessage){
