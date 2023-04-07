@@ -106,7 +106,7 @@ public class EntrepreneurController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CompanyBean>> getAllCompanies(){
+    public ResponseEntity<List<CompanyBean>> getAllCompanies() {
         logger.info("Getting all companies");
 
         List<CompanyBean> allCompanies = new ArrayList<CompanyBean>();

@@ -35,7 +35,7 @@ public class JobsController {
             return new ResponseEntity<>("Failed to add Job to database", HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        return new ResponseEntity<>(Status.buildStatus("ADDENT001","Added Job successfully"), HttpStatus.OK);
+        return new ResponseEntity<>(Status.buildStatus("ADDENT001", "Added Job successfully"), HttpStatus.OK);
     }
 
     @PutMapping("/update/{jobUuid}")
@@ -93,7 +93,6 @@ public class JobsController {
         allJobs = jobsDatabase.getJobs(entrepreneurUuid);
 
         return new ResponseEntity<>(allJobs, HttpStatus.OK);
-
     }
 
     @GetMapping
@@ -105,7 +104,6 @@ public class JobsController {
         allJobs = jobsDatabase.getAllJobs();
 
         return new ResponseEntity<>(allJobs, HttpStatus.OK);
-
     }
 
 }

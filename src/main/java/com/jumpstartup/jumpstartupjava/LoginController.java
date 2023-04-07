@@ -44,7 +44,7 @@ public class LoginController {
 
     @PostMapping
     public ResponseEntity<?> loginSubmit(@RequestBody LoginRequest loginRequest) {
-        try{
+        try {
             LoginDetails loginDetails = PasswordEncryption.decryptPassword(loginRequest.getUsername(), loginRequest.getHashpass());
             logger.info("User {} has been authorized.", loginRequest.getUsername());
             return new ResponseEntity<>(loginDetails,HttpStatus.OK);
@@ -70,9 +70,9 @@ public class LoginController {
     }
 
     @PutMapping("/updateUser")
-    public ResponseEntity<?> updateUserDetails(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<?> updateUserDetails(@RequestBody LoginRequest loginRequest){
         boolean updated = loginDatabase.updateDetails(loginRequest.getFirstName(), loginRequest.getLastName(), loginRequest.getUuid());
-        if(updated){
+        if (updated) {
             return new ResponseEntity<>(Status.buildStatus("JSUP001", "Updated Successfuly"), HttpStatus.OK);
         }
         return new ResponseEntity<>(Error.buildError("ERR003", "Error Updating the User"), HttpStatus.INTERNAL_SERVER_ERROR);
