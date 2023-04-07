@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/jobs")
 @CrossOrigin(origins = "http://localhost:4200")
+
 public class JobsController {
 
     @Autowired
@@ -84,7 +85,7 @@ public class JobsController {
     }
 
     @GetMapping("/entrepreneur/{entrepreneurUuid}")
-    public ResponseEntity<List<JobsBean>> getJobs(@PathVariable String entrepreneurUuid){
+    public ResponseEntity<List<JobsBean>> getJobs(@PathVariable String entrepreneurUuid) {
         logger.info("Getting all Jobs for Entrepreneur with UUID {}", entrepreneurUuid);
 
         List<JobsBean> allJobs = new ArrayList<JobsBean>();
@@ -95,7 +96,7 @@ public class JobsController {
     }
 
     @GetMapping
-    public ResponseEntity<List<JobsBean>> getAllJobs(){
+    public ResponseEntity<List<JobsBean>> getAllJobs() {
         logger.info("Getting all Jobs");
 
         List<JobsBean> allJobs = new ArrayList<JobsBean>();

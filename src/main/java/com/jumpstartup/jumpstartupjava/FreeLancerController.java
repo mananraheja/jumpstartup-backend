@@ -1,11 +1,8 @@
 package com.jumpstartup.jumpstartupjava;
 
-import com.jumpstartup.Database.InvestorDatabase;
 import com.jumpstartup.Freelancer.FreelancerBean;
-import com.jumpstartup.Investor.InvestorBean;
 import com.jumpstartup.Model.Status;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -74,7 +71,6 @@ public class FreeLancerController {
     @DeleteMapping("/delete/{UUID}")
     public ResponseEntity<String> deleteFreelancer(@PathVariable String UUID) {
         logger.info("Deleting freelancer: {}", UUID);
-
 
         // Delete the freelancer from the database
         boolean isFreelancerDeleted = flDatabase.deleteFreelancer(UUID);
