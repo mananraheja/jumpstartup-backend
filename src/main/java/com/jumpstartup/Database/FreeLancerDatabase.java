@@ -16,10 +16,21 @@ import com.jumpstartup.Freelancer.FreelancerBean;
 
 public class FreeLancerDatabase {
     private static final Logger logger = LoggerFactory.getLogger(FreeLancerDatabase.class);
+
+    public  FreeLancerDatabase(){
+
+    }
+
+    private DatabaseConnector databaseConnector;
+
+    public FreeLancerDatabase(DatabaseConnector databaseConnector) {
+        this.databaseConnector = databaseConnector;
+    }
+
     public boolean addFreelancer(FreelancerBean freelancer) {
         Connection connection = null;
         try {
-            connection = DatabaseConnector.getConnection();
+            connection = databaseConnector.getConnection();
             String sql = "INSERT INTO Freelancer (uuid,phone_number, skills, linkedin_link) VALUES (?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, freelancer.getUuid());

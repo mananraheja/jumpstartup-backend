@@ -1,0 +1,686 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------< com.jumpstartup:jumpstartupjava >-------------------
+[INFO] Building jumpstartupjava 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ jumpstartupjava ---
+[INFO] Deleting /Users/nikhilsharma/ECE651/jumpstartup-backend/target
+[INFO] 
+[INFO] --- jacoco:0.8.7:prepare-agent (default-prepare-agent) @ jumpstartupjava ---
+[INFO] surefireArgLine set to -javaagent:/Users/nikhilsharma/.m2/repository/org/jacoco/org.jacoco.agent/0.8.7/org.jacoco.agent-0.8.7-runtime.jar=destfile=/Users/nikhilsharma/ECE651/jumpstartup-backend/target/coverage-reports/jacoco.exec
+[INFO] 
+[INFO] --- resources:3.2.0:resources (default-resources) @ jumpstartupjava ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered properties files.
+[INFO] Copying 1 resource
+[INFO] Copying 3 resources
+[INFO] 
+[INFO] --- compiler:3.10.1:compile (default-compile) @ jumpstartupjava ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 21 source files to /Users/nikhilsharma/ECE651/jumpstartup-backend/target/classes
+[INFO] 
+[INFO] --- resources:3.2.0:testResources (default-testResources) @ jumpstartupjava ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered properties files.
+[INFO] skip non existing resourceDirectory /Users/nikhilsharma/ECE651/jumpstartup-backend/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.10.1:testCompile (default-testCompile) @ jumpstartupjava ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 8 source files to /Users/nikhilsharma/ECE651/jumpstartup-backend/target/test-classes
+[INFO] /Users/nikhilsharma/ECE651/jumpstartup-backend/src/test/java/com/jumpstartup/jumpstartupjava/ECTest.java: Some input files use or override a deprecated API.
+[INFO] /Users/nikhilsharma/ECE651/jumpstartup-backend/src/test/java/com/jumpstartup/jumpstartupjava/ECTest.java: Recompile with -Xlint:deprecation for details.
+[INFO] 
+[INFO] --- surefire:2.22.2:test (default-test) @ jumpstartupjava ---
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.jumpstartup.jumpstartupjava.ICTest
+[INFO] Running com.jumpstartup.jumpstartupjava.JumpstartupjavaApplicationTests
+19:43:53.758 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+19:43:53.818 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+19:43:54.022 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.jumpstartup.jumpstartupjava.JumpstartupjavaApplicationTests] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+19:43:54.052 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.jumpstartup.jumpstartupjava.JumpstartupjavaApplicationTests], using SpringBootContextLoader
+19:43:54.066 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.jumpstartup.jumpstartupjava.JumpstartupjavaApplicationTests]: class path resource [com/jumpstartup/jumpstartupjava/JumpstartupjavaApplicationTests-context.xml] does not exist
+19:43:54.066 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.jumpstartup.jumpstartupjava.JumpstartupjavaApplicationTests]: class path resource [com/jumpstartup/jumpstartupjava/JumpstartupjavaApplicationTestsContext.groovy] does not exist
+19:43:54.067 [main] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.jumpstartup.jumpstartupjava.JumpstartupjavaApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+19:43:54.068 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.jumpstartup.jumpstartupjava.JumpstartupjavaApplicationTests]: JumpstartupjavaApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+19:43:54.250 [main] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [com.jumpstartup.jumpstartupjava.JumpstartupjavaApplicationTests]
+19:43:54.463 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [/Users/nikhilsharma/ECE651/jumpstartup-backend/target/classes/com/jumpstartup/jumpstartupjava/JumpstartupjavaApplication.class]
+19:43:54.468 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.jumpstartup.jumpstartupjava.JumpstartupjavaApplication for test class com.jumpstartup.jumpstartupjava.JumpstartupjavaApplicationTests
+19:43:54.620 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [com.jumpstartup.jumpstartupjava.JumpstartupjavaApplicationTests]: using defaults.
+19:43:54.621 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+19:43:54.651 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@70f5f59d, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@74431832, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@6fa2a006, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@70592729, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@2fdf7da2, org.springframework.test.context.support.DirtiesContextTestExecutionListener@43b172e3, org.springframework.test.context.transaction.TransactionalTestExecutionListener@39695803, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@304068, org.springframework.test.context.event.EventPublishingTestExecutionListener@54d60fa1, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@1cb849b2, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@6fe2a366, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@6dd38df2, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@99c3cee, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@57b711b6, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@2db461b5]
+19:43:54.656 [main] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@3eedd0e3 testClass = JumpstartupjavaApplicationTests, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@478089b6 testClass = JumpstartupjavaApplicationTests, locations = '{}', classes = '{class com.jumpstartup.jumpstartupjava.JumpstartupjavaApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@3b55dd15, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@6968c1d6, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@467233e4, org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@4c0e426a, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@65bb6275, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@2783717b], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true]], class annotated with @DirtiesContext [false] with mode [null].
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.7.8)
+
+19:43:55.648 [main] DEBUG _org.springframework.web.servlet.HandlerMapping.Mappings - 
+	c.j.j.InvestorController:
+	{POST [/investor/add]}: addInvestor(InvestorBean)
+	{PUT [/investor/update/{UUID}]}: updateInvestor(String,InvestorBean)
+	{DELETE [/investor/delete/{UUID}]}: deleteInvestor(String)
+	{GET [/investor/{UUID}]}: getInvestor(String)
+2023-04-04 19:43:55.651  INFO 4104 --- [           main] c.j.j.JumpstartupjavaApplicationTests    : Starting JumpstartupjavaApplicationTests using Java 1.8.0_202 on v1040-wn-rt-a-63-196.campus-dynamic.uwaterloo.ca with PID 4104 (started by nikhilsharma in /Users/nikhilsharma/ECE651/jumpstartup-backend)
+2023-04-04 19:43:55.657  INFO 4104 --- [           main] c.j.j.JumpstartupjavaApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+19:43:55.685 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - 4 mappings in org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping
+19:43:56.114 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+19:43:56.184 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+19:43:56.266 [main] INFO org.springframework.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+19:43:56.266 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Initializing Servlet ''
+19:43:56.268 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected AcceptHeaderLocaleResolver
+19:43:56.269 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected FixedThemeResolver
+19:43:56.269 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@f562214
+19:43:56.270 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@6dafe488
+19:43:56.270 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+19:43:56.270 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Completed initialization in 4 ms
+19:43:56.457 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - POST "/investor/add", parameters={}
+19:43:56.466 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped to com.jumpstartup.jumpstartupjava.InvestorController#addInvestor(InvestorBean)
+19:43:56.572 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor - Read "application/json" to [com.jumpstartup.Investor.InvestorBean@5c6e4d6b]
+19:43:56.622 [main] INFO com.jumpstartup.jumpstartupjava.InvestorController - Adding new investor data: com.jumpstartup.Investor.InvestorBean@5c6e4d6b
+19:43:56.624 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Getting database connection...
+19:43:56.870 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Database connection obtained
+19:43:56.878 [main] ERROR com.jumpstartup.Database.InvestorDatabase - Error while trying to add investor: Table "INVESTOR" not found; SQL statement:
+INSERT INTO Investor (uuid,phone_number, domain, funding_available, brands_built) VALUES (?, ?, ?, ?, ?) [42102-200]
+19:43:56.879 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Database connection closed
+19:43:56.880 [main] ERROR com.jumpstartup.jumpstartupjava.InvestorController - Failed to add investor to database.
+19:43:56.898 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor - Using 'text/plain', given [*/*] and supported [text/plain, */*, application/json, application/*+json]
+19:43:56.901 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor - Writing ["Failed to add investor to database"]
+19:43:56.907 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR
+19:43:56.960 [main] DEBUG _org.springframework.web.servlet.HandlerMapping.Mappings - 
+	c.j.j.InvestorController:
+	{POST [/investor/add]}: addInvestor(InvestorBean)
+	{PUT [/investor/update/{UUID}]}: updateInvestor(String,InvestorBean)
+	{DELETE [/investor/delete/{UUID}]}: deleteInvestor(String)
+	{GET [/investor/{UUID}]}: getInvestor(String)
+19:43:56.963 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - 4 mappings in org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping
+19:43:56.967 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+19:43:56.970 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+19:43:56.971 [main] INFO org.springframework.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+19:43:56.971 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Initializing Servlet ''
+19:43:56.971 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected AcceptHeaderLocaleResolver
+19:43:56.971 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected FixedThemeResolver
+19:43:56.971 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@224d7549
+19:43:56.971 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@7fd7bf93
+19:43:56.971 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+19:43:56.971 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Completed initialization in 0 ms
+19:43:56.978 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - PUT "/investor/update/1234", parameters={}
+19:43:56.980 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped to com.jumpstartup.jumpstartupjava.InvestorController#updateInvestor(String, InvestorBean)
+19:43:56.998 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor - Read "application/json" to [com.jumpstartup.Investor.InvestorBean@62989583]
+19:43:56.999 [main] INFO com.jumpstartup.jumpstartupjava.InvestorController - Updating investor data: 1234
+19:43:56.999 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Getting database connection...
+19:43:57.002 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Database connection obtained
+19:43:57.002 [main] ERROR com.jumpstartup.Database.InvestorDatabase - Error while trying to update investor: Table "INVESTOR" not found; SQL statement:
+UPDATE Investor SET phone_number = ?, domain = ?, funding_available = ?, brands_built = ? WHERE uuid = ? [42102-200]
+19:43:57.003 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Database connection closed
+19:43:57.003 [main] ERROR com.jumpstartup.jumpstartupjava.InvestorController - Failed to update investor 1234 in database.
+19:43:57.005 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor - Using 'text/plain', given [*/*] and supported [text/plain, */*, application/json, application/*+json]
+19:43:57.005 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor - Writing ["Failed to update investor in database"]
+19:43:57.005 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR
+19:43:57.023 [main] DEBUG _org.springframework.web.servlet.HandlerMapping.Mappings - 
+	c.j.j.InvestorController:
+	{POST [/investor/add]}: addInvestor(InvestorBean)
+	{PUT [/investor/update/{UUID}]}: updateInvestor(String,InvestorBean)
+	{DELETE [/investor/delete/{UUID}]}: deleteInvestor(String)
+	{GET [/investor/{UUID}]}: getInvestor(String)
+19:43:57.028 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - 4 mappings in org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping
+19:43:57.033 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+19:43:57.035 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+19:43:57.035 [main] INFO org.springframework.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+19:43:57.035 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Initializing Servlet ''
+19:43:57.035 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected AcceptHeaderLocaleResolver
+19:43:57.035 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected FixedThemeResolver
+19:43:57.035 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@12b54611
+19:43:57.036 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@3ef443f1
+19:43:57.036 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+19:43:57.036 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Completed initialization in 1 ms
+19:43:57.037 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - GET "/investor/1234", parameters={}
+19:43:57.038 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped to com.jumpstartup.jumpstartupjava.InvestorController#getInvestor(String)
+19:43:57.039 [main] INFO com.jumpstartup.jumpstartupjava.InvestorController - Getting investor data: 1234
+19:43:57.039 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Getting database connection...
+19:43:57.042 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Database connection obtained
+19:43:57.050 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Database connection closed
+19:43:57.051 [main] ERROR com.jumpstartup.jumpstartupjava.InvestorController - Investor 1234 not found in database.
+19:43:57.058 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+19:43:57.059 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor - Nothing to write: null body
+19:43:57.059 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Completed 404 NOT_FOUND
+19:43:57.073 [main] DEBUG _org.springframework.web.servlet.HandlerMapping.Mappings - 
+	c.j.j.InvestorController:
+	{POST [/investor/add]}: addInvestor(InvestorBean)
+	{PUT [/investor/update/{UUID}]}: updateInvestor(String,InvestorBean)
+	{DELETE [/investor/delete/{UUID}]}: deleteInvestor(String)
+	{GET [/investor/{UUID}]}: getInvestor(String)
+19:43:57.081 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - 4 mappings in org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping
+19:43:57.086 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+19:43:57.090 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+19:43:57.091 [main] INFO org.springframework.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+19:43:57.091 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Initializing Servlet ''
+19:43:57.091 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected AcceptHeaderLocaleResolver
+19:43:57.091 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected FixedThemeResolver
+19:43:57.091 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@95d1b2c
+19:43:57.092 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@439e67cf
+19:43:57.092 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+19:43:57.092 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Completed initialization in 1 ms
+19:43:57.094 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - DELETE "/investor/delete/1234", parameters={}
+19:43:57.095 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped to com.jumpstartup.jumpstartupjava.InvestorController#deleteInvestor(String)
+19:43:57.099 [main] INFO com.jumpstartup.jumpstartupjava.InvestorController - Deleting investor: 1234
+19:43:57.099 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Getting database connection...
+19:43:57.101 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Database connection obtained
+19:43:57.101 [main] ERROR com.jumpstartup.Database.InvestorDatabase - Error while trying to delete investor: Table "EDUCATION" not found; SQL statement:
+DELETE FROM Education WHERE uuid = ? [42102-200]
+19:43:57.102 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Database connection closed
+19:43:57.102 [main] ERROR com.jumpstartup.jumpstartupjava.InvestorController - Failed to delete investor 1234.
+19:43:57.103 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor - Using 'text/plain', given [*/*] and supported [text/plain, */*, application/json, application/*+json]
+19:43:57.103 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor - Writing ["Failed to delete investor from database"]
+19:43:57.104 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR
+[ERROR] Tests run: 4, Failures: 4, Errors: 0, Skipped: 0, Time elapsed: 3.718 s <<< FAILURE! - in com.jumpstartup.jumpstartupjava.ICTest
+[ERROR] testAddInvestorData  Time elapsed: 3.511 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<500>
+	at com.jumpstartup.jumpstartupjava.ICTest.testAddInvestorData(ICTest.java:70)
+
+[ERROR] testUpdateInvestorData  Time elapsed: 0.069 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<500>
+	at com.jumpstartup.jumpstartupjava.ICTest.testUpdateInvestorData(ICTest.java:106)
+
+[ERROR] testGetInvestorData  Time elapsed: 0.054 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<404>
+	at com.jumpstartup.jumpstartupjava.ICTest.testGetInvestorData(ICTest.java:157)
+
+[ERROR] testDeleteInvestorData  Time elapsed: 0.04 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<500>
+	at com.jumpstartup.jumpstartupjava.ICTest.testDeleteInvestorData(ICTest.java:125)
+
+[INFO] Running com.jumpstartup.jumpstartupjava.LoginControllerTest
+19:43:57.252 [main] DEBUG _org.springframework.web.servlet.HandlerMapping.Mappings - 
+	c.j.j.LoginController:
+	{POST [/login]}: loginSubmit(LoginRequest)
+	{POST [/login/signup]}: signupSubmit(LoginRequest)
+	{PUT [/login/updateUser]}: updateUserDetails(LoginRequest)
+	{GET [/login/{username}]}: login(String)
+19:43:57.259 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - 4 mappings in org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping
+19:43:57.266 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+19:43:57.270 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+19:43:57.270 [main] INFO org.springframework.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+19:43:57.270 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Initializing Servlet ''
+19:43:57.270 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected AcceptHeaderLocaleResolver
+19:43:57.270 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected FixedThemeResolver
+19:43:57.270 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@4c6e7fe8
+19:43:57.270 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@255f7224
+19:43:57.270 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+19:43:57.270 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Completed initialization in 0 ms
+2023-04-04 19:43:57.388  INFO 4104 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+19:43:57.448 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - POST "/login/signup", parameters={}
+19:43:57.451 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped to com.jumpstartup.jumpstartupjava.LoginController#signupSubmit(LoginRequest)
+2023-04-04 19:43:57.460  INFO 4104 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 41 ms. Found 0 JPA repository interfaces.
+19:43:57.465 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor - Read "application/json" to [com.jumpstartup.LoginBody.LoginRequest@2d5580f6]
+19:43:57.555 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Getting database connection...
+19:43:57.565 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Database connection obtained
+19:43:57.565 [main] ERROR com.jumpstartup.Database.LoginDatabase - Error while trying to add new user: Table "MYUSER" not found; SQL statement:
+INSERT INTO myUser(UUID, username, first_name, last_name, email, hashpass, type) VALUES(?, ?, ? ,?, ?, ?, ?) [42102-200]
+19:43:57.565 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Database connection closed
+19:43:57.565 [main] WARN com.jumpstartup.jumpstartupjava.LoginController - Failed to sign up user username.
+19:43:57.600 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+19:43:57.601 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor - Nothing to write: null body
+19:43:57.601 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR
+19:43:57.727 [main] DEBUG _org.springframework.web.servlet.HandlerMapping.Mappings - 
+	c.j.j.LoginController:
+	{POST [/login]}: loginSubmit(LoginRequest)
+	{POST [/login/signup]}: signupSubmit(LoginRequest)
+	{PUT [/login/updateUser]}: updateUserDetails(LoginRequest)
+	{GET [/login/{username}]}: login(String)
+19:43:57.740 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - 4 mappings in org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping
+19:43:57.746 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+19:43:57.747 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+19:43:57.750 [main] INFO org.springframework.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+19:43:57.750 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Initializing Servlet ''
+19:43:57.750 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected AcceptHeaderLocaleResolver
+19:43:57.750 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected FixedThemeResolver
+19:43:57.750 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@1f43dd07
+19:43:57.750 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@26db2470
+19:43:57.750 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+19:43:57.750 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Completed initialization in 0 ms
+19:43:57.838 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - POST "/login", parameters={}
+19:43:57.839 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped to com.jumpstartup.jumpstartupjava.LoginController#loginSubmit(LoginRequest)
+19:43:57.848 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor - Read "application/json" to [com.jumpstartup.LoginBody.LoginRequest@61cc3757]
+19:43:57.849 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Getting database connection...
+19:43:57.852 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Database connection obtained
+19:43:57.853 [main] ERROR com.jumpstartup.Encryption.PasswordEncryption - Error while login: Table "MYUSER" not found; SQL statement:
+select * from MYUSER where USERNAME = ? [42102-200]
+19:43:57.854 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Database connection closed
+19:43:57.855 [main] WARN com.jumpstartup.jumpstartupjava.LoginController - Failed to authorize user username.
+19:43:57.861 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+19:43:57.862 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor - Writing [com.jumpstartup.Model.Error@6ef4d437]
+19:43:57.871 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Completed 401 UNAUTHORIZED
+19:43:57.891 [main] DEBUG _org.springframework.web.servlet.HandlerMapping.Mappings - 
+	c.j.j.LoginController:
+	{POST [/login]}: loginSubmit(LoginRequest)
+	{POST [/login/signup]}: signupSubmit(LoginRequest)
+	{PUT [/login/updateUser]}: updateUserDetails(LoginRequest)
+	{GET [/login/{username}]}: login(String)
+19:43:57.893 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - 4 mappings in org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping
+19:43:57.896 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+19:43:57.898 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+19:43:57.898 [main] INFO org.springframework.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+19:43:57.898 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Initializing Servlet ''
+19:43:57.898 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected AcceptHeaderLocaleResolver
+19:43:57.899 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected FixedThemeResolver
+19:43:57.899 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@2e84a7f0
+19:43:57.899 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@7116940a
+19:43:57.899 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+19:43:57.899 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Completed initialization in 1 ms
+19:43:57.901 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - POST "/login", parameters={}
+19:43:57.901 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped to com.jumpstartup.jumpstartupjava.LoginController#loginSubmit(LoginRequest)
+19:43:57.909 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor - Read "application/json" to [com.jumpstartup.LoginBody.LoginRequest@63ff878f]
+19:43:57.909 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Getting database connection...
+19:43:57.912 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Database connection obtained
+19:43:57.912 [main] ERROR com.jumpstartup.Encryption.PasswordEncryption - Error while login: Table "MYUSER" not found; SQL statement:
+select * from MYUSER where USERNAME = ? [42102-200]
+19:43:57.912 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Database connection closed
+19:43:57.912 [main] WARN com.jumpstartup.jumpstartupjava.LoginController - Failed to authorize user username.
+19:43:57.915 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+19:43:57.917 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor - Writing [com.jumpstartup.Model.Error@3ee3a6f2]
+19:43:57.918 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Completed 401 UNAUTHORIZED
+[ERROR] Tests run: 3, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 0.765 s <<< FAILURE! - in com.jumpstartup.jumpstartupjava.LoginControllerTest
+[ERROR] testSignupSubmit  Time elapsed: 0.55 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+
+expected: 200
+ but was: 500
+	at com.jumpstartup.jumpstartupjava.LoginControllerTest.testSignupSubmit(LoginControllerTest.java:76)
+
+[ERROR] testLoginSubmit  Time elapsed: 0.165 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+
+expected: 200
+ but was: 401
+	at com.jumpstartup.jumpstartupjava.LoginControllerTest.testLoginSubmit(LoginControllerTest.java:61)
+
+[ERROR] testLogin  Time elapsed: 0.043 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<401>
+	at com.jumpstartup.jumpstartupjava.LoginControllerTest.testLogin(LoginControllerTest.java:46)
+
+[INFO] Running com.jumpstartup.jumpstartupjava.FreeLancerDatabaseTest
+19:43:57.930 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Getting database connection...
+19:43:57.935 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Database connection obtained
+2023-04-04 19:43:58.652  INFO 4104 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+19:43:58.702 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Getting database connection...
+19:43:58.703 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Database connection obtained
+19:43:58.710 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Getting database connection...
+19:43:58.711 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Database connection obtained
+19:43:58.714 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Getting database connection...
+19:43:58.714 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Database connection obtained
+19:43:58.717 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Getting database connection...
+19:43:58.717 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Database connection obtained
+19:43:58.719 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Getting database connection...
+19:43:58.719 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Database connection obtained
+19:43:58.722 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Getting database connection...
+19:43:58.723 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Database connection obtained
+19:43:58.726 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Getting database connection...
+19:43:58.726 [main] DEBUG com.jumpstartup.Connection.DatabaseConnector - Database connection obtained
+[ERROR] Tests run: 8, Failures: 0, Errors: 8, Skipped: 0, Time elapsed: 0.799 s <<< FAILURE! - in com.jumpstartup.jumpstartupjava.FreeLancerDatabaseTest
+[ERROR] testAddFreelancer  Time elapsed: 0.014 s  <<< ERROR!
+org.mockito.exceptions.misusing.MissingMethodInvocationException: 
+
+when() requires an argument which has to be 'a method call on a mock'.
+For example:
+    when(mock.getArticles()).thenReturn(articles);
+
+Also, this error might show up because:
+1. you stub either of: final/private/equals()/hashCode() methods.
+   Those methods *cannot* be stubbed/verified.
+   Mocking methods declared on non-public parent classes is not supported.
+2. inside when() you don't call method on mock but on some other object.
+
+	at com.jumpstartup.jumpstartupjava.FreeLancerDatabaseTest.testAddFreelancer(FreeLancerDatabaseTest.java:57)
+
+[ERROR] testAddEducation_Success  Time elapsed: 0.762 s  <<< ERROR!
+org.mockito.exceptions.misusing.MissingMethodInvocationException: 
+
+when() requires an argument which has to be 'a method call on a mock'.
+For example:
+    when(mock.getArticles()).thenReturn(articles);
+
+Also, this error might show up because:
+1. you stub either of: final/private/equals()/hashCode() methods.
+   Those methods *cannot* be stubbed/verified.
+   Mocking methods declared on non-public parent classes is not supported.
+2. inside when() you don't call method on mock but on some other object.
+
+	at com.jumpstartup.jumpstartupjava.FreeLancerDatabaseTest.testAddEducation_Success(FreeLancerDatabaseTest.java:85)
+
+[ERROR] testAddEducation_Failure  Time elapsed: 0.003 s  <<< ERROR!
+org.mockito.exceptions.misusing.MissingMethodInvocationException: 
+
+when() requires an argument which has to be 'a method call on a mock'.
+For example:
+    when(mock.getArticles()).thenReturn(articles);
+
+Also, this error might show up because:
+1. you stub either of: final/private/equals()/hashCode() methods.
+   Those methods *cannot* be stubbed/verified.
+   Mocking methods declared on non-public parent classes is not supported.
+2. inside when() you don't call method on mock but on some other object.
+
+	at com.jumpstartup.jumpstartupjava.FreeLancerDatabaseTest.testAddEducation_Failure(FreeLancerDatabaseTest.java:117)
+
+[ERROR] testAddEducation_Exception  Time elapsed: 0.003 s  <<< ERROR!
+org.mockito.exceptions.misusing.MissingMethodInvocationException: 
+
+when() requires an argument which has to be 'a method call on a mock'.
+For example:
+    when(mock.getArticles()).thenReturn(articles);
+
+Also, this error might show up because:
+1. you stub either of: final/private/equals()/hashCode() methods.
+   Those methods *cannot* be stubbed/verified.
+   Mocking methods declared on non-public parent classes is not supported.
+2. inside when() you don't call method on mock but on some other object.
+
+	at com.jumpstartup.jumpstartupjava.FreeLancerDatabaseTest.testAddEducation_Exception(FreeLancerDatabaseTest.java:150)
+
+[ERROR] testAddEducationSQLException  Time elapsed: 0.001 s  <<< ERROR!
+org.mockito.exceptions.misusing.MissingMethodInvocationException: 
+
+when() requires an argument which has to be 'a method call on a mock'.
+For example:
+    when(mock.getArticles()).thenReturn(articles);
+
+Also, this error might show up because:
+1. you stub either of: final/private/equals()/hashCode() methods.
+   Those methods *cannot* be stubbed/verified.
+   Mocking methods declared on non-public parent classes is not supported.
+2. inside when() you don't call method on mock but on some other object.
+
+	at com.jumpstartup.jumpstartupjava.FreeLancerDatabaseTest.testAddEducationSQLException(FreeLancerDatabaseTest.java:179)
+
+[ERROR] testUpdateFreelancer  Time elapsed: 0.002 s  <<< ERROR!
+org.mockito.exceptions.misusing.MissingMethodInvocationException: 
+
+when() requires an argument which has to be 'a method call on a mock'.
+For example:
+    when(mock.getArticles()).thenReturn(articles);
+
+Also, this error might show up because:
+1. you stub either of: final/private/equals()/hashCode() methods.
+   Those methods *cannot* be stubbed/verified.
+   Mocking methods declared on non-public parent classes is not supported.
+2. inside when() you don't call method on mock but on some other object.
+
+	at com.jumpstartup.jumpstartupjava.FreeLancerDatabaseTest.testUpdateFreelancer(FreeLancerDatabaseTest.java:246)
+
+[ERROR] testGetFreelancer  Time elapsed: 0.001 s  <<< ERROR!
+org.mockito.exceptions.misusing.MissingMethodInvocationException: 
+
+when() requires an argument which has to be 'a method call on a mock'.
+For example:
+    when(mock.getArticles()).thenReturn(articles);
+
+Also, this error might show up because:
+1. you stub either of: final/private/equals()/hashCode() methods.
+   Those methods *cannot* be stubbed/verified.
+   Mocking methods declared on non-public parent classes is not supported.
+2. inside when() you don't call method on mock but on some other object.
+
+	at com.jumpstartup.jumpstartupjava.FreeLancerDatabaseTest.testGetFreelancer(FreeLancerDatabaseTest.java:208)
+
+[ERROR] testDeleteFreelancer  Time elapsed: 0.001 s  <<< ERROR!
+org.mockito.exceptions.misusing.MissingMethodInvocationException: 
+
+when() requires an argument which has to be 'a method call on a mock'.
+For example:
+    when(mock.getArticles()).thenReturn(articles);
+
+Also, this error might show up because:
+1. you stub either of: final/private/equals()/hashCode() methods.
+   Those methods *cannot* be stubbed/verified.
+   Mocking methods declared on non-public parent classes is not supported.
+2. inside when() you don't call method on mock but on some other object.
+
+	at com.jumpstartup.jumpstartupjava.FreeLancerDatabaseTest.testDeleteFreelancer(FreeLancerDatabaseTest.java:264)
+
+2023-04-04 19:43:59.117  INFO 4104 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-04-04 19:43:59.647  INFO 4104 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-04-04 19:43:59.717  INFO 4104 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-04-04 19:44:00.001  INFO 4104 --- [           main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-04-04 19:44:00.151  INFO 4104 --- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2023-04-04 19:44:00.567  INFO 4104 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-04-04 19:44:00.585  INFO 4104 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-04-04 19:44:01.142  WARN 4104 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-04-04 19:44:01.628  INFO 4104 --- [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:jsudb'
+2023-04-04 19:44:02.647  INFO 4104 --- [           main] c.j.j.JumpstartupjavaApplicationTests    : Started JumpstartupjavaApplicationTests in 7.88 seconds (JVM running for 11.598)
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.424 s - in com.jumpstartup.jumpstartupjava.JumpstartupjavaApplicationTests
+[INFO] Running com.jumpstartup.jumpstartupjava.FCTest
+2023-04-04 19:44:03.742  INFO 4104 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2023-04-04 19:44:03.743  INFO 4104 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-04-04 19:44:03.743  INFO 4104 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2023-04-04 19:44:03.984  INFO 4104 --- [           main] c.j.j.FreeLancerController               : Adding new freelancer data: com.jumpstartup.Freelancer.FreelancerBean@2c0cd37e
+2023-04-04 19:44:03.997 ERROR 4104 --- [           main] c.j.Database.FreeLancerDatabase          : Error while trying to add freelancer: Referential integrity constraint violation: "CONSTRAINT_11: PUBLIC.FREELANCER FOREIGN KEY(UUID) REFERENCES PUBLIC.MYUSER(UUID) ('1234')"; SQL statement:
+INSERT INTO Freelancer (uuid,phone_number, skills, linkedin_link) VALUES (?, ?, ?, ?) [23506-200]
+2023-04-04 19:44:04.000 ERROR 4104 --- [           main] c.j.j.FreeLancerController               : Failed to add freelancer to database
+2023-04-04 19:44:04.045  INFO 4104 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2023-04-04 19:44:04.045  INFO 4104 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-04-04 19:44:04.046  INFO 4104 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2023-04-04 19:44:04.058  INFO 4104 --- [           main] c.j.j.FreeLancerController               : Adding new freelancer data: com.jumpstartup.Freelancer.FreelancerBean@27f6e3a1
+2023-04-04 19:44:04.059 ERROR 4104 --- [           main] c.j.Database.FreeLancerDatabase          : Error while trying to add freelancer: Referential integrity constraint violation: "CONSTRAINT_11: PUBLIC.FREELANCER FOREIGN KEY(UUID) REFERENCES PUBLIC.MYUSER(UUID) ('1234')"; SQL statement:
+INSERT INTO Freelancer (uuid,phone_number, skills, linkedin_link) VALUES (?, ?, ?, ?) [23506-200]
+2023-04-04 19:44:04.060 ERROR 4104 --- [           main] c.j.j.FreeLancerController               : Failed to add freelancer to database
+2023-04-04 19:44:04.073  INFO 4104 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2023-04-04 19:44:04.073  INFO 4104 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-04-04 19:44:04.073  INFO 4104 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2023-04-04 19:44:04.083  INFO 4104 --- [           main] c.j.j.FreeLancerController               : Adding new freelancer data: com.jumpstartup.Freelancer.FreelancerBean@5d810e
+2023-04-04 19:44:04.085 ERROR 4104 --- [           main] c.j.Database.FreeLancerDatabase          : Error while trying to add freelancer: Referential integrity constraint violation: "CONSTRAINT_11: PUBLIC.FREELANCER FOREIGN KEY(UUID) REFERENCES PUBLIC.MYUSER(UUID) ('1234')"; SQL statement:
+INSERT INTO Freelancer (uuid,phone_number, skills, linkedin_link) VALUES (?, ?, ?, ?) [23506-200]
+2023-04-04 19:44:04.085 ERROR 4104 --- [           main] c.j.j.FreeLancerController               : Failed to add freelancer to database
+2023-04-04 19:44:04.101  INFO 4104 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2023-04-04 19:44:04.101  INFO 4104 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-04-04 19:44:04.102  INFO 4104 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2023-04-04 19:44:04.111  INFO 4104 --- [           main] c.j.j.FreeLancerController               : Adding new freelancer data: com.jumpstartup.Freelancer.FreelancerBean@6fcd799c
+2023-04-04 19:44:04.113 ERROR 4104 --- [           main] c.j.Database.FreeLancerDatabase          : Error while trying to add freelancer: Referential integrity constraint violation: "CONSTRAINT_11: PUBLIC.FREELANCER FOREIGN KEY(UUID) REFERENCES PUBLIC.MYUSER(UUID) ('1234')"; SQL statement:
+INSERT INTO Freelancer (uuid,phone_number, skills, linkedin_link) VALUES (?, ?, ?, ?) [23506-200]
+2023-04-04 19:44:04.115 ERROR 4104 --- [           main] c.j.j.FreeLancerController               : Failed to add freelancer to database
+2023-04-04 19:44:04.125  INFO 4104 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2023-04-04 19:44:04.125  INFO 4104 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-04-04 19:44:04.125  INFO 4104 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2023-04-04 19:44:04.144  INFO 4104 --- [           main] c.j.j.FreeLancerController               : Updating freelancer data: com.jumpstartup.Freelancer.FreelancerBean@317e7b4a
+2023-04-04 19:44:04.149  WARN 4104 --- [           main] c.j.Database.FreeLancerDatabase          : Failed to update freelancer with UUID 1234.
+2023-04-04 19:44:04.150 ERROR 4104 --- [           main] c.j.j.FreeLancerController               : Failed to update freelancer 1234 in database
+2023-04-04 19:44:04.163  INFO 4104 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2023-04-04 19:44:04.163  INFO 4104 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-04-04 19:44:04.163  INFO 4104 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2023-04-04 19:44:04.166  INFO 4104 --- [           main] c.j.j.FreeLancerController               : Deleting freelancer: 1234
+2023-04-04 19:44:04.168  WARN 4104 --- [           main] c.j.Database.FreeLancerDatabase          : No education rows affected while deleting freelancer with UUID: 1234
+2023-04-04 19:44:04.169 ERROR 4104 --- [           main] c.j.j.FreeLancerController               : Failed to delete freelancer 1234.
+2023-04-04 19:44:04.182  INFO 4104 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2023-04-04 19:44:04.183  INFO 4104 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-04-04 19:44:04.183  INFO 4104 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2023-04-04 19:44:04.185  INFO 4104 --- [           main] c.j.j.FreeLancerController               : Getting freelancer data: 1234
+2023-04-04 19:44:04.188  INFO 4104 --- [           main] c.j.j.FreeLancerController               : Freelancer 1234 details fetched successfully.
+[ERROR] Tests run: 7, Failures: 7, Errors: 0, Skipped: 0, Time elapsed: 1.338 s <<< FAILURE! - in com.jumpstartup.jumpstartupjava.FCTest
+[ERROR] testAddFreelancerDataSuccess  Time elapsed: 1.144 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<500>
+	at com.jumpstartup.jumpstartupjava.FCTest.testAddFreelancerDataSuccess(FCTest.java:65)
+
+[ERROR] testAddFreelancerDataEducationFailure  Time elapsed: 0.033 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<500>
+	at com.jumpstartup.jumpstartupjava.FCTest.testAddFreelancerDataEducationFailure(FCTest.java:99)
+
+[ERROR] testAddFreelancerDataWorkExperienceFailure  Time elapsed: 0.026 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<500>
+	at com.jumpstartup.jumpstartupjava.FCTest.testAddFreelancerDataWorkExperienceFailure(FCTest.java:130)
+
+[ERROR] testAddFreelancerDataDuplicate  Time elapsed: 0.026 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<500>
+	at com.jumpstartup.jumpstartupjava.FCTest.testAddFreelancerDataDuplicate(FCTest.java:159)
+
+[ERROR] testUpdateFreelancerData  Time elapsed: 0.035 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<500>
+	at com.jumpstartup.jumpstartupjava.FCTest.testUpdateFreelancerData(FCTest.java:189)
+
+[ERROR] testDeleteEntrepreneurData  Time elapsed: 0.015 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<500>
+	at com.jumpstartup.jumpstartupjava.FCTest.testDeleteEntrepreneurData(FCTest.java:208)
+
+[ERROR] testGetFreelancerData  Time elapsed: 0.044 s  <<< FAILURE!
+org.mockito.exceptions.verification.WantedButNotInvoked: 
+
+Wanted but not invoked:
+freeLancerDatabase.getFreelancer("1234");
+-> at com.jumpstartup.jumpstartupjava.FCTest.testGetFreelancerData(FCTest.java:241)
+Actually, there were zero interactions with this mock.
+
+	at com.jumpstartup.jumpstartupjava.FCTest.testGetFreelancerData(FCTest.java:241)
+
+[INFO] Running com.jumpstartup.jumpstartupjava.DBTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.358 s - in com.jumpstartup.jumpstartupjava.DBTest
+[INFO] Running com.jumpstartup.jumpstartupjava.ECTest
+2023-04-04 19:44:04.766  INFO 4104 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2023-04-04 19:44:04.766  INFO 4104 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-04-04 19:44:04.766  INFO 4104 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2023-04-04 19:44:04.790  INFO 4104 --- [           main] c.j.j.EntrepreneurController             : Adding new entrepreneur data: com.jumpstartup.Entrepreneur.EntrepreneurBean@7d06c68d
+2023-04-04 19:44:05.060 ERROR 4104 --- [           main] c.j.Database.EntrepreneurDatabase        : Error while trying to add entrepreneur: Referential integrity constraint violation: "CONSTRAINT_2E: PUBLIC.ENTREPRENEUR FOREIGN KEY(UUID) REFERENCES PUBLIC.MYUSER(UUID) ('1234')"; SQL statement:
+INSERT INTO Entrepreneur (uuid,phone_number, domain) VALUES (?, ?, ?) [23506-200]
+2023-04-04 19:44:05.061 ERROR 4104 --- [           main] c.j.j.EntrepreneurController             : Failed to add entrepreneur to database
+2023-04-04 19:44:05.100  INFO 4104 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2023-04-04 19:44:05.102  INFO 4104 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-04-04 19:44:05.103  INFO 4104 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2023-04-04 19:44:05.124  INFO 4104 --- [           main] c.j.j.EntrepreneurController             : Updating entrepreneur data: com.jumpstartup.Entrepreneur.EntrepreneurBean@7de6dcf2
+2023-04-04 19:44:05.128  WARN 4104 --- [           main] c.j.Database.EntrepreneurDatabase        : Failed to update entrepreneur with UUID 1234.
+2023-04-04 19:44:05.128 ERROR 4104 --- [           main] c.j.j.EntrepreneurController             : Failed to update entrepreneur 1234 in database
+2023-04-04 19:44:05.143  INFO 4104 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2023-04-04 19:44:05.143  INFO 4104 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-04-04 19:44:05.143  INFO 4104 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2023-04-04 19:44:05.146  INFO 4104 --- [           main] c.j.j.EntrepreneurController             : Getting entrepreneur data: 1234
+2023-04-04 19:44:05.149  INFO 4104 --- [           main] c.j.Database.EntrepreneurDatabase        : Fetched Entrepreneur successfully
+2023-04-04 19:44:05.149  INFO 4104 --- [           main] c.j.j.EntrepreneurController             : Entrepreneur 1234 details fetched successfully.
+2023-04-04 19:44:05.168  INFO 4104 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2023-04-04 19:44:05.168  INFO 4104 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-04-04 19:44:05.168  INFO 4104 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2023-04-04 19:44:05.170  INFO 4104 --- [           main] c.j.j.EntrepreneurController             : Getting all companies
+2023-04-04 19:44:05.189  INFO 4104 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2023-04-04 19:44:05.189  INFO 4104 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-04-04 19:44:05.189  INFO 4104 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2023-04-04 19:44:05.196  INFO 4104 --- [           main] c.j.j.EntrepreneurController             : Deleting entrepreneur: 1234
+2023-04-04 19:44:05.198  WARN 4104 --- [           main] c.j.Database.EntrepreneurDatabase        : No education rows affected while deleting entrepreneur with UUID: 1234
+2023-04-04 19:44:05.198 ERROR 4104 --- [           main] c.j.j.EntrepreneurController             : Failed to delete entrepreneur 1234.
+[ERROR] Tests run: 5, Failures: 5, Errors: 0, Skipped: 0, Time elapsed: 0.605 s <<< FAILURE! - in com.jumpstartup.jumpstartupjava.ECTest
+[ERROR] testAddEntrepreneurData  Time elapsed: 0.477 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<500>
+	at com.jumpstartup.jumpstartupjava.ECTest.testAddEntrepreneurData(ECTest.java:82)
+
+[ERROR] testUpdateEntrepreneurData  Time elapsed: 0.052 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<500>
+	at com.jumpstartup.jumpstartupjava.ECTest.testUpdateEntrepreneurData(ECTest.java:168)
+
+[ERROR] testGetEntrepreneurData  Time elapsed: 0.029 s  <<< FAILURE!
+org.mockito.exceptions.verification.WantedButNotInvoked: 
+
+Wanted but not invoked:
+entrepreneurDatabase.getEntrepreneur("1234");
+-> at com.jumpstartup.jumpstartupjava.ECTest.testGetEntrepreneurData(ECTest.java:230)
+Actually, there were zero interactions with this mock.
+
+	at com.jumpstartup.jumpstartupjava.ECTest.testGetEntrepreneurData(ECTest.java:230)
+
+[ERROR] testGetAllCompanies  Time elapsed: 0.019 s  <<< FAILURE!
+org.mockito.exceptions.verification.WantedButNotInvoked: 
+
+Wanted but not invoked:
+entrepreneurDatabase.getCompanies();
+-> at com.jumpstartup.jumpstartupjava.ECTest.testGetAllCompanies(ECTest.java:279)
+Actually, there were zero interactions with this mock.
+
+	at com.jumpstartup.jumpstartupjava.ECTest.testGetAllCompanies(ECTest.java:279)
+
+[ERROR] testDeleteEntrepreneurData  Time elapsed: 0.021 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<500>
+	at com.jumpstartup.jumpstartupjava.ECTest.testDeleteEntrepreneurData(ECTest.java:187)
+
+2023-04-04 19:44:05.312  INFO 4104 --- [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-04-04 19:44:05.315  INFO 4104 --- [ionShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-04-04 19:44:05.339  INFO 4104 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-04-04 19:44:05.350  INFO 4104 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Failures: 
+[ERROR]   ECTest.testAddEntrepreneurData:82 Status expected:<200> but was:<500>
+[ERROR]   ECTest.testDeleteEntrepreneurData:187 Status expected:<200> but was:<500>
+[ERROR]   ECTest.testGetAllCompanies:279 
+Wanted but not invoked:
+entrepreneurDatabase.getCompanies();
+-> at com.jumpstartup.jumpstartupjava.ECTest.testGetAllCompanies(ECTest.java:279)
+Actually, there were zero interactions with this mock.
+
+[ERROR]   ECTest.testGetEntrepreneurData:230 
+Wanted but not invoked:
+entrepreneurDatabase.getEntrepreneur("1234");
+-> at com.jumpstartup.jumpstartupjava.ECTest.testGetEntrepreneurData(ECTest.java:230)
+Actually, there were zero interactions with this mock.
+
+[ERROR]   ECTest.testUpdateEntrepreneurData:168 Status expected:<200> but was:<500>
+[ERROR]   FCTest.testAddFreelancerDataDuplicate:159 Status expected:<200> but was:<500>
+[ERROR]   FCTest.testAddFreelancerDataEducationFailure:99 Status expected:<200> but was:<500>
+[ERROR]   FCTest.testAddFreelancerDataSuccess:65 Status expected:<200> but was:<500>
+[ERROR]   FCTest.testAddFreelancerDataWorkExperienceFailure:130 Status expected:<200> but was:<500>
+[ERROR]   FCTest.testDeleteEntrepreneurData:208 Status expected:<200> but was:<500>
+[ERROR]   FCTest.testGetFreelancerData:241 
+Wanted but not invoked:
+freeLancerDatabase.getFreelancer("1234");
+-> at com.jumpstartup.jumpstartupjava.FCTest.testGetFreelancerData(FCTest.java:241)
+Actually, there were zero interactions with this mock.
+
+[ERROR]   FCTest.testUpdateFreelancerData:189 Status expected:<200> but was:<500>
+[ERROR]   ICTest.testAddInvestorData:70 Status expected:<200> but was:<500>
+[ERROR]   ICTest.testDeleteInvestorData:125 Status expected:<200> but was:<500>
+[ERROR]   ICTest.testGetInvestorData:157 Status expected:<200> but was:<404>
+[ERROR]   ICTest.testUpdateInvestorData:106 Status expected:<200> but was:<500>
+[ERROR]   LoginControllerTest.testLogin:46 Status expected:<200> but was:<401>
+[ERROR]   LoginControllerTest.testLoginSubmit:61 
+expected: 200
+ but was: 401
+[ERROR]   LoginControllerTest.testSignupSubmit:76 
+expected: 200
+ but was: 500
+[ERROR] Errors: 
+[ERROR]   FreeLancerDatabaseTest.testAddEducationSQLException:179 MissingMethodInvocation
+[ERROR]   FreeLancerDatabaseTest.testAddEducation_Exception:150 MissingMethodInvocation ...
+[ERROR]   FreeLancerDatabaseTest.testAddEducation_Failure:117 MissingMethodInvocation 
+w...
+[ERROR]   FreeLancerDatabaseTest.testAddEducation_Success:85 MissingMethodInvocation 
+wh...
+[ERROR]   FreeLancerDatabaseTest.testAddFreelancer:57 MissingMethodInvocation 
+when() re...
+[ERROR]   FreeLancerDatabaseTest.testDeleteFreelancer:264 MissingMethodInvocation 
+when(...
+[ERROR]   FreeLancerDatabaseTest.testGetFreelancer:208 MissingMethodInvocation 
+when() r...
+[ERROR]   FreeLancerDatabaseTest.testUpdateFreelancer:246 MissingMethodInvocation 
+when(...
+[INFO] 
+[ERROR] Tests run: 31, Failures: 19, Errors: 8, Skipped: 0
+[INFO] 
+[ERROR] There are test failures.
+
+Please refer to /Users/nikhilsharma/ECE651/jumpstartup-backend/target/surefire-reports for the individual test results.
+Please refer to dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[INFO] 
+[INFO] --- jacoco:0.8.7:report (default-report) @ jumpstartupjava ---
+[INFO] Loading execution data file /Users/nikhilsharma/ECE651/jumpstartup-backend/target/coverage-reports/jacoco.exec
+[INFO] Analyzed bundle 'jumpstartupjava' with 21 classes
+[INFO] 
+[INFO] --- jacoco:0.8.7:report (default-cli) @ jumpstartupjava ---
+[INFO] Skipping JaCoCo execution due to missing execution data file.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  22.156 s
+[INFO] Finished at: 2023-04-04T19:44:06-04:00
+[INFO] ------------------------------------------------------------------------
