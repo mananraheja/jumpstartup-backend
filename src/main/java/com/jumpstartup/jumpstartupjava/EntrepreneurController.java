@@ -110,6 +110,7 @@ public class EntrepreneurController {
         logger.info("Getting all companies");
 
         List<CompanyBean> allCompanies = new ArrayList<CompanyBean>();
+        EntrepreneurDatabase entrepreneurDatabase = new EntrepreneurDatabase();
 
         allCompanies = entrepreneurDatabase.getCompanies();
 

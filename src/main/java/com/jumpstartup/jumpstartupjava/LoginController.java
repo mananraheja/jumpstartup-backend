@@ -19,7 +19,6 @@ import org.slf4j.LoggerFactory;
 @Controller
 @RequestMapping("/login")
 @CrossOrigin(origins = "http://localhost:4200")
-
 public class LoginController {
 
     @Autowired
@@ -36,10 +35,10 @@ public class LoginController {
 
         if (loginRequest == null) {
             logger.warn("User with username {} not found.", username);
-            return new ResponseEntity<>(Error.buildError("ERROO4", "User with username not found"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(Error.buildError("ERROO4","User with username not found"),HttpStatus.NOT_FOUND);
         }
         logger.info("User with username {} exists.", username);
-        return new ResponseEntity<>(loginRequest, HttpStatus.OK);
+        return new ResponseEntity<>(loginRequest,HttpStatus.OK);
     }
 
     @PostMapping
@@ -49,7 +48,7 @@ public class LoginController {
             logger.info("User {} has been authorized.", loginRequest.getUsername());
             return new ResponseEntity<>(loginDetails,HttpStatus.OK);
         }
-        catch (UserDetailsNotValid u) {
+        catch (UserDetailsNotValid u){
             logger.warn("Failed to authorize user {}.", loginRequest.getUsername());
             return new ResponseEntity<>(u.getError(),HttpStatus.UNAUTHORIZED);
         }
@@ -84,6 +83,6 @@ public class LoginController {
     }
 
     private boolean signup(String UUID, String username, String firstName, String lastName, String password, String email, String type) {
-        return loginDatabase.newUser(UUID, username, firstName, lastName, email, password, type);
+        return loginDatabase.newUser(UUID,username, firstName, lastName, email, password, type);
     }
 }
