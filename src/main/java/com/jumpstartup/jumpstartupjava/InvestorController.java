@@ -19,13 +19,11 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200")
 public class InvestorController {
 
-    @Autowired
-    InvestorDatabase investorDatabase;
-
     private static final Logger logger = LoggerFactory.getLogger(InvestorController.class);
 
     @PostMapping("/add")
     public ResponseEntity<?> addInvestor(@RequestBody InvestorBean investor) {
+        InvestorDatabase investorDatabase = new InvestorDatabase();
         logger.info("Adding new investor data: {}", investor.toString());
 
         // Add the new investor to the database
@@ -56,6 +54,7 @@ public class InvestorController {
 
     @PutMapping("/update/{UUID}")
     public ResponseEntity<String> updateInvestor(@PathVariable String UUID, @RequestBody InvestorBean investor) {
+        InvestorDatabase investorDatabase = new InvestorDatabase();
         logger.info("Updating investor data: {}", UUID);
 
         // Update the investor in the database
@@ -71,6 +70,7 @@ public class InvestorController {
 
     @DeleteMapping("/delete/{UUID}")
     public ResponseEntity<String> deleteInvestor(@PathVariable String UUID) {
+        InvestorDatabase investorDatabase = new InvestorDatabase();
         logger.info("Deleting investor: {}", UUID);
 
         // Delete the investor from the database
@@ -86,6 +86,7 @@ public class InvestorController {
 
     @GetMapping("/{UUID}")
     public ResponseEntity<InvestorBean> getInvestor(@PathVariable String UUID) {
+        InvestorDatabase investorDatabase = new InvestorDatabase();
         logger.info("Getting investor data: {}", UUID);
 
         // Retrieve the investor from the database
@@ -102,6 +103,7 @@ public class InvestorController {
 
     @GetMapping()
     public ResponseEntity<List<InvestorBean>> getAllInvestors() {
+        InvestorDatabase investorDatabase = new InvestorDatabase();
         logger.info("Getting all investors");
 
         List<InvestorBean> allInvestors = investorDatabase.getAllInvestors();

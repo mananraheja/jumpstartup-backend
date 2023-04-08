@@ -19,13 +19,11 @@ import java.util.List;
 
 public class JobsController {
 
-    @Autowired
-    JobsDatabase jobsDatabase;
-
     private static final Logger logger = LoggerFactory.getLogger(JobsController.class);
 
     @PostMapping("/add")
     public ResponseEntity<?> addJob(@RequestBody JobsBean job) {
+        JobsDatabase jobsDatabase = new JobsDatabase();
         logger.info("Adding new Job data: {}", job.toString());
 
         // Add the new job to the database
@@ -40,6 +38,7 @@ public class JobsController {
 
     @PutMapping("/update/{jobUuid}")
     public ResponseEntity<String> updateJob(@PathVariable String jobUuid, @RequestBody JobsBean job) {
+        JobsDatabase jobsDatabase = new JobsDatabase();
         logger.info("Updating job data: {}", job.toString());
 
         // Update the Job in the database
@@ -55,6 +54,7 @@ public class JobsController {
 
     @DeleteMapping("/delete/{jobUuid}")
     public ResponseEntity<String> deleteJob(@PathVariable String jobUuid) {
+        JobsDatabase jobsDatabase = new JobsDatabase();
         logger.info("Deleting Job: {}", jobUuid);
 
         // Delete the Job from the database
@@ -70,6 +70,7 @@ public class JobsController {
 
     @GetMapping("/{jobUuid}")
     public ResponseEntity<JobsBean> getJobDetails(@PathVariable String jobUuid) {
+        JobsDatabase jobsDatabase = new JobsDatabase();
         logger.info("Getting Job data: {}", jobUuid);
 
         // Retrieve the Job from the database
@@ -86,6 +87,7 @@ public class JobsController {
 
     @GetMapping("/entrepreneur/{entrepreneurUuid}")
     public ResponseEntity<List<JobsBean>> getJobs(@PathVariable String entrepreneurUuid) {
+        JobsDatabase jobsDatabase = new JobsDatabase();
         logger.info("Getting all Jobs for Entrepreneur with UUID {}", entrepreneurUuid);
 
         List<JobsBean> allJobs = new ArrayList<JobsBean>();
@@ -97,6 +99,7 @@ public class JobsController {
 
     @GetMapping
     public ResponseEntity<List<JobsBean>> getAllJobs() {
+        JobsDatabase jobsDatabase = new JobsDatabase();
         logger.info("Getting all Jobs");
 
         List<JobsBean> allJobs = new ArrayList<JobsBean>();

@@ -19,13 +19,13 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200")
 public class EntrepreneurController {
 
-    @Autowired
-    EntrepreneurDatabase entrepreneurDatabase;
-
     private static final Logger logger = LoggerFactory.getLogger(EntrepreneurController.class);
     
     @PostMapping("/add")
     public ResponseEntity<?> addEntrepreneur(@RequestBody EntrepreneurBean entrepreneur) {
+
+        EntrepreneurDatabase entrepreneurDatabase = new EntrepreneurDatabase();
+
         logger.info("Adding new entrepreneur data: {}", entrepreneur.toString());
 
         // Add the new entrepreneur to the database
@@ -61,6 +61,8 @@ public class EntrepreneurController {
 
     @PutMapping("/update/{UUID}")
     public ResponseEntity<String> updateEntrepreneur(@PathVariable String UUID, @RequestBody EntrepreneurBean entrepreneur) {
+
+        EntrepreneurDatabase entrepreneurDatabase = new EntrepreneurDatabase();
         logger.info("Updating entrepreneur data: {}", entrepreneur.toString());
 
         // Update the entrepreneur in the database
@@ -76,6 +78,8 @@ public class EntrepreneurController {
 
     @DeleteMapping("/delete/{UUID}")
     public ResponseEntity<String> deleteEntrepreneur(@PathVariable String UUID) {
+
+        EntrepreneurDatabase entrepreneurDatabase = new EntrepreneurDatabase();
         logger.info("Deleting entrepreneur: {}", UUID);
 
         // Delete the entrepreneur from the database
@@ -91,6 +95,8 @@ public class EntrepreneurController {
 
     @GetMapping("/{UUID}")
     public ResponseEntity<EntrepreneurBean> getEntrepreneur(@PathVariable String UUID) {
+
+        EntrepreneurDatabase entrepreneurDatabase = new EntrepreneurDatabase();
         logger.info("Getting entrepreneur data: {}", UUID);
 
         // Retrieve the entrepreneur from the database
@@ -107,6 +113,8 @@ public class EntrepreneurController {
 
     @GetMapping
     public ResponseEntity<List<CompanyBean>> getAllCompanies() {
+
+        EntrepreneurDatabase entrepreneurDatabase = new EntrepreneurDatabase();
         logger.info("Getting all companies");
 
         List<CompanyBean> allCompanies = new ArrayList<CompanyBean>();
