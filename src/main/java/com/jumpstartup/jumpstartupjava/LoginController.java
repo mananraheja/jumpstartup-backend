@@ -22,13 +22,12 @@ import org.slf4j.LoggerFactory;
 
 public class LoginController {
 
-    @Autowired
-    LoginDatabase loginDatabase;
 
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @GetMapping("/{username}")
     public ResponseEntity<?> login(@PathVariable String username) {
+        LoginDatabase loginDatabase = new LoginDatabase();
 
         LoginRequest loginRequest = null;
 
@@ -71,6 +70,7 @@ public class LoginController {
 
     @PutMapping("/updateUser")
     public ResponseEntity<?> updateUserDetails(@RequestBody LoginRequest loginRequest){
+        LoginDatabase loginDatabase = new LoginDatabase();
         boolean updated = loginDatabase.updateDetails(loginRequest.getFirstName(), loginRequest.getLastName(), loginRequest.getUuid());
         if (updated) {
             return new ResponseEntity<>(Status.buildStatus("JSUP001", "Updated Successfuly"), HttpStatus.OK);
@@ -80,10 +80,12 @@ public class LoginController {
 
 
     private boolean authenticate(String username, String password) {
+        LoginDatabase loginDatabase = new LoginDatabase();
         return loginDatabase.authenticate(username,password);
     }
 
     private boolean signup(String UUID, String username, String firstName, String lastName, String password, String email, String type) {
+        LoginDatabase loginDatabase = new LoginDatabase();
         return loginDatabase.newUser(UUID, username, firstName, lastName, email, password, type);
     }
 }

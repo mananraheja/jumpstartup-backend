@@ -18,13 +18,11 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200")
 public class FreeLancerController {
 
-    @Autowired
-    FreeLancerDatabase flDatabase;
-
     private static final Logger logger = LoggerFactory.getLogger(FreeLancerController.class);
 
     @PostMapping("/add")
     public ResponseEntity<?> addFreelancerData(@RequestBody FreelancerBean freelancer) {
+        FreeLancerDatabase flDatabase = new FreeLancerDatabase();
         logger.info("Adding new freelancer data: {}", freelancer.toString());
 
         // Add the new freelancer to the database
@@ -55,6 +53,7 @@ public class FreeLancerController {
 
     @PutMapping("/update/{UUID}")
     public ResponseEntity<String> updateFreelancer(@PathVariable String UUID, @RequestBody FreelancerBean freelancer) {
+        FreeLancerDatabase flDatabase = new FreeLancerDatabase();
         logger.info("Updating freelancer data: {}", freelancer.toString());
 
         // Update the freelancer in the database
@@ -70,6 +69,7 @@ public class FreeLancerController {
 
     @DeleteMapping("/delete/{UUID}")
     public ResponseEntity<String> deleteFreelancer(@PathVariable String UUID) {
+        FreeLancerDatabase flDatabase = new FreeLancerDatabase();
         logger.info("Deleting freelancer: {}", UUID);
 
         // Delete the freelancer from the database
@@ -85,6 +85,7 @@ public class FreeLancerController {
 
     @GetMapping("/{UUID}")
     public ResponseEntity<FreelancerBean> getFreelancer(@PathVariable String UUID) {
+        FreeLancerDatabase flDatabase = new FreeLancerDatabase();
         logger.info("Getting freelancer data: {}", UUID);
 
         // Retrieve the freelancer from the database
@@ -101,6 +102,7 @@ public class FreeLancerController {
 
     @GetMapping()
     public ResponseEntity<List<FreelancerBean>> getAllFreelancers() {
+        FreeLancerDatabase flDatabase = new FreeLancerDatabase();
         logger.info("Getting all freelancers");
 
         List<FreelancerBean> allFreelancers = flDatabase.getAllFreelancers();
